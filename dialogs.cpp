@@ -1459,6 +1459,7 @@ void GetThingName(THING *t, char *str)
 		case M_EFFECT_STATUE_TO_AOD:           strcat(str, SZ_EFFECT_STATUE_TO_AOD);           break;
 		case M_EFFECT_FILL_ONE_SHOTS:          strcat(str, SZ_EFFECT_FILL_ONE_SHOTS);          break;
 		case M_EFFECT_ARMA_ARENA:			   strcat(str, SZ_EFFECT_ARMA_ARENA);          break;
+        case M_EFFECT_FOW_SHOW_MAP:			   strcat(str, SZ_EFFECT_FOW_SHOW_MAP);          break;
 		default: strcat(str, SZ_UNKNOW);
 		}
 		break;

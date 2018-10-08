@@ -522,6 +522,7 @@ http://alacn.dnsalias.org:8080/
 #define M_EFFECT_FILL_ONE_SHOTS				92
 #define M_EFFECT_FIRE_ROLL_ELEM				93 // no effect?
 #define	M_EFFECT_ARMA_ARENA					94
+#define	M_EFFECT_FOW_SHOW_MAP               95
 //
 #define SZ_EFFECT_SIMPLE_BLAST				"simple blast"
 #define SZ_EFFECT_SPRITE_CIRCLES			"circles"
@@ -601,7 +602,7 @@ http://alacn.dnsalias.org:8080/
 #define SZ_EFFECT_STATUE_TO_AOD				"statue to aod"
 #define SZ_EFFECT_FILL_ONE_SHOTS			"fill one shots"
 #define SZ_EFFECT_ARMA_ARENA				"arma arena"
-
+#define SZ_EFFECT_FOW_SHOW_MAP				"fog of war show map"
 // - shot -
 #define M_SHOT_STANDARD						1
 #define M_SHOT_STANDARD_2					2
