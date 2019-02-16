@@ -2821,10 +2821,10 @@ long EngineLoadLevel(char *filename)
 	CloseHandle(h);
 
     // Populate the computer player indices from the old computer player indices.
-    leveldat->Header.v2.ComputerPlayerIndex[0] = leveldat->Header.v2.BlueComputerPlayerIndex;
+    leveldat->Header.ComputerPlayerIndex[0] = leveldat->Header.v2.BlueComputerPlayerIndex;
     for (int i = 1; i < 4; ++i)
     {
-        leveldat->Header.v2.ComputerPlayerIndex[i] = leveldat->Header.v2.ComputerPlayerIndex[i - 1];
+        leveldat->Header.ComputerPlayerIndex[i] = leveldat->Header.v2.OldComputerPlayerIndex[i - 1];
     }
 
 	for(int a = 0; a < 256; a++)
@@ -2919,10 +2919,10 @@ long EngineSaveLevelV3(char *filename)
 	CloseHandle(h);
 
     // Populate the computer player indices from the old computer player indices.
-    leveldat->Header.v2.ComputerPlayerIndex[0] = leveldat->Header.v2.BlueComputerPlayerIndex;
+    leveldat->Header.ComputerPlayerIndex[0] = leveldat->Header.v2.BlueComputerPlayerIndex;
     for (int i = 1; i < 4; ++i)
     {
-        leveldat->Header.v2.ComputerPlayerIndex[i] = leveldat->Header.v2.ComputerPlayerIndex[i - 1];
+        leveldat->Header.ComputerPlayerIndex[i] = leveldat->Header.v2.OldComputerPlayerIndex[i - 1];
     }
 
     for (int a = 0; a < 256; a++)

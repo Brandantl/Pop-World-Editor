@@ -812,7 +812,7 @@ struct LEVELHEADERv2
 	PLAYERTHINGS				DefaultThings;
 	CHAR						Name[32];
 	UBYTE						NumPlayers;
-	UBYTE						ComputerPlayerIndex[3];
+	UBYTE						OldComputerPlayerIndex[3];
 	UBYTE						DefaultAllies[4];
 	UBYTE						LevelType;
 	UBYTE						ObjectsBankNum;
@@ -828,6 +828,7 @@ struct LEVELHEADERv2
 struct LEVELHEADERv3
 {
 	LEVELHEADERv2				v2;
+    UBYTE                       ComputerPlayerIndex[4];
 	UBYTE						Version;								// How many objects are in the level
 	ULONG						MaxAltPoints;							// How many points are in the level
 	ULONG						MaxNumObjects;							// How many objects are in the level
