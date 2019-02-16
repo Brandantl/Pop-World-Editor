@@ -2820,11 +2820,17 @@ long EngineLoadLevel(char *filename)
 
 	CloseHandle(h);
 
-    // Populate the computer player indices from the old computer player indices.
-    leveldat->Header.ComputerPlayerIndex[0] = leveldat->Header.v2.BlueComputerPlayerIndex;
-    for (int i = 1; i < 4; ++i)
+    // Check to see if the old computer indices should be copied over to the new.
+    if ((leveldat->Header.v2.LevelFlags & LEVEL_FLAGS_ALLOW_ANY_COMPUTER_CONTROLLED_TRIBE) == 0)
     {
-        leveldat->Header.ComputerPlayerIndex[i] = leveldat->Header.v2.OldComputerPlayerIndex[i - 1];
+        // Populate the computer player indices from the old computer player indices.
+        for (int i = 1; i < 4; ++i)
+        {
+            leveldat->Header.v2.ComputerPlayerIndex[i] = leveldat->Header.v2.OldComputerPlayerIndex[i - 1];
+        }
+
+        // Enable the ability to set a computer script for the blue tribe.
+        leveldat->Header.v2.LevelFlags |= LEVEL_FLAGS_ALLOW_ANY_COMPUTER_CONTROLLED_TRIBE;
     }
 
 	for(int a = 0; a < 256; a++)
@@ -2918,11 +2924,17 @@ long EngineSaveLevelV3(char *filename)
 
 	CloseHandle(h);
 
-    // Populate the computer player indices from the old computer player indices.
-    leveldat->Header.ComputerPlayerIndex[0] = leveldat->Header.v2.BlueComputerPlayerIndex;
-    for (int i = 1; i < 4; ++i)
+    // Check to see if the old computer indices should be copied over to the new.
+    if ((leveldat->Header.v2.LevelFlags & LEVEL_FLAGS_ALLOW_ANY_COMPUTER_CONTROLLED_TRIBE) == 0)
     {
-        leveldat->Header.ComputerPlayerIndex[i] = leveldat->Header.v2.OldComputerPlayerIndex[i - 1];
+        // Populate the computer player indices from the old computer player indices.
+        for (int i = 1; i < 4; ++i)
+        {
+            leveldat->Header.v2.ComputerPlayerIndex[i] = leveldat->Header.v2.OldComputerPlayerIndex[i - 1];
+        }
+
+        // Enable the ability to set a computer script for the blue tribe.
+        leveldat->Header.v2.LevelFlags |= LEVEL_FLAGS_ALLOW_ANY_COMPUTER_CONTROLLED_TRIBE;
     }
 
     for (int a = 0; a < 256; a++)
