@@ -7358,6 +7358,7 @@ void DlgMarkersToggle()
 void DlgMarkersUpdate(HWND hWnd)
 {
 	if(!hWnd) return;
+	HWND hButton = GetDlgItem(hWnd, IDC_MARKERS_COPY);
 
 	if(MarkerSelected == -1)
 	{
@@ -7403,6 +7404,13 @@ int __stdcall DlgMarkersProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			MarkerSelected--;
 			if(MarkerSelected < 0) MarkerSelected = 255;
 			DlgMarkersCenterSelected();
+			break;
+		case IDC_MARKERS_COPY:
+			if (MarkerSelected != -1)
+			{
+				sprintf(str, "%d %d", leveldat->Header.v2.Markers[MarkerSelected] & 0xFF, leveldat->Header.v2.Markers[MarkerSelected] >> 8);
+				CopyToClipboard(hWnd, str);
+			}
 			break;
 		}
 		return 0;
