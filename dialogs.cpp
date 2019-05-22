@@ -2892,6 +2892,9 @@ void DlgObjectUpdateInfo(HWND hWnd, bool lock)
 	HWND hItem;
 	if(ThingSelected)
 	{
+		char szTemp[255];
+		sprintf(szTemp, _T("Object - M: %d, I: %d"), ThingSelected->Thing.Model, ThingSelected->Thing.Scenery.IslandNum);
+		SetWindowText(hWnd, szTemp);
 		EnableWindow(GetDlgItem(hWnd, IDC_OBJECT_DELETE), true);
 		EnableWindow(GetDlgItem(hWnd, IDC_OBJECT_OPTIONS), false);
 
