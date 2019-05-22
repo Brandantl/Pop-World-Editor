@@ -69,7 +69,10 @@ bool					fEngineEditLand			= false,
 						fMoving					= false,
 						fLandEditUpdate			= true,
 						fFlatten				= false,
-						fSmooth					= false;
+						fSmooth					= false,
+						fRaise					= false,
+						fLower					= false;
+
 POINT					ptCursor,
 						ptCaptured;
 MOUSEBUTTON				MouseButton				= MouseButtonLeft;
@@ -1668,26 +1671,30 @@ _skip:
 						az++;
 					}
 				}
-				else if(MouseButton == MouseButtonLeft)
+			else if(MouseButton == MouseButtonLeft)
 				{
-					m = EngineGetGroundHeight(x, z);
-					az = 0;
-					while(az <= GroundEditBrushSize)
+					if (!fRaise)
 					{
-						ax = 0;
-						while(ax <= GroundEditBrushSize)
+						m = EngineGetGroundHeight(x, z);
+						az = 0;
+
+						while(az <= GroundEditBrushSize)
 						{
-							w = EngineGetGroundHeight(x + ax, z + az);
-							if(w != m) b = true;
+							ax = 0;
+							while(ax <= GroundEditBrushSize)
+							{
+								w = EngineGetGroundHeight(x + ax, z + az);
+								if(w != m) b = true;
 
-							/* min progressive
-							if(w < m) m = w;
-							*/
+								/* min progressive
+								if(w < m) m = w;
+								*/
 
-							if(w > m) m = w;
-							ax++;
+								if(w > m) m = w;
+								ax++;
+							}
+							az++;
 						}
-						az++;
 					}
 
 					az = 0;
@@ -1733,24 +1740,28 @@ _skip:
 				}
 				else if(MouseButton == MouseButtonRight)
 				{
-					m = EngineGetGroundHeight(x, z);
-					az = 0;
-					while(az <= GroundEditBrushSize)
+					if (!fLower)
 					{
-						ax = 0;
-						while(ax <= GroundEditBrushSize)
-						{
-							w = EngineGetGroundHeight(x + ax, z + az);
-							if(w != m) b = true;
-							
-							/* min progressive
-							if(w > m) m = w;
-							*/
+						m = EngineGetGroundHeight(x, z);
+						az = 0;
 
-							if(w < m) m = w;
-							ax++;
+						while(az <= GroundEditBrushSize)
+						{
+							ax = 0;
+							while(ax <= GroundEditBrushSize)
+							{
+								w = EngineGetGroundHeight(x + ax, z + az);
+								if(w != m) b = true;
+
+								/* min progressive
+								if(w > m) m = w;
+								*/
+
+								if(w < m) m = w;
+								ax++;
+							}
+							az++;
 						}
-						az++;
 					}
 
 					az = 0;
