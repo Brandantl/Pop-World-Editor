@@ -432,7 +432,7 @@ http://alacn.dnsalias.org:8080/
 
 #define SZ_BRUSH_SIZE_TXT							"Size: %d"
 #define BRUSH_SIZE_MIN								0
-#define BRUSH_SIZE_MAX								8
+#define BRUSH_SIZE_MAX								32
 #define SZ_BRUSH_SPEED_TXT							"Speed: %d"
 #define BRUSH_SPEED_MIN								0
 #define BRUSH_SPEED_MAX								8
