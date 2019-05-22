@@ -2437,7 +2437,19 @@ skip:;
 
 	if(fEngineEditMarkers || (dwEngineFlags & EF_SHOW_MARKERS))
 	{
-		if(fCaptured && fMoving && fEngineEditMarkers && (MarkerSelected != -1))
+		if (bKeys[VK_DELETE] && MarkerSelected != -1)
+		{
+			leveldat->Header.v2.Markers[MarkerSelected] = ((0) << 8) | (0);
+
+			Markers[MarkerSelected].x = 0.5f;
+			Markers[MarkerSelected].z = 0.5f;
+			Markers[MarkerSelected].ex = 0.5f;
+			Markers[MarkerSelected].ez = 0.5f;
+			Markers[MarkerSelected].ey = 0.0f;
+
+			DlgMarkersUpdate(hDlgMarkers);
+		}
+		else if(fCaptured && fMoving && fEngineEditMarkers && (MarkerSelected != -1))
 		{
 			D3DVECTOR r0, r1;
 			EngineGetPick(&r0, &r1);
