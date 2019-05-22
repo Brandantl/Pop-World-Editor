@@ -72,7 +72,8 @@ bool					fEngineEditLand			= false,
 						fSmooth					= false,
 						fRaise					= false,
 						fLower					= false,
-						fNewMarkerAdded			= false;
+						fNewMarkerAdded			= false,
+						fPaintDecorations		= true;
 
 POINT					ptCursor,
 						ptCaptured;
@@ -2043,7 +2044,27 @@ long EngineDrawObjects()
 
 			if(thing->flags & TF_DRAW)
 			{
-				if(fEngineEditObjs && (ThingSelected == thing) && ((thing->Thing.Type != T_EFFECT) || (thing->Thing.Model != M_EFFECT_LAND_BRIDGE) || (!(thing->flags & TF_EDIT_LANDBRIDGE))))
+				if (fEngineEditObjs && (ThingSelected != thing) && (thing->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY) && fPaintDecorations)
+				{
+					lightObjects.dcvDiffuse.r = lightObjects.dcvAmbient.r = 0.0f;
+					lightObjects.dcvDiffuse.g = lightObjects.dcvAmbient.g = 0.0f;
+					lightObjects.dcvDiffuse.b = lightObjects.dcvAmbient.b = 1.0f;
+					lpD3DDevice->SetLight(0, &lightObjects);
+				}
+				else if (fEngineEditObjs && (ThingSelected != thing))
+				{
+					lightObjects.dcvAmbient.r  =
+					lightObjects.dcvSpecular.r =
+					lightObjects.dcvDiffuse.r  =
+					lightObjects.dcvAmbient.g =
+					lightObjects.dcvSpecular.g =
+					lightObjects.dcvDiffuse.g  =
+					lightObjects.dcvAmbient.b  =
+					lightObjects.dcvSpecular.b =
+					lightObjects.dcvDiffuse.b  = 1.0f;
+					lpD3DDevice->SetLight(0, &lightObjects);
+				}
+				else if(fEngineEditObjs && (ThingSelected == thing) && ((thing->Thing.Type != T_EFFECT) || (thing->Thing.Model != M_EFFECT_LAND_BRIDGE) || (!(thing->flags & TF_EDIT_LANDBRIDGE))))
 				{
 					lightObjects.dcvAmbient.r  =
 					lightObjects.dcvSpecular.r =
@@ -3700,6 +3721,10 @@ down_skip:
 		return S_OK;
 }
 
+void DlgPaintDecorations()
+{
+	fPaintDecorations = !fPaintDecorations;
+}
 
 long EngineUpdateMiniMap()
 {

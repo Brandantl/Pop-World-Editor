@@ -549,6 +549,7 @@ void DlgObjectIdxToLink();
 void DlgObjectResetIdxs();
 void DlgObjectLinkToIdx();
 void DlgObjectUnlinkObj(THING *a);
+void DlgPaintDecorations();
 
 // filter dialog
 void DlgFilterToggle();

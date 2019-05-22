@@ -290,7 +290,8 @@ extern bool						fEngineEditLand,
 								fSmooth,
 								fRaise,
 								fLower,
-								fNewMarkerAdded;
+								fNewMarkerAdded,
+								fPaintDecorations;
 
 extern POINT					ptCursor,
 								ptCaptured;

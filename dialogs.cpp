@@ -2583,6 +2583,10 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case IDC_OBJECT_DELETE:
 			DlgObjectDeleteObj();
 			return 0;
+
+		case IDC_PAINT_DECORATIONS:
+			DlgPaintDecorations();
+			return 0;
 		}
 
 		if(!ThingSelected) return 0;
