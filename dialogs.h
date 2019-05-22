@@ -666,3 +666,4 @@ void DlgAIScriptSrc();
 void DlgAIScriptDst();
 
 extern bool fQuickDuplicate;
+void PurgeObjects();

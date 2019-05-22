@@ -1009,6 +1009,8 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Swap Tribe",                  ID_EDIT_SWAPTRIBE
+		MENUITEM SEPARATOR
+		MENUITEM "Delete Objects",				ID_PURGE_OBJECTS
     END
 END
 

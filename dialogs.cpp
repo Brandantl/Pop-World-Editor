@@ -2089,6 +2089,10 @@ long __stdcall MenuBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			DlgSwapTribeToggle();
 			break;
 
+		case ID_PURGE_OBJECTS:
+			PurgeObjects();
+			break;
+
 		case ID_HEADER_ALLIES:
 			DlgAlliesToggle();
 			break;
@@ -9027,3 +9031,36 @@ void DlgAIScriptDst()
 	}
 	LockDialogs(false);
 }
+
+void PurgeObjects()
+{
+	const int nResult = MessageBox(NULL, _T("Are you sure you want to delete ALL objects?"), _T("Delete Objects"), MB_YESNO);
+	if (nResult == IDNO) return;
+
+	int nDeletedObjs = 0;
+	const int nObjsCounts = ObjectsCount;
+	THING *t = Things;
+
+	for (int i = 0; i <= nObjsCounts; i++)
+	{
+		t = Things;
+
+		if (t)
+		{
+			DlgObjectSelect(t, 0);
+
+			if (ThingSelected)
+			{
+				DlgObjectDeleteObj();
+				nDeletedObjs++;
+				if (ObjectsCount != 0)
+				{
+					t = Things->Next;
+				}
+			}
+		}
+	}
+	
+	sprintf(str, "%d", nDeletedObjs);
+	MessageBox(NULL, str, _T("Objects Deleted"), MB_ICONINFORMATION | MB_OK);
+} 

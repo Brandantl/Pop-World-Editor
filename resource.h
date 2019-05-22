@@ -70,6 +70,7 @@
 #define ID_AISCRIPT_SCRIPT              339
 #define ID_LANGUAGE_LANG2TEXT           340
 #define ID_LANGUAGE_TEXT2LANG           341
+#define ID_PURGE_OBJECTS				342
 #define IDC_MENUBAR_FILE                1001
 #define IDC_MENUBAR_EDIT                1002
 #define IDC_MENUBAR_OPTIONS             1003
