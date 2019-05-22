@@ -233,6 +233,14 @@ http://alacn.dnsalias.org:8080/
 #define SZ_OBJ_SPECIAL_F					"data\\special_f.3ds"
 #define SZ_OBJ_EAGLE						"data\\eagle.3ds"
 
+#define SZ_OBJ_DECORATION_BOOK				"data\\book.3ds"
+#define SZ_OBJ_DECORATION_SHIELD			"data\\shield.3ds"
+#define SZ_OBJ_DECORATION_WELL				"data\\well.3ds"
+#define SZ_OBJ_DECORATION_WINDMILL			"data\\windmill.3ds"
+#define SZ_OBJ_DECORATION_WOODEN_HUT		"data\\woodhut.3ds"
+#define SZ_OBJ_DECORATION_OBELISK			"data\\obelisk.3ds"
+#define SZ_OBJ_DECORATION_TOTEM				"data\\totem.3ds"
+#define SZ_OBJ_DECORATION_GARGOYLE			"data\\gargoyle.3ds"
 
 // -=-=- misc strings -=-=-
 
@@ -285,7 +293,7 @@ http://alacn.dnsalias.org:8080/
 #define SZ_SPELL							"Spell"
 #define SZ_SHOT                             "Shot"
 #define SZ_SPECIAL							"Special" // top/sub level scenery
-
+#define SZ_DECORATION						"Decoration"
 
 // - person -
 #define M_PERSON_WILD						1
@@ -409,6 +417,202 @@ http://alacn.dnsalias.org:8080/
 #define SZ_SPECIAL_D						"special d"
 #define SZ_SPECIAL_E						"special e"
 #define SZ_SPECIAL_F						"special f"
+
+// Decorations
+#define M_DECORATION_BOOK					(31)
+#define M_DECORATION_SHIELD					(32)
+#define M_DECORATION_WELL					(53)
+#define M_DECORATION_WINDMILL				(51)
+#define M_DECORATION_WOODEN_HUT				(52)
+
+#define	M_DECORATION_B_TOWER				(79)	
+#define	M_DECORATION_R_TOWER				(80)	
+#define	M_DECORATION_Y_TOWER				(81)		
+#define	M_DECORATION_G_TOWER				(82)	
+
+#define	M_DECORATION_B_BOAT_HUT				(83)
+#define	M_DECORATION_R_BOAT_HUT				(84)
+#define	M_DECORATION_Y_BOAT_HUT				(85)
+#define	M_DECORATION_G_BOAT_HUT				(86)
+
+#define	M_DECORATION_B_AIRSHIP_HUT			(87)
+#define	M_DECORATION_R_AIRSHIP_HUT			(88)
+#define	M_DECORATION_Y_AIRSHIP_HUT			(89)
+#define	M_DECORATION_G_AIRSHIP_HUT			(90)
+
+#define	M_DECORATION_B_SPY_TRAIN			(91)
+#define	M_DECORATION_R_SPY_TRAIN			(92)
+#define	M_DECORATION_Y_SPY_TRAIN			(93)
+#define	M_DECORATION_G_SPY_TRAIN			(94)
+
+#define	M_DECORATION_B_TEMPLE				(95)
+#define	M_DECORATION_R_TEMPLE				(96)
+#define	M_DECORATION_Y_TEMPLE				(97)
+#define	M_DECORATION_G_TEMPLE				(98)
+
+#define	M_DECORATION_B_FIREWARRIOR_TRAIN	(99)		
+#define	M_DECORATION_R_FIREWARRIOR_TRAIN	(100)	
+#define	M_DECORATION_Y_FIREWARRIOR_TRAIN	(101)	
+#define	M_DECORATION_G_FIREWARRIOR_TRAIN	(102)	
+#define	M_DECORATION_B_WARRIOR_TRAIN		(103)
+#define	M_DECORATION_R_WARRIOR_TRAIN		(104)
+#define	M_DECORATION_Y_WARRIOR_TRAIN		(105)	
+#define	M_DECORATION_G_WARRIOR_TRAIN		(106)	
+
+#define	M_DECORATION_B_HUT1_A				(107)
+#define	M_DECORATION_B_HUT1_B				(108)
+#define	M_DECORATION_B_HUT1_C				(109)
+#define	M_DECORATION_R_HUT1_A				(110)
+#define	M_DECORATION_R_HUT1_B				(111)
+#define	M_DECORATION_R_HUT1_C				(112)
+#define	M_DECORATION_Y_HUT1_A				(113)
+#define	M_DECORATION_Y_HUT1_B				(114)
+#define	M_DECORATION_Y_HUT1_C				(115)
+#define	M_DECORATION_G_HUT1_A				(116)
+#define	M_DECORATION_G_HUT1_B				(117)
+#define	M_DECORATION_G_HUT1_C				(118)
+#define	M_DECORATION_B_HUT2_A				(119)
+#define	M_DECORATION_B_HUT2_B				(120)
+#define	M_DECORATION_B_HUT2_C				(121)
+#define	M_DECORATION_R_HUT2_A				(122)
+#define	M_DECORATION_R_HUT2_B				(123)
+#define	M_DECORATION_R_HUT2_C				(124)
+#define	M_DECORATION_Y_HUT2_A				(125)
+#define	M_DECORATION_Y_HUT2_B				(126)
+#define	M_DECORATION_Y_HUT2_C				(127)
+#define	M_DECORATION_G_HUT2_A				(128)
+#define	M_DECORATION_G_HUT2_B				(129)
+#define	M_DECORATION_G_HUT2_C				(130)
+#define	M_DECORATION_B_HUT3_A				(131)
+#define	M_DECORATION_B_HUT3_B				(132)
+#define	M_DECORATION_B_HUT3_C				(133)
+#define	M_DECORATION_R_HUT3_A				(134)
+#define	M_DECORATION_R_HUT3_B				(135)
+#define	M_DECORATION_R_HUT3_C				(136)
+#define	M_DECORATION_Y_HUT3_A				(137)
+#define	M_DECORATION_Y_HUT3_B				(138)
+#define	M_DECORATION_Y_HUT3_C				(139)
+#define	M_DECORATION_G_HUT3_A				(140)
+#define	M_DECORATION_G_HUT3_B				(141)
+#define	M_DECORATION_G_HUT3_C				(142)
+#define	M_DECORATION_BOAT					(143)
+#define	M_DECORATION_BALLOON				(144)
+
+#define M_DECORATION_TOTEM_0				(150)
+#define M_DECORATION_TOTEM_1				(151)
+#define M_DECORATION_KNOWLEDGE_0			(152)
+#define M_DECORATION_KNOWLEDGE_1			(154)
+#define M_DECORATION_KNOWLEDGE_2			(155)
+#define M_DECORATION_PRISON					(156)
+#define M_DECORATION_OBELISK				(8)
+#define M_DECORATION_GARGOYLE_0				(157)
+#define M_DECORATION_GARGOYLE_1				(20)
+#define M_DECORATION_GARGOYLE_2				(21)
+#define M_DECORATION_STONEHEAD				(45)
+#define M_DECORATION_PILLAR					(30)
+#define M_DECORATION_AOD_0					(62)
+#define M_DECORATION_AOD_1					(69)
+
+#define M_DECORATION_TREE_1					(13)
+#define M_DECORATION_TREE_2					(14)
+#define M_DECORATION_TREE_3					(15)
+#define M_DECORATION_TREE_4					(16)
+#define M_DECORATION_TREE_5					(17)
+#define M_DECORATION_TREE_6					(18)
+
+#define SZ_DECORATION_BOOK							"Book"
+#define SZ_DECORATION_SHIELD						"Shield"
+#define SZ_DECORATION_WELL							"Well"
+#define SZ_DECORATION_WINDMILL						"Windmill"
+#define SZ_DECORATION_WOODEN_HUT					"Wooden Hut"
+
+#define	SZ_DECORATION_B_TOWER						"B. Tower"
+#define	SZ_DECORATION_R_TOWER						"R. Tower"
+#define	SZ_DECORATION_Y_TOWER						"Y. Tower"		
+#define	SZ_DECORATION_G_TOWER						"G. Tower"
+#define	SZ_DECORATION_B_BOAT_HUT					"B. Boat Hut"
+#define	SZ_DECORATION_R_BOAT_HUT					"R. Boat Hut"
+#define	SZ_DECORATION_Y_BOAT_HUT					"Y. Boat Hut"
+#define	SZ_DECORATION_G_BOAT_HUT					"G. Boat Hut"
+#define	SZ_DECORATION_B_AIRSHIP_HUT					"B. Balloon Hut"
+#define	SZ_DECORATION_R_AIRSHIP_HUT					"R. Balloon Hut"
+#define	SZ_DECORATION_Y_AIRSHIP_HUT					"Y. Balloon Hut"
+#define	SZ_DECORATION_G_AIRSHIP_HUT					"G. Balloon Hut"
+#define	SZ_DECORATION_B_SPY_TRAIN					"B. Spy Training Hut"
+#define	SZ_DECORATION_R_SPY_TRAIN					"R. Spy Training Hut"
+#define	SZ_DECORATION_Y_SPY_TRAIN					"Y. Spy Training Hut"
+#define	SZ_DECORATION_G_SPY_TRAIN					"G. Spy Training Hut"
+#define	SZ_DECORATION_B_TEMPLE						"B. Temple"
+#define	SZ_DECORATION_R_TEMPLE						"R. Temple"
+#define	SZ_DECORATION_Y_TEMPLE						"Y. Temple"
+#define	SZ_DECORATION_G_TEMPLE						"G. Temple"
+#define	SZ_DECORATION_B_FIREWARRIOR_TRAIN			"B. FireWarrior Training Hut"		
+#define	SZ_DECORATION_R_FIREWARRIOR_TRAIN			"R. FireWarrior Training Hut"	
+#define	SZ_DECORATION_Y_FIREWARRIOR_TRAIN			"Y. FireWarrior Training Hut"
+#define	SZ_DECORATION_G_FIREWARRIOR_TRAIN			"G. FireWarrior Training Hut"
+#define	SZ_DECORATION_B_WARRIOR_TRAIN				"B. Warrior Training Hut"
+#define	SZ_DECORATION_R_WARRIOR_TRAIN				"R. Warrior Training Hut"
+#define	SZ_DECORATION_Y_WARRIOR_TRAIN				"Y. Warrior Training Hut"	
+#define	SZ_DECORATION_G_WARRIOR_TRAIN				"G. Warrior Training Hut"	
+#define	SZ_DECORATION_B_HUT1_A						"B. Small Hut 1"
+#define	SZ_DECORATION_B_HUT1_B						"B. Medium Hut 1"
+#define	SZ_DECORATION_B_HUT1_C						"B. Large Hut 1"
+#define	SZ_DECORATION_R_HUT1_A						"R. Small Hut 1"
+#define	SZ_DECORATION_R_HUT1_B						"R. Medium Hut 1"
+#define	SZ_DECORATION_R_HUT1_C						"R. Large Hut 1"
+#define	SZ_DECORATION_Y_HUT1_A						"Y. Small Hut 1"
+#define	SZ_DECORATION_Y_HUT1_B						"Y. Medium Hut 1"
+#define	SZ_DECORATION_Y_HUT1_C						"Y. Large Hut 1"
+#define	SZ_DECORATION_G_HUT1_A						"G. Small Hut A"
+#define	SZ_DECORATION_G_HUT1_B						"G. Medium Hut 1"
+#define	SZ_DECORATION_G_HUT1_C						"G. Large Hut 1"
+#define	SZ_DECORATION_B_HUT2_A						"B. Small Hut 2"
+#define	SZ_DECORATION_B_HUT2_B						"B. Medium Hut 2"
+#define	SZ_DECORATION_B_HUT2_C						"B. Large Hut 2"
+#define	SZ_DECORATION_R_HUT2_A						"R. Small Hut 2"
+#define	SZ_DECORATION_R_HUT2_B						"R. Medium Hut 2"
+#define	SZ_DECORATION_R_HUT2_C						"R. Large Hut 2"
+#define	SZ_DECORATION_Y_HUT2_A						"Y. Small Hut 2"
+#define	SZ_DECORATION_Y_HUT2_B						"Y. Medium Hut 2"
+#define	SZ_DECORATION_Y_HUT2_C						"Y. Large Hut 2"
+#define	SZ_DECORATION_G_HUT2_A						"G. Small Hut 2"
+#define	SZ_DECORATION_G_HUT2_B						"G. Medium Hut 2"
+#define	SZ_DECORATION_G_HUT2_C						"G. Large Hut 2"
+#define	SZ_DECORATION_B_HUT3_A						"B. Small Hut 3"
+#define	SZ_DECORATION_B_HUT3_B						"B. Medium Hut 3"
+#define	SZ_DECORATION_B_HUT3_C						"B. Large Hut 3"
+#define	SZ_DECORATION_R_HUT3_A						"R. Small Hut 3"
+#define	SZ_DECORATION_R_HUT3_B						"R. Medium Hut 3"
+#define	SZ_DECORATION_R_HUT3_C						"R. Large Hut 3"
+#define	SZ_DECORATION_Y_HUT3_A						"Y. Small Hut 3"
+#define	SZ_DECORATION_Y_HUT3_B						"Y. Medium Hut 3"
+#define	SZ_DECORATION_Y_HUT3_C						"Y. Large Hut 3"
+#define	SZ_DECORATION_G_HUT3_A						"G. Small Hut 3"
+#define	SZ_DECORATION_G_HUT3_B						"G. Medium Hut 3"
+#define	SZ_DECORATION_G_HUT3_C						"G. Large Hut 3"
+#define	SZ_DECORATION_BOAT							"Boat"
+#define	SZ_DECORATION_BALLOON						"Balloon"
+#define SZ_DECORATION_TOTEM_0						"Totem 1"
+#define SZ_DECORATION_TOTEM_1						"Totem 2"
+#define SZ_DECORATION_KNOWLEDGE_0					"VoK 1"
+#define SZ_DECORATION_KNOWLEDGE_1					"VoK 2"
+#define SZ_DECORATION_KNOWLEDGE_2					"VoK 3"
+#define SZ_DECORATION_PRISON						"Prison"
+#define SZ_DECORATION_OBELISK						"Obelisk"
+#define SZ_DECORATION_GARGOYLE_0					"Gargoyle 1"
+#define SZ_DECORATION_GARGOYLE_1					"Gargoyle 2"
+#define SZ_DECORATION_GARGOYLE_2					"Gargoyle 3"
+#define SZ_DECORATION_PILLAR						"Neutral Pillar"
+#define SZ_DECORATION_AOD_0							"AoD 1"
+#define SZ_DECORATION_AOD_1							"AoD 2"
+#define SZ_DECORATION_STONEHEAD						"Stone Head"
+#define SZ_DECORATION_TREE_1						"Tree 1"
+#define SZ_DECORATION_TREE_2					    "Tree 2"
+#define SZ_DECORATION_TREE_3					    "Tree 3"
+#define SZ_DECORATION_TREE_4						"Tree 4"
+#define SZ_DECORATION_TREE_5						"Tree 5"
+#define SZ_DECORATION_TREE_6						"Tree 6"
+
 
 // - general -
 #define M_GENERAL_LIGHT						1

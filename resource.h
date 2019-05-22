@@ -286,6 +286,7 @@
 #define IDC_BRUSH_ONLY_RAISE            1218
 #define IDC_BRUSH_ONLY_LOWER            1219
 #define IDC_MARKERS_COPY				1220
+#define IDC_INFO_DECORATIONS_COUNT      1221
 
 #define ID_ACCEL_DLGDEVICE              40001
 #define ID_ACCEL_MENUBAR                40002

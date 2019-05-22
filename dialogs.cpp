@@ -1309,7 +1309,7 @@ void GetThingName(THING *t, char *str)
 		}
 		break;
 	case T_SCENERY:
-		if(t->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY || t->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+		if(t->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY)
 		{
 			switch(t->Thing.Scenery.IslandNum)
 			{
@@ -1323,7 +1323,108 @@ void GetThingName(THING *t, char *str)
 			}
 			break;
 		}
-		switch(t->Thing.Model)
+		else if (t->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+		{
+			switch(t->Thing.Scenery.IslandNum)
+			{
+			case M_DECORATION_BOOK: strcpy(str, SZ_DECORATION_BOOK); break;
+			case M_DECORATION_SHIELD: strcpy(str, SZ_DECORATION_SHIELD); break;
+			case M_DECORATION_WELL: strcpy(str, SZ_DECORATION_WELL); break;
+			case M_DECORATION_WINDMILL: strcpy(str, SZ_DECORATION_WINDMILL); break;
+			case M_DECORATION_WOODEN_HUT: strcpy(str, SZ_DECORATION_WOODEN_HUT); break;
+			case M_DECORATION_B_TOWER: strcpy(str, SZ_DECORATION_B_TOWER); break;
+			case M_DECORATION_R_TOWER: strcpy(str, SZ_DECORATION_R_TOWER); break;
+			case M_DECORATION_Y_TOWER: strcpy(str, SZ_DECORATION_Y_TOWER); break;
+			case M_DECORATION_G_TOWER: strcpy(str, SZ_DECORATION_G_TOWER); break;
+			case M_DECORATION_B_BOAT_HUT: strcpy(str, SZ_DECORATION_B_BOAT_HUT); break;
+			case M_DECORATION_R_BOAT_HUT: strcpy(str, SZ_DECORATION_R_BOAT_HUT); break;
+			case M_DECORATION_Y_BOAT_HUT: strcpy(str, SZ_DECORATION_Y_BOAT_HUT); break;
+			case M_DECORATION_G_BOAT_HUT: strcpy(str, SZ_DECORATION_G_BOAT_HUT); break;
+			case M_DECORATION_B_AIRSHIP_HUT: strcpy(str, SZ_DECORATION_B_AIRSHIP_HUT); break;
+			case M_DECORATION_R_AIRSHIP_HUT: strcpy(str, SZ_DECORATION_R_AIRSHIP_HUT); break;
+			case M_DECORATION_Y_AIRSHIP_HUT: strcpy(str, SZ_DECORATION_Y_AIRSHIP_HUT); break;
+			case M_DECORATION_G_AIRSHIP_HUT: strcpy(str, SZ_DECORATION_G_AIRSHIP_HUT); break;
+			case M_DECORATION_B_SPY_TRAIN: strcpy(str, SZ_DECORATION_B_SPY_TRAIN); break;
+			case M_DECORATION_R_SPY_TRAIN: strcpy(str, SZ_DECORATION_R_SPY_TRAIN); break;
+			case M_DECORATION_Y_SPY_TRAIN: strcpy(str, SZ_DECORATION_Y_SPY_TRAIN); break;
+			case M_DECORATION_G_SPY_TRAIN: strcpy(str, SZ_DECORATION_G_SPY_TRAIN); break;
+			case M_DECORATION_B_TEMPLE: strcpy(str, SZ_DECORATION_B_TEMPLE); break;
+			case M_DECORATION_R_TEMPLE: strcpy(str, SZ_DECORATION_R_TEMPLE); break;
+			case M_DECORATION_Y_TEMPLE: strcpy(str, SZ_DECORATION_Y_TEMPLE); break;
+			case M_DECORATION_G_TEMPLE: strcpy(str, SZ_DECORATION_G_TEMPLE); break;
+			case M_DECORATION_B_FIREWARRIOR_TRAIN: strcpy(str, SZ_DECORATION_B_FIREWARRIOR_TRAIN); break;
+			case M_DECORATION_R_FIREWARRIOR_TRAIN: strcpy(str, SZ_DECORATION_R_FIREWARRIOR_TRAIN); break;
+			case M_DECORATION_Y_FIREWARRIOR_TRAIN: strcpy(str, SZ_DECORATION_Y_FIREWARRIOR_TRAIN); break;
+			case M_DECORATION_G_FIREWARRIOR_TRAIN: strcpy(str, SZ_DECORATION_G_FIREWARRIOR_TRAIN); break;
+			case M_DECORATION_B_WARRIOR_TRAIN: strcpy(str, SZ_DECORATION_B_WARRIOR_TRAIN); break;
+			case M_DECORATION_R_WARRIOR_TRAIN: strcpy(str, SZ_DECORATION_R_WARRIOR_TRAIN); break;
+			case M_DECORATION_Y_WARRIOR_TRAIN: strcpy(str, SZ_DECORATION_Y_WARRIOR_TRAIN); break;
+			case M_DECORATION_G_WARRIOR_TRAIN: strcpy(str, SZ_DECORATION_G_WARRIOR_TRAIN); break;
+			case M_DECORATION_B_HUT1_A: strcpy(str, SZ_DECORATION_B_HUT1_A); break;
+			case M_DECORATION_B_HUT1_B: strcpy(str, SZ_DECORATION_B_HUT1_B); break;
+			case M_DECORATION_B_HUT1_C: strcpy(str, SZ_DECORATION_B_HUT1_C); break;
+			case M_DECORATION_R_HUT1_A: strcpy(str, SZ_DECORATION_R_HUT1_A); break;
+			case M_DECORATION_R_HUT1_B: strcpy(str, SZ_DECORATION_R_HUT1_B); break;
+			case M_DECORATION_R_HUT1_C: strcpy(str, SZ_DECORATION_R_HUT1_C); break;
+			case M_DECORATION_Y_HUT1_A: strcpy(str, SZ_DECORATION_Y_HUT1_A); break;
+			case M_DECORATION_Y_HUT1_B: strcpy(str, SZ_DECORATION_Y_HUT1_B); break;
+			case M_DECORATION_Y_HUT1_C: strcpy(str, SZ_DECORATION_Y_HUT1_C); break;
+			case M_DECORATION_G_HUT1_A: strcpy(str, SZ_DECORATION_G_HUT1_A); break;
+			case M_DECORATION_G_HUT1_B: strcpy(str, SZ_DECORATION_G_HUT1_B); break;
+			case M_DECORATION_G_HUT1_C: strcpy(str, SZ_DECORATION_G_HUT1_C); break;
+			case M_DECORATION_B_HUT2_A: strcpy(str, SZ_DECORATION_B_HUT2_A); break;
+			case M_DECORATION_B_HUT2_B: strcpy(str, SZ_DECORATION_B_HUT2_B); break;
+			case M_DECORATION_B_HUT2_C: strcpy(str, SZ_DECORATION_B_HUT2_C); break;
+			case M_DECORATION_R_HUT2_A: strcpy(str, SZ_DECORATION_R_HUT2_A); break;
+			case M_DECORATION_R_HUT2_B: strcpy(str, SZ_DECORATION_R_HUT2_B); break;
+			case M_DECORATION_R_HUT2_C: strcpy(str, SZ_DECORATION_R_HUT2_C); break;
+			case M_DECORATION_Y_HUT2_A: strcpy(str, SZ_DECORATION_Y_HUT2_A); break;
+			case M_DECORATION_Y_HUT2_B: strcpy(str, SZ_DECORATION_Y_HUT2_B); break;
+			case M_DECORATION_Y_HUT2_C: strcpy(str, SZ_DECORATION_Y_HUT2_C); break;
+			case M_DECORATION_G_HUT2_A: strcpy(str, SZ_DECORATION_G_HUT2_A); break;
+			case M_DECORATION_G_HUT2_B: strcpy(str, SZ_DECORATION_G_HUT2_B); break;
+			case M_DECORATION_G_HUT2_C: strcpy(str, SZ_DECORATION_G_HUT2_C); break;
+			case M_DECORATION_B_HUT3_A: strcpy(str, SZ_DECORATION_B_HUT3_A); break;
+			case M_DECORATION_B_HUT3_B: strcpy(str, SZ_DECORATION_B_HUT3_B); break;
+			case M_DECORATION_B_HUT3_C: strcpy(str, SZ_DECORATION_B_HUT3_C); break;
+			case M_DECORATION_R_HUT3_A: strcpy(str, SZ_DECORATION_R_HUT3_A); break;
+			case M_DECORATION_R_HUT3_B: strcpy(str, SZ_DECORATION_R_HUT3_B); break;
+			case M_DECORATION_R_HUT3_C: strcpy(str, SZ_DECORATION_R_HUT3_C); break;
+			case M_DECORATION_Y_HUT3_A: strcpy(str, SZ_DECORATION_Y_HUT3_A); break;
+			case M_DECORATION_Y_HUT3_B: strcpy(str, SZ_DECORATION_Y_HUT3_B); break;
+			case M_DECORATION_Y_HUT3_C: strcpy(str, SZ_DECORATION_Y_HUT3_C); break;
+			case M_DECORATION_G_HUT3_A: strcpy(str, SZ_DECORATION_G_HUT3_A); break;
+			case M_DECORATION_G_HUT3_B: strcpy(str, SZ_DECORATION_G_HUT3_B); break;
+			case M_DECORATION_G_HUT3_C: strcpy(str, SZ_DECORATION_G_HUT3_C); break;
+			case M_DECORATION_BOAT: strcpy(str, SZ_DECORATION_BOAT); break;
+			case M_DECORATION_BALLOON: strcpy(str, SZ_DECORATION_BALLOON); break;
+			case M_DECORATION_TOTEM_0: strcpy(str, SZ_DECORATION_TOTEM_0); break;
+			case M_DECORATION_TOTEM_1: strcpy(str, SZ_DECORATION_TOTEM_1); break;
+			case M_DECORATION_KNOWLEDGE_0: strcpy(str, SZ_DECORATION_KNOWLEDGE_0); break;
+			case M_DECORATION_KNOWLEDGE_1: strcpy(str, SZ_DECORATION_KNOWLEDGE_1); break;
+			case M_DECORATION_KNOWLEDGE_2: strcpy(str, SZ_DECORATION_KNOWLEDGE_2); break;
+			case M_DECORATION_PRISON: strcpy(str, SZ_DECORATION_PRISON); break;
+			case M_DECORATION_OBELISK: strcpy(str, SZ_DECORATION_OBELISK); break;
+			case M_DECORATION_GARGOYLE_0: strcpy(str, SZ_DECORATION_GARGOYLE_0); break;
+			case M_DECORATION_GARGOYLE_1: strcpy(str, SZ_DECORATION_GARGOYLE_1); break;
+			case M_DECORATION_GARGOYLE_2: strcpy(str, SZ_DECORATION_GARGOYLE_2); break;
+			case M_DECORATION_PILLAR: strcpy(str, SZ_DECORATION_PILLAR); break;
+			case M_DECORATION_AOD_0: strcpy(str, SZ_DECORATION_AOD_0); break;
+			case M_DECORATION_AOD_1: strcpy(str, SZ_DECORATION_AOD_1); break;
+			case M_DECORATION_STONEHEAD: strcpy(str, SZ_DECORATION_STONEHEAD); break;
+			case M_DECORATION_TREE_1: strcpy(str, SZ_DECORATION_TREE_1); break;
+			case M_DECORATION_TREE_2: strcpy(str, SZ_DECORATION_TREE_2); break;
+			case M_DECORATION_TREE_3: strcpy(str, SZ_DECORATION_TREE_3); break;
+			case M_DECORATION_TREE_4: strcpy(str, SZ_DECORATION_TREE_4); break;
+			case M_DECORATION_TREE_5: strcpy(str, SZ_DECORATION_TREE_5); break;
+			case M_DECORATION_TREE_6: strcpy(str, SZ_DECORATION_TREE_6); break;
+			default: sprintf(str, "%s: %s", SZ_SPECIAL, SZ_UNKNOW);
+			}
+			break;
+		}
+	
+		
+		switch (t->Thing.Model)
 		{
 		case M_SCENERY_TREE_1:     strcpy(str, SZ_SCENERY_TREE_1);     break;
 		case M_SCENERY_TREE_2:     strcpy(str, SZ_SCENERY_TREE_2);     break;
@@ -2454,6 +2555,7 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SPECIAL);
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_EFFECT);
             SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SHOT);
+			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION);
 			DlgObjectUpdateInfo(hWnd, false);
 		}
 		return 0;
@@ -2605,6 +2707,10 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 case IDX_T_SHOT:
                     ThingSelected->Thing.Type = T_SHOT;
                     break;
+				case IDX_T_DECORATION:
+					ThingSelected->Thing.Type = T_SCENERY;
+					ThingSelected->Thing.Model = M_SCENERY_SUB_LEVEL_SCENERY;
+                    break;
 				}
 				memset(&ThingSelected->Thing.Bluff, 0, sizeof(ThingSelected->Thing.Bluff));
 				DlgObjectUpdateInfo(hWnd);
@@ -2649,7 +2755,7 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					}
 					break;
 				case T_SCENERY:
-					if(ThingSelected->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY || ThingSelected->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+					if(ThingSelected->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY)
 					{
 						switch(SendMessage((HWND)lParam, CB_GETCURSEL, 0, 0))
 						{
@@ -2662,7 +2768,127 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 						}
 						break;
 					}
-					switch(SendMessage((HWND)lParam, CB_GETCURSEL, 0, 0))
+					else if((ThingSelected->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)) //|| (ThingSelected->Thing.Model < M_SPECIAL_A || ThingSelected->Thing.Model > M_SPECIAL_F))
+					{
+						switch(SendMessage((HWND)lParam, CB_GETCURSEL, 0, 0))
+						{
+							case IDX_M_DECORATION_BOOK:				ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_BOOK;			break;
+							case IDX_M_DECORATION_SHIELD:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_SHIELD;		break;
+							case IDX_M_DECORATION_WELL:				ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_WELL;			break;
+							case IDX_M_DECORATION_WINDMILL:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_WINDMILL;		break;
+							case IDX_M_DECORATION_WOODEN_HUT:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_WOODEN_HUT;	break;
+
+							case IDX_M_DECORATION_B_TOWER:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_TOWER;	break;
+							case IDX_M_DECORATION_R_TOWER:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_TOWER;	break;
+							case IDX_M_DECORATION_Y_TOWER:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_TOWER;	break;
+							case IDX_M_DECORATION_G_TOWER:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_TOWER;	break;
+
+							case IDX_M_DECORATION_B_BOAT_HUT:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_BOAT_HUT;	break;
+							case IDX_M_DECORATION_R_BOAT_HUT:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_BOAT_HUT;	break;
+							case IDX_M_DECORATION_Y_BOAT_HUT:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_BOAT_HUT;	break;
+							case IDX_M_DECORATION_G_BOAT_HUT:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_BOAT_HUT;	break;
+
+							case IDX_M_DECORATION_B_AIRSHIP_HUT:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_AIRSHIP_HUT;	break;
+							case IDX_M_DECORATION_R_AIRSHIP_HUT:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_AIRSHIP_HUT;	break;
+							case IDX_M_DECORATION_Y_AIRSHIP_HUT:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_AIRSHIP_HUT;	break;
+							case IDX_M_DECORATION_G_AIRSHIP_HUT:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_AIRSHIP_HUT;	break;
+
+							case IDX_M_DECORATION_B_SPY_TRAIN:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_SPY_TRAIN;	break;
+							case IDX_M_DECORATION_R_SPY_TRAIN:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_SPY_TRAIN;	break;
+							case IDX_M_DECORATION_Y_SPY_TRAIN:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_SPY_TRAIN;	break;
+							case IDX_M_DECORATION_G_SPY_TRAIN:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_SPY_TRAIN;	break;
+
+							case IDX_M_DECORATION_B_TEMPLE:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_TEMPLE;	break;
+							case IDX_M_DECORATION_R_TEMPLE:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_TEMPLE;	break;
+							case IDX_M_DECORATION_Y_TEMPLE:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_TEMPLE;	break;
+							case IDX_M_DECORATION_G_TEMPLE:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_TEMPLE;	break;
+							
+							case IDX_M_DECORATION_B_FIREWARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_FIREWARRIOR_TRAIN;	break;
+							case IDX_M_DECORATION_R_FIREWARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_FIREWARRIOR_TRAIN;	break;
+							case IDX_M_DECORATION_Y_FIREWARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_FIREWARRIOR_TRAIN;	break;
+							case IDX_M_DECORATION_G_FIREWARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_FIREWARRIOR_TRAIN;	break;
+							
+							case IDX_M_DECORATION_B_WARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_WARRIOR_TRAIN;	break;
+							case IDX_M_DECORATION_R_WARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_WARRIOR_TRAIN;	break;
+							case IDX_M_DECORATION_Y_WARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_WARRIOR_TRAIN;	break;
+							case IDX_M_DECORATION_G_WARRIOR_TRAIN:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_WARRIOR_TRAIN;	break;
+							
+							case IDX_M_DECORATION_B_HUT1_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT1_A;	break;
+							case IDX_M_DECORATION_B_HUT1_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT1_B;	break;
+							case IDX_M_DECORATION_B_HUT1_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT1_C;	break;
+							
+							case IDX_M_DECORATION_R_HUT1_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT1_A;	break;
+							case IDX_M_DECORATION_R_HUT1_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT1_B;	break;
+							case IDX_M_DECORATION_R_HUT1_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT1_C;	break;
+
+							case IDX_M_DECORATION_Y_HUT1_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT1_A;	break;
+							case IDX_M_DECORATION_Y_HUT1_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT1_B;	break;
+							case IDX_M_DECORATION_Y_HUT1_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT1_C;	break;
+							
+							case IDX_M_DECORATION_G_HUT1_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT1_A;	break;
+							case IDX_M_DECORATION_G_HUT1_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT1_B;	break;
+							case IDX_M_DECORATION_G_HUT1_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT1_C;	break;
+							
+							case IDX_M_DECORATION_B_HUT2_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT2_A;	break;
+							case IDX_M_DECORATION_B_HUT2_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT2_B;	break;
+							case IDX_M_DECORATION_B_HUT2_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT2_C;	break;
+							
+							case IDX_M_DECORATION_R_HUT2_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT2_A;	break;
+							case IDX_M_DECORATION_R_HUT2_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT2_B;	break;
+							case IDX_M_DECORATION_R_HUT2_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT2_C;	break;
+							
+							case IDX_M_DECORATION_Y_HUT2_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT2_A;	break;
+							case IDX_M_DECORATION_Y_HUT2_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT2_B;	break;
+							case IDX_M_DECORATION_Y_HUT2_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT2_C;	break;
+							
+							case IDX_M_DECORATION_G_HUT2_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT2_A;	break;
+							case IDX_M_DECORATION_G_HUT2_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT2_B;	break;
+							case IDX_M_DECORATION_G_HUT2_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT2_C;	break;
+							
+							case IDX_M_DECORATION_B_HUT3_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT3_A;	break;
+							case IDX_M_DECORATION_B_HUT3_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT3_B;	break;
+							case IDX_M_DECORATION_B_HUT3_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_B_HUT3_C;	break;
+							
+							case IDX_M_DECORATION_R_HUT3_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT3_A;	break;
+							case IDX_M_DECORATION_R_HUT3_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT3_B;	break;
+							case IDX_M_DECORATION_R_HUT3_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_R_HUT3_C;	break;
+							
+							case IDX_M_DECORATION_Y_HUT3_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT3_A;	break;
+							case IDX_M_DECORATION_Y_HUT3_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT3_B;	break;
+							case IDX_M_DECORATION_Y_HUT3_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_Y_HUT3_C;	break;
+							
+							case IDX_M_DECORATION_G_HUT3_A:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT3_A;	break;
+							case IDX_M_DECORATION_G_HUT3_B:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT3_B;	break;
+							case IDX_M_DECORATION_G_HUT3_C:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_G_HUT3_C;	break;
+							
+							case IDX_M_DECORATION_BOAT:			ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_BOAT;	break;
+							case IDX_M_DECORATION_BALLOON:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_BALLOON;	break;
+
+							case IDX_M_DECORATION_TOTEM_0:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TOTEM_0;		break;
+							case IDX_M_DECORATION_TOTEM_1:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TOTEM_1;		break;
+							case IDX_M_DECORATION_KNOWLEDGE_0:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_KNOWLEDGE_0;	break;
+							case IDX_M_DECORATION_KNOWLEDGE_1:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_KNOWLEDGE_1;	break;
+							case IDX_M_DECORATION_KNOWLEDGE_2:	ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_KNOWLEDGE_2;	break;
+							case IDX_M_DECORATION_PRISON:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_PRISON;		break;
+							case IDX_M_DECORATION_OBELISK:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_OBELISK;		break;
+							case IDX_M_DECORATION_GARGOYLE_0:   ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_GARGOYLE_0;     break;
+							case IDX_M_DECORATION_GARGOYLE_1:   ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_GARGOYLE_1;     break;
+							case IDX_M_DECORATION_GARGOYLE_2:   ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_GARGOYLE_2;     break;
+							case IDX_M_DECORATION_PILLAR:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_PILLAR;     break;
+							case IDX_M_DECORATION_AOD_0:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_AOD_0;     break;
+							case IDX_M_DECORATION_AOD_1:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_AOD_1;     break;
+							case IDX_M_DECORATION_STONEHEAD:    ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_STONEHEAD;    break;
+							case IDX_M_DECORATION_TREE_1:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TREE_1;		break;
+							case IDX_M_DECORATION_TREE_2:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TREE_2;		break;
+							case IDX_M_DECORATION_TREE_3:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TREE_3;		break;
+							case IDX_M_DECORATION_TREE_4:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TREE_4;		break;
+							case IDX_M_DECORATION_TREE_5:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TREE_5;		break;
+							case IDX_M_DECORATION_TREE_6:		ThingSelected->Thing.Scenery.IslandNum = M_DECORATION_TREE_6;		break;
+						}
+						break;
+					}
+					
+					switch (SendMessage((HWND)lParam, CB_GETCURSEL, 0, 0))
 					{
 					case IDX_M_SCENERY_TREE_1:     ThingSelected->Thing.Model = M_SCENERY_TREE_1;     break;
 					case IDX_M_SCENERY_TREE_2:     ThingSelected->Thing.Model = M_SCENERY_TREE_2;     break;
@@ -2679,6 +2905,7 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					case IDX_M_SCENERY_FIRE:       ThingSelected->Thing.Model = M_SCENERY_FIRE;       break;
 					}
 					break;
+					
 				case T_GENERAL:
 					switch(SendMessage((HWND)lParam, CB_GETCURSEL, 0, 0))
 					{
@@ -2960,7 +3187,7 @@ void DlgObjectUpdateInfo(HWND hWnd, bool lock)
 			EnableWindow(hItem, true);
 			break;
 		case T_SCENERY:
-			if(ThingSelected->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY || ThingSelected->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+			if(ThingSelected->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY)
 			{
 				SendMessage(hItem, CB_SETCURSEL, IDX_T_SPECIAL, 0);
 				DlgObjectSetSpecialList(hWnd);
@@ -2978,11 +3205,138 @@ void DlgObjectUpdateInfo(HWND hWnd, bool lock)
 				}
 				goto _scenery_skip;
 			}
+			else if (ThingSelected->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+			{
+				SendMessage(hItem, CB_SETCURSEL, IDX_T_DECORATION, 0);
+				DlgObjectSetDecorationList(hWnd);
+				hItem = GetDlgItem(hWnd, IDC_OBJECT_MODEL);
+				EnableWindow(hItem, true);
+
+				switch (ThingSelected->Thing.Scenery.IslandNum)
+				{
+				case M_DECORATION_BOOK:						SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_BOOK, 0);						break;
+				case M_DECORATION_SHIELD:                   SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_SHIELD, 0);					break;
+				case M_DECORATION_WELL:                     SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_WELL, 0);						break;
+				case M_DECORATION_WINDMILL:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_WINDMILL, 0);					break;
+				case M_DECORATION_WOODEN_HUT:               SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_WOODEN_HUT, 0);				break;
+
+				case M_DECORATION_B_TOWER:                  SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_TOWER, 0);					break;
+				case M_DECORATION_R_TOWER:                  SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_TOWER, 0);					break;
+				case M_DECORATION_Y_TOWER:                  SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_TOWER, 0);					break;
+				case M_DECORATION_G_TOWER:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_TOWER, 0);					break;
+					
+				case M_DECORATION_B_BOAT_HUT:               SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_BOAT_HUT, 0);				break;
+				case M_DECORATION_R_BOAT_HUT:               SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_BOAT_HUT, 0);				break;
+				case M_DECORATION_Y_BOAT_HUT:               SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_BOAT_HUT, 0);				break;
+				case M_DECORATION_G_BOAT_HUT:               SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_BOAT_HUT, 0);				break;
+					
+				case M_DECORATION_B_AIRSHIP_HUT:            SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_AIRSHIP_HUT, 0);			break;
+				case M_DECORATION_R_AIRSHIP_HUT:            SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_AIRSHIP_HUT, 0);			break;
+				case M_DECORATION_Y_AIRSHIP_HUT:            SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_AIRSHIP_HUT, 0);			break;
+				case M_DECORATION_G_AIRSHIP_HUT:            SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_AIRSHIP_HUT, 0);			break;
+					
+				case M_DECORATION_B_SPY_TRAIN:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_SPY_TRAIN, 0);				break;
+				case M_DECORATION_R_SPY_TRAIN:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_SPY_TRAIN, 0);				break;
+				case M_DECORATION_Y_SPY_TRAIN:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_SPY_TRAIN, 0);				break;
+				case M_DECORATION_G_SPY_TRAIN:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_SPY_TRAIN, 0);				break;
+					
+				case M_DECORATION_B_TEMPLE:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_TEMPLE, 0);					break;
+				case M_DECORATION_R_TEMPLE:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_TEMPLE, 0);					break;
+				case M_DECORATION_Y_TEMPLE:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_TEMPLE, 0);					break;
+				case M_DECORATION_G_TEMPLE:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_TEMPLE, 0);					break;
+					
+				case M_DECORATION_B_FIREWARRIOR_TRAIN:      SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_FIREWARRIOR_TRAIN, 0);		break;
+				case M_DECORATION_R_FIREWARRIOR_TRAIN:      SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_FIREWARRIOR_TRAIN, 0);		break;
+				case M_DECORATION_Y_FIREWARRIOR_TRAIN:      SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_FIREWARRIOR_TRAIN, 0);		break;
+				case M_DECORATION_G_FIREWARRIOR_TRAIN:      SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_FIREWARRIOR_TRAIN, 0);		break;
+
+				case M_DECORATION_B_WARRIOR_TRAIN:          SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_WARRIOR_TRAIN, 0);			break;
+				case M_DECORATION_R_WARRIOR_TRAIN:          SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_WARRIOR_TRAIN, 0);			break;
+				case M_DECORATION_Y_WARRIOR_TRAIN:          SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_WARRIOR_TRAIN, 0);			break;
+				case M_DECORATION_G_WARRIOR_TRAIN:          SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_WARRIOR_TRAIN, 0);			break;
+					
+				case M_DECORATION_B_HUT1_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT1_A, 0);					break;
+				case M_DECORATION_B_HUT1_B:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT1_B, 0);					break;
+				case M_DECORATION_B_HUT1_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT1_C, 0);					break;
+					
+				case M_DECORATION_R_HUT1_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT1_A, 0);					break;
+				case M_DECORATION_R_HUT1_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT1_B, 0);					break;
+				case M_DECORATION_R_HUT1_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT1_C, 0);					break;
+					
+				case M_DECORATION_Y_HUT1_A:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT1_A, 0);					break;
+				case M_DECORATION_Y_HUT1_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT1_B, 0);					break;
+				case M_DECORATION_Y_HUT1_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT1_C, 0);					break;
+					
+				case M_DECORATION_G_HUT1_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT1_A, 0);					break;
+				case M_DECORATION_G_HUT1_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT1_B, 0);					break;
+				case M_DECORATION_G_HUT1_C:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT1_C, 0);					break;
+
+				case M_DECORATION_B_HUT2_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT2_A, 0);					break;
+				case M_DECORATION_B_HUT2_B:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT2_B, 0);					break;
+				case M_DECORATION_B_HUT2_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT2_C, 0);					break;
+					
+				case M_DECORATION_R_HUT2_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT2_A, 0);					break;
+				case M_DECORATION_R_HUT2_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT2_B, 0);					break;
+				case M_DECORATION_R_HUT2_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT2_C, 0);					break;
+					
+				case M_DECORATION_Y_HUT2_A:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT2_A, 0);					break;
+				case M_DECORATION_Y_HUT2_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT2_B, 0);					break;
+				case M_DECORATION_Y_HUT2_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT2_C, 0);					break;
+					
+				case M_DECORATION_G_HUT2_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT2_A, 0);					break;
+				case M_DECORATION_G_HUT2_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT2_B, 0);					break;
+				case M_DECORATION_G_HUT2_C:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT2_C, 0);					break;
+
+				case M_DECORATION_B_HUT3_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT3_A, 0);					break;
+				case M_DECORATION_B_HUT3_B:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT3_B, 0);					break;
+				case M_DECORATION_B_HUT3_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_B_HUT3_C, 0);					break;
+					
+				case M_DECORATION_R_HUT3_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT3_A, 0);					break;
+				case M_DECORATION_R_HUT3_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT3_B, 0);					break;
+				case M_DECORATION_R_HUT3_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_R_HUT3_C, 0);					break;
+					
+				case M_DECORATION_Y_HUT3_A:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT3_A, 0);					break;
+				case M_DECORATION_Y_HUT3_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT3_B, 0);					break;
+				case M_DECORATION_Y_HUT3_C:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_Y_HUT3_C, 0);					break;
+					
+				case M_DECORATION_G_HUT3_A:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT3_A, 0);					break;
+				case M_DECORATION_G_HUT3_B:                 SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT3_B, 0);					break;
+				case M_DECORATION_G_HUT3_C:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_G_HUT3_C, 0);					break;
+
+				case M_DECORATION_BOAT:						SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_BOAT, 0);						break;
+				case M_DECORATION_BALLOON:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_BALLOON, 0);					break;
+
+				case M_DECORATION_TOTEM_0:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TOTEM_0, 0);					break;
+				case M_DECORATION_TOTEM_1:                  SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TOTEM_1, 0);					break;
+				case M_DECORATION_KNOWLEDGE_0:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_KNOWLEDGE_0, 0);				break;
+				case M_DECORATION_KNOWLEDGE_1:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_KNOWLEDGE_1, 0);				break;
+				case M_DECORATION_KNOWLEDGE_2:              SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_KNOWLEDGE_2, 0);				break;
+				case M_DECORATION_PRISON:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_PRISON, 0);					break;
+				case M_DECORATION_OBELISK:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_OBELISK, 0);					break;
+				case M_DECORATION_GARGOYLE_0:				SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_GARGOYLE_0, 0);				break;
+				case M_DECORATION_GARGOYLE_1:				SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_GARGOYLE_1, 0);				break;
+				case M_DECORATION_GARGOYLE_2:				SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_GARGOYLE_2, 0);				break;
+				case M_DECORATION_PILLAR:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_PILLAR, 0);					break;
+				case M_DECORATION_AOD_0:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_AOD_0, 0);					break;
+				case M_DECORATION_AOD_1:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_AOD_1, 0);					break;
+				case M_DECORATION_STONEHEAD:                SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_STONEHEAD, 0);				break;
+
+				case M_DECORATION_TREE_1:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TREE_1, 0);					break;
+				case M_DECORATION_TREE_2:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TREE_2, 0);					break;
+				case M_DECORATION_TREE_3:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TREE_3, 0);					break;
+				case M_DECORATION_TREE_4:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TREE_4, 0);					break;
+				case M_DECORATION_TREE_5:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TREE_5, 0);					break;
+				case M_DECORATION_TREE_6:					SendMessage(hItem, CB_SETCURSEL, IDX_M_DECORATION_TREE_6, 0);					break;
+				default: SendMessage(hItem, CB_SETCURSEL, -1, 0);  goto _scenery_skip_rotate;
+				}
+		goto _scenery_skip;
+			}
+
 			SendMessage(hItem, CB_SETCURSEL, IDX_T_SCENERY, 0);
 			DlgObjectSetSceneryList(hWnd);
 			hItem = GetDlgItem(hWnd, IDC_OBJECT_MODEL);
 			EnableWindow(hItem, true);
-			switch(ThingSelected->Thing.Model)
+			switch (ThingSelected->Thing.Model)
 			{
 			case M_SCENERY_TREE_1:     SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_TREE_1, 0);     break;
 			case M_SCENERY_TREE_2:     SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_TREE_2, 0);     break;
@@ -2999,11 +3353,11 @@ void DlgObjectUpdateInfo(HWND hWnd, bool lock)
 			case M_SCENERY_FIRE:       SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_FIRE, 0);       goto _scenery_skip_rotate;
 			default: SendMessage(hItem, CB_SETCURSEL, -1, 0); goto _scenery_skip_rotate;
 			}
-_scenery_skip:
+		_scenery_skip:
 			hItem = GetDlgItem(hWnd, IDC_OBJECT_OPTIONS);
 			SendMessage(hItem, WM_SETTEXT, 0, (LPARAM)SZ_ROTATE);
 			EnableWindow(hItem, true);
-_scenery_skip_rotate:
+		_scenery_skip_rotate:
 			break;
 		case T_GENERAL:
 			SendMessage(hItem, CB_SETCURSEL, IDX_T_GENERAL, 0);
@@ -3545,6 +3899,127 @@ void DlgObjectSetShotList(HWND hWnd)
     SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SHOT_VOLCANO_FIREBALL_2);
 }
 
+void DlgObjectSetDecorationList(HWND hWnd)
+{
+	if(!hWnd) return;
+	HWND hItem = GetDlgItem(hWnd, IDC_OBJECT_MODEL);
+	if(!hItem) return;
+	SendMessage(hItem, CB_RESETCONTENT, 0, 0);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_BOOK);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_SHIELD);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_WELL);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_WINDMILL);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_WOODEN_HUT);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_TOWER);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_TOWER);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_TOWER);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_TOWER);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_BOAT_HUT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_BOAT_HUT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_BOAT_HUT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_BOAT_HUT);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_AIRSHIP_HUT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_AIRSHIP_HUT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_AIRSHIP_HUT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_AIRSHIP_HUT);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_SPY_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_SPY_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_SPY_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_SPY_TRAIN);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_TEMPLE);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_TEMPLE);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_TEMPLE);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_TEMPLE);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_FIREWARRIOR_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_FIREWARRIOR_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_FIREWARRIOR_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_FIREWARRIOR_TRAIN);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_WARRIOR_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_WARRIOR_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_WARRIOR_TRAIN);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_WARRIOR_TRAIN);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT1_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT1_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT1_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT1_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT1_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT1_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT1_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT1_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT1_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT1_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT1_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT1_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT2_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT2_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT2_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT2_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT2_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT2_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT2_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT2_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT2_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT2_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT2_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT2_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT3_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT3_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_B_HUT3_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT3_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT3_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_R_HUT3_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT3_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT3_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_Y_HUT3_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT3_A);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT3_B);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_G_HUT3_C);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_BOAT);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_BALLOON);
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TOTEM_0);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TOTEM_1);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_KNOWLEDGE_0);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_KNOWLEDGE_1);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_KNOWLEDGE_2);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_PRISON);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_OBELISK);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_GARGOYLE_0);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_GARGOYLE_1);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_GARGOYLE_2);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_PILLAR);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_AOD_0);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_AOD_1);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_STONEHEAD);
+
+
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TREE_1);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TREE_2);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TREE_3);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TREE_4);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TREE_5);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_DECORATION_TREE_6);
+}
 
 void DlgObjectNextObj()
 {
@@ -6765,7 +7240,8 @@ void DlgInfoUpdate(HWND hWnd)
 		BlgRed = 0,
 		BlgYellow = 0,
 		BlgGreen = 0,
-		BlgNeutral = 0;
+		BlgNeutral = 0,
+		Decorations = 0;
 
 	if(Things)
 	{
@@ -6802,6 +7278,9 @@ void DlgInfoUpdate(HWND hWnd)
 			{
 				if((t->Thing.Model == M_SCENERY_TREE_1) || (t->Thing.Model == M_SCENERY_TREE_2) || (t->Thing.Model == M_SCENERY_TREE_3) || (t->Thing.Model == M_SCENERY_TREE_4) || (t->Thing.Model == M_SCENERY_TREE_5) || (t->Thing.Model == M_SCENERY_TREE_6)) Tree++;
 				else if(t->Thing.Model == M_SCENERY_STONE_HEAD) StoneHead++;
+
+				if (t->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+					Decorations++;
 			}
 			else if(t->Thing.Type == T_GENERAL)
 			{
@@ -6826,6 +7305,8 @@ void DlgInfoUpdate(HWND hWnd)
 	SetDlgItemText(hWnd, IDC_INFO_DISCOVERY_COUNT, str);
 	sprintf(str, "%d", Triggers);
 	SetDlgItemText(hWnd, IDC_INFO_TRIGGER_COUNT, str);
+	sprintf(str, "%d", Decorations);
+	SetDlgItemText(hWnd, IDC_INFO_DECORATIONS_COUNT, str);
 
 	sprintf(str, "%d", PopBlue);
 	SetDlgItemText(hWnd, IDC_INFO_POP_BLUE, str);

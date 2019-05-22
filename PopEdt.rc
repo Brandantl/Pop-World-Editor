@@ -567,21 +567,23 @@ BEGIN
     LTEXT           "Path:",IDC_STATIC,13,39,43,8
     EDITTEXT        IDC_INFO_PATH,55,39,87,12,ES_AUTOHSCROLL | ES_READONLY | 
                     NOT WS_BORDER | NOT WS_TABSTOP
-    GROUPBOX        "",IDC_STATIC,7,64,143,70
-    LTEXT           "Objects:",IDC_STATIC,13,72,43,8
-    LTEXT           "-",IDC_INFO_OBJ_COUNT,65,72,70,8
-    LTEXT           "Trees:",IDC_STATIC,13,80,43,8
-    LTEXT           "-",IDC_INFO_TREE_COUNT,65,80,70,8
-    LTEXT           "Wildmans:",IDC_STATIC,13,88,43,8
-    LTEXT           "-",IDC_INFO_WILDMAN_COUNT,65,88,70,8
-    LTEXT           "StoneHeads:",IDC_STATIC,13,96,43,8
-    LTEXT           "-",IDC_INFO_STONEHEAD_COUNT,65,96,70,8
-    LTEXT           "Vaults:",IDC_STATIC,13,104,43,8
-    LTEXT           "-",IDC_INFO_KNOWLEDGE_COUNT,65,104,70,8
-    LTEXT           "Discovery:",IDC_STATIC,13,112,43,8
-    LTEXT           "-",IDC_INFO_DISCOVERY_COUNT,65,112,70,8
-    LTEXT           "Triggers:",IDC_STATIC,13,120,43,8
-    LTEXT           "-",IDC_INFO_TRIGGER_COUNT,65,120,70,8
+    GROUPBOX        "",IDC_STATIC,7,60,143,78
+    LTEXT           "Objects:",IDC_STATIC,13,68,43,8
+    LTEXT           "-",IDC_INFO_OBJ_COUNT,65,68,70,8
+    LTEXT           "Trees:",IDC_STATIC,13,76,43,8
+    LTEXT           "-",IDC_INFO_TREE_COUNT,65,76,70,8
+    LTEXT           "Wildmans:",IDC_STATIC,13,84,43,8
+    LTEXT           "-",IDC_INFO_WILDMAN_COUNT,65,84,70,8
+    LTEXT           "StoneHeads:",IDC_STATIC,13,92,43,8
+    LTEXT           "-",IDC_INFO_STONEHEAD_COUNT,65,92,70,8
+    LTEXT           "Vaults:",IDC_STATIC,13,100,43,8
+    LTEXT           "-",IDC_INFO_KNOWLEDGE_COUNT,65,100,70,8
+    LTEXT           "Discovery:",IDC_STATIC,13,108,43,8
+    LTEXT           "-",IDC_INFO_DISCOVERY_COUNT,65,108,70,8
+    LTEXT           "Triggers:",IDC_STATIC,13,116,43,8
+    LTEXT           "-",IDC_INFO_TRIGGER_COUNT,65,116,70,8
+	LTEXT           "Decorations:",IDC_STATIC,13,124,43,8
+	LTEXT			"-",IDC_INFO_DECORATIONS_COUNT,65,124,70,8
     GROUPBOX        "",IDC_STATIC,7,139,143,62
     LTEXT           "Population",IDC_STATIC,46,147,40,8
     LTEXT           "Buildings",IDC_STATIC,92,147,40,8

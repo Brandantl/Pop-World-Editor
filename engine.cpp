@@ -258,7 +258,17 @@ OBJ3D					*objAodBlue = 0,
 						*objSpecialD = 0,
 						*objSpecialE = 0,
 						*objSpecialF = 0,
-						*objEagle = 0;
+						*objEagle = 0,
+						*objBook = 0,
+						*objShield = 0,
+						*objWell = 0,
+						*objWindmill = 0,
+						*objWoodenHut = 0,
+						*objObelisk = 0,
+						*objTotem = 0,
+						*objGargoyle = 0;
+
+
 TEXTURE					*txUnknow = 0,
 						*txTrigger = 0,
 						*txDiscovery = 0,
@@ -2242,7 +2252,7 @@ long EngineDrawObjects()
 					}
 					goto draw_3d;
 				case T_SCENERY:
-					if(thing->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY || thing->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+					if(thing->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY)
 					{
 						switch(thing->Thing.Scenery.IslandNum)
 						{
@@ -2256,6 +2266,134 @@ long EngineDrawObjects()
 						}
 						goto draw_3d;
 					}
+					else if(thing->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+					{
+						switch(thing->Thing.Scenery.IslandNum)
+						{
+						case M_DECORATION_BOOK: EngineDrawObj3D(objBook, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_SHIELD: EngineDrawObj3D(objShield, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_WELL: EngineDrawObj3D(objWell, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_WINDMILL: EngineDrawObj3D(objWindmill, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_WOODEN_HUT: EngineDrawObj3D(objWoodenHut, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+				
+						case M_DECORATION_B_TOWER: EngineDrawObj3D(objTowerBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_TOWER: EngineDrawObj3D(objTowerRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_TOWER: EngineDrawObj3D(objTowerYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_TOWER: EngineDrawObj3D(objTowerGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_BOAT_HUT: EngineDrawObj3D(objBoatHutBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_BOAT_HUT: EngineDrawObj3D(objBoatHutRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_BOAT_HUT: EngineDrawObj3D(objBoatHutYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_BOAT_HUT: EngineDrawObj3D(objBoatHutGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_AIRSHIP_HUT: EngineDrawObj3D(objBallonHutBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_AIRSHIP_HUT: EngineDrawObj3D(objBallonHutRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_AIRSHIP_HUT: EngineDrawObj3D(objBallonHutYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_AIRSHIP_HUT: EngineDrawObj3D(objBallonHutGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_SPY_TRAIN: EngineDrawObj3D(objSpyTrainBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_SPY_TRAIN: EngineDrawObj3D(objSpyTrainRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_SPY_TRAIN: EngineDrawObj3D(objSpyTrainYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_SPY_TRAIN: EngineDrawObj3D(objSpyTrainGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_TEMPLE: EngineDrawObj3D(objTempleBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_TEMPLE: EngineDrawObj3D(objTempleRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_TEMPLE: EngineDrawObj3D(objTempleYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_TEMPLE: EngineDrawObj3D(objTempleGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_FIREWARRIOR_TRAIN: EngineDrawObj3D(objFwTrainBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_FIREWARRIOR_TRAIN: EngineDrawObj3D(objFwTrainRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_FIREWARRIOR_TRAIN: EngineDrawObj3D(objFwTrainYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_FIREWARRIOR_TRAIN: EngineDrawObj3D(objFwTrainGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_WARRIOR_TRAIN: EngineDrawObj3D(objWarriorTrainBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_WARRIOR_TRAIN: EngineDrawObj3D(objWarriorTrainRed, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_WARRIOR_TRAIN: EngineDrawObj3D(objWarriorTrainYellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_WARRIOR_TRAIN: EngineDrawObj3D(objWarriorTrainGreen, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_HUT1_A: EngineDrawObj3D(objHut1Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_B_HUT1_B: EngineDrawObj3D(objHut2Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_B_HUT1_C: EngineDrawObj3D(objHut3Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_R_HUT1_A: EngineDrawObj3D(objHut1Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_HUT1_B: EngineDrawObj3D(objHut2Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_HUT1_C: EngineDrawObj3D(objHut3Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_Y_HUT1_A: EngineDrawObj3D(objHut1Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_HUT1_B: EngineDrawObj3D(objHut2Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_HUT1_C: EngineDrawObj3D(objHut3Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_G_HUT1_A: EngineDrawObj3D(objHut1Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_HUT1_B: EngineDrawObj3D(objHut2Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_HUT1_C: EngineDrawObj3D(objHut3Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_B_HUT2_A: EngineDrawObj3D(objHut1Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_B_HUT2_B: EngineDrawObj3D(objHut2Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_B_HUT2_C: EngineDrawObj3D(objHut3Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_R_HUT2_A: EngineDrawObj3D(objHut1Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_HUT2_B: EngineDrawObj3D(objHut2Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_HUT2_C: EngineDrawObj3D(objHut3Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_Y_HUT2_A: EngineDrawObj3D(objHut1Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_HUT2_B: EngineDrawObj3D(objHut2Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_HUT2_C: EngineDrawObj3D(objHut3Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_G_HUT2_A: EngineDrawObj3D(objHut1Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_HUT2_B: EngineDrawObj3D(objHut2Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_HUT2_C: EngineDrawObj3D(objHut3Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;	
+
+						case M_DECORATION_B_HUT3_A: EngineDrawObj3D(objHut1Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_B_HUT3_B: EngineDrawObj3D(objHut2Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_B_HUT3_C: EngineDrawObj3D(objHut3Blue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_R_HUT3_A: EngineDrawObj3D(objHut1Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_HUT3_B: EngineDrawObj3D(objHut2Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_R_HUT3_C: EngineDrawObj3D(objHut3Red, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_Y_HUT3_A: EngineDrawObj3D(objHut1Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_HUT3_B: EngineDrawObj3D(objHut2Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_Y_HUT3_C: EngineDrawObj3D(objHut3Yellow, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						
+						case M_DECORATION_G_HUT3_A: EngineDrawObj3D(objHut1Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_HUT3_B: EngineDrawObj3D(objHut2Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_G_HUT3_C: EngineDrawObj3D(objHut3Green, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+
+						case M_DECORATION_BOAT: EngineDrawObj3D(objBoat, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_BALLOON: EngineDrawObj3D(objBallon, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+
+						case M_DECORATION_TOTEM_0: EngineDrawObj3D(objTotem, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_TOTEM_1: EngineDrawObj3D(objTotem, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_KNOWLEDGE_0: EngineDrawObj3D(objKnowledge, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_KNOWLEDGE_1: EngineDrawObj3D(objKnowledge, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_KNOWLEDGE_2: EngineDrawObj3D(objKnowledge, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_PRISON: EngineDrawObj3D(objPrison, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_OBELISK: EngineDrawObj3D(objObelisk, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_GARGOYLE_0: EngineDrawObj3D(objGargoyle, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_GARGOYLE_1: EngineDrawObj3D(objGargoyle, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_GARGOYLE_2: EngineDrawObj3D(objGargoyle, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_PILLAR: EngineDrawObj3D(objRSPillar, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_AOD_0: EngineDrawObj3D(objAodBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_AOD_1: EngineDrawObj3D(objAodBlue, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+						case M_DECORATION_STONEHEAD: EngineDrawObj3D(objStoneHead, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle); break;
+
+						case M_DECORATION_TREE_1:
+						case M_DECORATION_TREE_4:
+							EngineDrawObj3D(objTree1, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle);
+							break;
+						case M_DECORATION_TREE_2:
+						case M_DECORATION_TREE_5:
+							EngineDrawObj3D(objTree2, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle);
+							break;
+						case M_DECORATION_TREE_3:
+						case M_DECORATION_TREE_6:
+							EngineDrawObj3D(objTree3, thing->ex, thing->ey, thing->ez, thing->Thing.Scenery.Angle);
+							break;
+						default: goto unknow;
+						}
+						goto draw_3d;
+					}
+
 					switch(thing->Thing.Model)
 					{
 					case M_SCENERY_PLANT_1:
@@ -4007,6 +4145,14 @@ bool EngineLoadObjects()
 	objSpecialE				= _3dsLoadObj(SZ_OBJ_SPECIAL_E);
 	objSpecialF				= _3dsLoadObj(SZ_OBJ_SPECIAL_F);
 	objEagle				= _3dsLoadObj(SZ_OBJ_EAGLE);
+	objBook					= _3dsLoadObj(SZ_OBJ_DECORATION_BOOK);
+	objShield				= _3dsLoadObj(SZ_OBJ_DECORATION_SHIELD);
+	objWell					= _3dsLoadObj(SZ_OBJ_DECORATION_WELL);
+	objWindmill				= _3dsLoadObj(SZ_OBJ_DECORATION_WINDMILL);
+	objWoodenHut			= _3dsLoadObj(SZ_OBJ_DECORATION_WOODEN_HUT);
+	objObelisk				= _3dsLoadObj(SZ_OBJ_DECORATION_OBELISK);
+	objTotem				= _3dsLoadObj(SZ_OBJ_DECORATION_TOTEM);
+	objGargoyle				= _3dsLoadObj(SZ_OBJ_DECORATION_GARGOYLE);	
 
 	return true;
 }
@@ -4853,7 +4999,7 @@ void EngineMouseLDown()
 					goto _unknow;
 				case T_SCENERY:
 					angle = t->Thing.Scenery.Angle;
-					if(t->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY || t->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+					if(t->Thing.Model == M_SCENERY_TOP_LEVEL_SCENERY)
 					{
 						switch(t->Thing.Scenery.IslandNum)
 						{
@@ -4866,7 +5012,136 @@ void EngineMouseLDown()
 						}
 						goto _unknow;
 					}
-					switch(t->Thing.Model)
+					else if(t->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY)
+					{
+						switch(t->Thing.Scenery.IslandNum)
+						{
+						case M_DECORATION_BOOK:			obj = objBook;		goto _3d_hit;
+						case M_DECORATION_SHIELD:		obj = objShield;	goto _3d_hit;
+						case M_DECORATION_WELL:			obj = objWell;		goto _3d_hit;
+						case M_DECORATION_WINDMILL:		obj = objWindmill;	goto _3d_hit;
+						case M_DECORATION_WOODEN_HUT:	obj = objWoodenHut;	goto _3d_hit;
+			
+						case M_DECORATION_B_TOWER:	obj = objTowerBlue;	goto _3d_hit;
+						case M_DECORATION_R_TOWER:	obj = objTowerRed;	goto _3d_hit;
+						case M_DECORATION_Y_TOWER:	obj = objTowerYellow;	goto _3d_hit;
+						case M_DECORATION_G_TOWER:	obj = objTowerGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_BOAT_HUT:	obj = objBoatHutBlue;	goto _3d_hit;
+						case M_DECORATION_R_BOAT_HUT:	obj = objBoatHutRed;	goto _3d_hit;
+						case M_DECORATION_Y_BOAT_HUT:	obj = objBoatHutYellow;	goto _3d_hit;
+						case M_DECORATION_G_BOAT_HUT:	obj = objBoatHutGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_AIRSHIP_HUT:	obj = objBallonHutBlue;	goto _3d_hit;
+						case M_DECORATION_R_AIRSHIP_HUT:	obj = objBallonHutRed;	goto _3d_hit;
+						case M_DECORATION_Y_AIRSHIP_HUT:	obj = objBallonHutYellow;	goto _3d_hit;
+						case M_DECORATION_G_AIRSHIP_HUT:	obj = objBallonHutGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_SPY_TRAIN:	obj = objSpyTrainBlue;	goto _3d_hit;
+						case M_DECORATION_R_SPY_TRAIN:	obj = objSpyTrainRed;	goto _3d_hit;
+						case M_DECORATION_Y_SPY_TRAIN:	obj = objSpyTrainYellow;	goto _3d_hit;
+						case M_DECORATION_G_SPY_TRAIN:	obj = objSpyTrainGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_TEMPLE:	obj = objTempleBlue;	goto _3d_hit;
+						case M_DECORATION_R_TEMPLE:	obj = objTempleRed;	goto _3d_hit;
+						case M_DECORATION_Y_TEMPLE:	obj = objTempleYellow;	goto _3d_hit;
+						case M_DECORATION_G_TEMPLE:	obj = objTempleGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_FIREWARRIOR_TRAIN:	obj = objFwTrainBlue;	goto _3d_hit;
+						case M_DECORATION_R_FIREWARRIOR_TRAIN:	obj = objFwTrainRed;	goto _3d_hit;
+						case M_DECORATION_Y_FIREWARRIOR_TRAIN:	obj = objFwTrainYellow;	goto _3d_hit;
+						case M_DECORATION_G_FIREWARRIOR_TRAIN:	obj = objFwTrainGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_WARRIOR_TRAIN:	obj = objWarriorTrainBlue;	goto _3d_hit;
+						case M_DECORATION_R_WARRIOR_TRAIN:	obj = objWarriorTrainRed;	goto _3d_hit;
+						case M_DECORATION_Y_WARRIOR_TRAIN:	obj = objWarriorTrainYellow;	goto _3d_hit;
+						case M_DECORATION_G_WARRIOR_TRAIN:	obj = objWarriorTrainGreen;	goto _3d_hit;
+
+						case M_DECORATION_B_HUT1_A:	obj = objHut1Blue;	goto _3d_hit;
+						case M_DECORATION_B_HUT1_B:	obj = objHut2Blue;	goto _3d_hit;
+						case M_DECORATION_B_HUT1_C:	obj = objHut3Blue;	goto _3d_hit;
+
+						case M_DECORATION_R_HUT1_A:	obj = objHut1Red;	goto _3d_hit;
+						case M_DECORATION_R_HUT1_B:	obj = objHut2Red;	goto _3d_hit;
+						case M_DECORATION_R_HUT1_C:	obj = objHut3Red;	goto _3d_hit;
+
+						case M_DECORATION_Y_HUT1_A:	obj = objHut1Yellow;	goto _3d_hit;
+						case M_DECORATION_Y_HUT1_B:	obj = objHut2Yellow;	goto _3d_hit;
+						case M_DECORATION_Y_HUT1_C:	obj = objHut3Yellow;	goto _3d_hit;
+
+						case M_DECORATION_G_HUT1_A:	obj = objHut1Green;	goto _3d_hit;
+						case M_DECORATION_G_HUT1_B:	obj = objHut2Green;	goto _3d_hit;
+						case M_DECORATION_G_HUT1_C:	obj = objHut3Green;	goto _3d_hit;
+
+						case M_DECORATION_B_HUT2_A:	obj = objHut1Blue;	goto _3d_hit;
+						case M_DECORATION_B_HUT2_B:	obj = objHut2Blue;	goto _3d_hit;
+						case M_DECORATION_B_HUT2_C:	obj = objHut3Blue;	goto _3d_hit;
+
+						case M_DECORATION_R_HUT2_A:	obj = objHut1Red;	goto _3d_hit;
+						case M_DECORATION_R_HUT2_B:	obj = objHut2Red;	goto _3d_hit;
+						case M_DECORATION_R_HUT2_C:	obj = objHut3Red;	goto _3d_hit;
+
+						case M_DECORATION_Y_HUT2_A:	obj = objHut1Yellow;	goto _3d_hit;
+						case M_DECORATION_Y_HUT2_B:	obj = objHut2Yellow;	goto _3d_hit;
+						case M_DECORATION_Y_HUT2_C:	obj = objHut3Yellow;	goto _3d_hit;
+
+						case M_DECORATION_G_HUT2_A:	obj = objHut1Green;	goto _3d_hit;
+						case M_DECORATION_G_HUT2_B:	obj = objHut2Green;	goto _3d_hit;
+						case M_DECORATION_G_HUT2_C:	obj = objHut3Green;	goto _3d_hit;
+
+						case M_DECORATION_B_HUT3_A:	obj = objHut1Blue;	goto _3d_hit;
+						case M_DECORATION_B_HUT3_B:	obj = objHut2Blue;	goto _3d_hit;
+						case M_DECORATION_B_HUT3_C:	obj = objHut3Blue;	goto _3d_hit;
+
+						case M_DECORATION_R_HUT3_A:	obj = objHut1Red;	goto _3d_hit;
+						case M_DECORATION_R_HUT3_B:	obj = objHut2Red;	goto _3d_hit;
+						case M_DECORATION_R_HUT3_C:	obj = objHut3Red;	goto _3d_hit;
+
+						case M_DECORATION_Y_HUT3_A:	obj = objHut1Yellow;	goto _3d_hit;
+						case M_DECORATION_Y_HUT3_B:	obj = objHut2Yellow;	goto _3d_hit;
+						case M_DECORATION_Y_HUT3_C:	obj = objHut3Yellow;	goto _3d_hit;
+
+						case M_DECORATION_G_HUT3_A:	obj = objHut1Green;	goto _3d_hit;
+						case M_DECORATION_G_HUT3_B:	obj = objHut2Green;	goto _3d_hit;
+						case M_DECORATION_G_HUT3_C:	obj = objHut3Green;	goto _3d_hit;
+
+						case M_DECORATION_BOAT:	obj = objBoat;	goto _3d_hit;
+						case M_DECORATION_BALLOON:	obj = objBallon;	goto _3d_hit;
+
+						case M_DECORATION_TOTEM_0: obj = objTotem; goto _3d_hit;
+						case M_DECORATION_TOTEM_1: obj = objTotem; goto _3d_hit;
+						case M_DECORATION_KNOWLEDGE_0: obj = objKnowledge; goto _3d_hit;
+						case M_DECORATION_KNOWLEDGE_1: obj = objKnowledge; goto _3d_hit;
+						case M_DECORATION_KNOWLEDGE_2: obj = objKnowledge; goto _3d_hit;
+						case M_DECORATION_PRISON: obj = objPrison; goto _3d_hit;
+						case M_DECORATION_OBELISK: obj = objObelisk; goto _3d_hit;
+						case M_DECORATION_GARGOYLE_0: obj = objGargoyle; goto _3d_hit;
+						case M_DECORATION_GARGOYLE_1: obj = objGargoyle; goto _3d_hit;
+						case M_DECORATION_GARGOYLE_2: obj = objGargoyle; goto _3d_hit;
+						case M_DECORATION_PILLAR: obj = objRSPillar; goto _3d_hit;
+						case M_DECORATION_AOD_0: obj = objAodBlue; goto _3d_hit;
+						case M_DECORATION_AOD_1: obj = objAodBlue; goto _3d_hit;
+						case M_DECORATION_STONEHEAD: obj = objStoneHead; goto _3d_hit;
+
+						case M_DECORATION_TREE_1:
+						case M_DECORATION_TREE_4:
+							obj = objTree1;
+							goto _3d_hit;
+						case M_DECORATION_TREE_2:
+						case M_DECORATION_TREE_5:
+							obj = objTree2;
+							goto _3d_hit;
+						case M_DECORATION_TREE_3:
+						case M_DECORATION_TREE_6:
+							obj = objTree3;
+							goto _3d_hit;
+					
+						}
+						goto _unknow;
+					}
+					
+					
+					switch (t->Thing.Model)
 					{
 					case M_SCENERY_PLANT_1:
 					case M_SCENERY_PLANT_2:
@@ -4890,7 +5165,7 @@ void EngineMouseLDown()
 						obj = objStoneHead;
 						goto _3d_hit;
 					case M_SCENERY_RS_PILLAR:
-						switch(t->Thing.Owner)
+						switch (t->Thing.Owner)
 						{
 						case OWNER_BLUE:   obj = objRSPillarBlue;   goto _3d_hit;
 						case OWNER_RED:    obj = objRSPillarRed;    goto _3d_hit;
@@ -4901,6 +5176,7 @@ void EngineMouseLDown()
 						goto _3d_hit;
 					}
 					goto _unknow;
+					
 				case T_VEHICLE:
 					switch(t->Thing.Model)
 					{
