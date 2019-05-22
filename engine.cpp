@@ -71,7 +71,8 @@ bool					fEngineEditLand			= false,
 						fFlatten				= false,
 						fSmooth					= false,
 						fRaise					= false,
-						fLower					= false;
+						fLower					= false,
+						fNewMarkerAdded			= false;
 
 POINT					ptCursor,
 						ptCaptured;
@@ -2484,6 +2485,53 @@ skip:;
 			}
 
 			DlgMarkersUpdate(hDlgMarkers);
+		}
+		else if (fCaptured && !fMoving && fEngineEditMarkers && (MarkerSelected == -1) && !fNewMarkerAdded && bKeys[VK_CONTROL])
+		{
+			D3DVECTOR r0, r1;
+			EngineGetPick(&r0, &r1);
+
+			int sx, sz;
+			float ex, ez;
+
+			if (EngineGetIntersectMapSquare(r0, r1, &sx, &sz, &ex, &ez))
+			{
+				float cx = ex,
+					cz = ez,
+					cy = GroundHeight[sx][sz].height + GroundHeight[sx + 1][sz].height + GroundHeight[sx][sz + 1].height + GroundHeight[sx + 1][sz + 1].height;
+
+				int bx = (int)cx,
+					bz = (int)cz;
+
+				cx += 0.5f;
+				cz += 0.5f;
+				cy /= 4.0f;
+
+				while (bx < 0) bx += GROUND_X_SIZE;
+				while (bz < 0) bz += GROUND_Z_SIZE;
+				while (bx >= GROUND_X_SIZE) bx -= GROUND_X_SIZE;
+				while (bz >= GROUND_Z_SIZE) bz -= GROUND_Z_SIZE;
+				
+				for (int i = 0; i < 256; i++) {
+					if (Markers[i].x < 0.6f && Markers[i].z < 0.6f) {
+						MarkerSelected = i;
+						fNewMarkerAdded = true;
+						break;
+					
+					}
+				}
+
+				Markers[MarkerSelected].x = (float)bx + 0.5f;
+				Markers[MarkerSelected].z = (float)bz + 0.5f;
+				leveldat->Header.v2.Markers[MarkerSelected] = ((bz * 2) << 8) | (bx * 2);
+				Markers[MarkerSelected].ex = cx;
+				Markers[MarkerSelected].ez = cz;
+				Markers[MarkerSelected].ey = cy;
+				
+			}
+
+			DlgMarkersUpdate(hDlgMarkers);
+			EngineUpdateView();
 		}
 
 		lpD3DDevice->SetTexture(0, txMarker->lpDDSTexture);
@@ -5124,6 +5172,7 @@ void EngineMouseLUp()
 	if(fCaptured)
 	{
 		EngineMouseReleaseCapture();
+		if(fEngineEditMarkers) fNewMarkerAdded = false;
 		if(fEngineEditLand || fEngineEditObjs) EngineUpdateMiniMap();
 	}
 }
