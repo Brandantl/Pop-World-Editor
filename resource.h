@@ -288,6 +288,7 @@
 #define IDC_MARKERS_COPY				1220
 #define IDC_INFO_DECORATIONS_COUNT      1221
 #define IDC_PAINT_DECORATIONS			1222
+#define IDC_BRUSH_MAX_SIZE				1223
 
 #define ID_ACCEL_DLGDEVICE              40001
 #define ID_ACCEL_MENUBAR                40002

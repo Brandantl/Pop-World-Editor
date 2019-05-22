@@ -271,6 +271,7 @@ extern float					fEnginePosX,
 								fEngineRotY,
 								fEngineRotZ;
 extern int						GroundEditBrushSize,
+								PreviousBrushSize,
 								GroundEditBrushSpeed,
 								ObjectsCount,
 								LevelFormatMode;
@@ -291,7 +292,8 @@ extern bool						fEngineEditLand,
 								fRaise,
 								fLower,
 								fNewMarkerAdded,
-								fPaintDecorations;
+								fPaintDecorations,
+								fBrushMaxSize;
 
 extern POINT					ptCursor,
 								ptCaptured;

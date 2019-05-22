@@ -2385,6 +2385,12 @@ void DlgBrushUpdate(HWND hWnd)
 		CheckDlgButton(hWnd, IDC_BRUSH_ONLY_LOWER, BST_CHECKED);
 	else
 		CheckDlgButton(hWnd, IDC_BRUSH_ONLY_LOWER, BST_UNCHECKED);
+
+	if (fBrushMaxSize)
+		CheckDlgButton(hWnd, IDC_BRUSH_MAX_SIZE, BST_CHECKED);
+	else
+		CheckDlgButton(hWnd, IDC_BRUSH_MAX_SIZE, BST_UNCHECKED);
+
 }
 
 
@@ -2473,11 +2479,31 @@ int __stdcall DlgBrushProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				fLower = false;
 			}
 		}
+		else if (wParam == IDC_BRUSH_MAX_SIZE)
+		{
+			if (IsDlgButtonChecked(hWnd, IDC_BRUSH_MAX_SIZE) == BST_CHECKED)
+			{
+				fBrushMaxSize = true;
+				PreviousBrushSize = GroundEditBrushSize;
+				GroundEditBrushSize = 128;
+			}
+			else
+			{
+				fBrushMaxSize = false;
+				GroundEditBrushSize = PreviousBrushSize;
+			}
+
+			sprintf(str, SZ_BRUSH_SIZE_TXT, GroundEditBrushSize);
+			SendDlgItemMessage(hWnd, IDC_BRUSH_SIZE_TXT, WM_SETTEXT, 0, (LPARAM)str);
+		}
 		return 0;
 
 	case WM_HSCROLL:
 		if(GetDlgCtrlID((HWND)lParam) == IDC_BRUSH_SIZE)
 		{
+			if (fBrushMaxSize)
+				return 0;
+
 			GroundEditBrushSize = (int) SendMessage((HWND)lParam, TBM_GETPOS, 0, 0);
 
 			if(GroundEditBrushSize < BRUSH_SIZE_MIN) GroundEditBrushSize = BRUSH_SIZE_MIN;

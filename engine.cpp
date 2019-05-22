@@ -73,7 +73,8 @@ bool					fEngineEditLand			= false,
 						fRaise					= false,
 						fLower					= false,
 						fNewMarkerAdded			= false,
-						fPaintDecorations		= true;
+						fPaintDecorations		= true,
+						fBrushMaxSize			= false;
 
 POINT					ptCursor,
 						ptCaptured;
@@ -100,6 +101,7 @@ D3DMATERIAL7			mtrlNormal;
 D3DLIGHT7				lightLandscape,
 						lightObjects;
 int						GroundEditBrushSize		= 3,
+						PreviousBrushSize		= 3,
 						GroundEditBrushSpeed	= 4,
 						ObjectsCount			= 0,
 						LevelFormatMode			= LEVEL_FORMAT_MODE_V3;
