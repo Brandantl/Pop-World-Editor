@@ -324,14 +324,14 @@ http://alacn.dnsalias.org:8080/
 #define IDX_M_VEHICLE_BOAT							0
 #define IDX_M_VEHICLE_AIRSHIP						1
 
-#define IDX_M_SHOT_STANDARD						    1
-#define IDX_M_SHOT_STANDARD_2					    2
-#define IDX_M_SHOT_STANDARD_3					    3
-#define IDX_M_SHOT_FIREBALL						    4
-#define IDX_M_SHOT_LIGHTNING					    5
-#define IDX_M_SHOT_SUPER_WARRIOR				    6
-#define IDX_M_SHOT_VOLCANO_FIREBALL_1			    7
-#define IDX_M_SHOT_VOLCANO_FIREBALL_2			    8
+#define IDX_M_SHOT_STANDARD						    0
+#define IDX_M_SHOT_STANDARD_2					    1
+#define IDX_M_SHOT_STANDARD_3					    2
+#define IDX_M_SHOT_FIREBALL						    3
+#define IDX_M_SHOT_LIGHTNING					    4
+#define IDX_M_SHOT_SUPER_WARRIOR				    5
+#define IDX_M_SHOT_VOLCANO_FIREBALL_1			    6
+#define IDX_M_SHOT_VOLCANO_FIREBALL_2			    7
 
 
 
