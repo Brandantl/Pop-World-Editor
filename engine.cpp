@@ -3483,6 +3483,10 @@ down_skip:
 		UpdateView = true;
 	}
 
+	if (bKeys[0x4E] && ThingSelected && !fQuickDuplicate) fQuickDuplicate = !fQuickDuplicate, DlgObjectNewObj();
+
+	if (!bKeys[0x4E] && fQuickDuplicate) fQuickDuplicate = !fQuickDuplicate;
+
 	if(UpdateView)
 	{
 		fLandEditUpdate = true;
