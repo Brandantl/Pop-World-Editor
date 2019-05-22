@@ -106,6 +106,8 @@ int						GroundEditBrushSize		= 3,
 						ObjectsCount			= 0,
 						LevelFormatMode			= LEVEL_FORMAT_MODE_V3;
 
+unsigned short			usiUpdateEngine			= 0;
+
 const int GroundEditBrushSizeList[BRUSH_SIZE_MAX-BRUSH_SIZE_MIN+1] = {
 	30000, 25000, 20000, 15000, 10000, 7000, 5000, 2500, 1000
 };
@@ -1196,6 +1198,11 @@ long EngineUpdateFrame()
 
 		return rs;
 	}
+
+	if (usiUpdateEngine == 0)
+		Sleep(10);
+	else 
+		usiUpdateEngine--;
 
 	return S_OK;
 }
@@ -3592,6 +3599,7 @@ long EngineUpdateView()
 
 	//
 
+	usiUpdateEngine = ENGINE_UPDATE_TIMER;
 	return S_OK;
 }
 
@@ -3716,6 +3724,7 @@ down_skip:
 
 	if(UpdateView)
 	{
+		usiUpdateEngine = ENGINE_UPDATE_TIMER;
 		fLandEditUpdate = true;
 		return EngineUpdateView();
 	}

@@ -145,6 +145,7 @@ http://alacn.dnsalias.org:8080/
 #define LEVEL_FORMAT_MODE_V2			0
 #define LEVEL_FORMAT_MODE_V3			1
 
+#define	ENGINE_UPDATE_TIMER				500
 
 
 struct GROUNDHEIGHT
