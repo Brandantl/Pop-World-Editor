@@ -5223,3 +5223,17 @@ bool IsNotNeutral(THING *t)
 		(t->Thing.Type == T_VEHICLE)
 	);
 }
+
+void CopyToClipboard(HWND hwnd, const std::string& s)
+{
+	OpenClipboard(hwnd);
+	EmptyClipboard();
+	if (HGLOBAL hText = GlobalAlloc(GMEM_MOVEABLE, s.size() + 1))
+	{
+		memcpy(GlobalLock(hText), s.c_str(), s.length() + 1);
+		GlobalUnlock(hText);
+		SetClipboardData(CF_TEXT, hText);
+		CloseClipboard();
+		GlobalFree(hText);
+	}
+}

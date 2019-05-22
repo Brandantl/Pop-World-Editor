@@ -349,3 +349,4 @@ void EngineMouseRDown();
 void EngineMouseRUp();
 void EngineMouseWheel(int delta);
 bool IsNotNeutral(THING *t);
+void CopyToClipboard(HWND hwnd, const std::string& s);
