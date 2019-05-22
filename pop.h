@@ -147,6 +147,7 @@ http://alacn.dnsalias.org:8080/
 #define SZ_TX_LIGHT							"data\\light.bmp"
 #define SZ_TX_LANDBRIDGE					"data\\landbridge.bmp"
 #define SZ_TX_MARKER						"data\\marker.bmp"
+#define SZ_TX_FORBIDDEN						"data\\forbidden.bmp"
 
 // -=-=- objects models files -=-=-
 #define SZ_OBJ_AOD_BLUE						"data\\aod_blue.3ds"
@@ -382,6 +383,7 @@ http://alacn.dnsalias.org:8080/
 #define M_SCENERY_WOOD_PILE					11
 #define M_SCENERY_RS_PILLAR					12
 #define M_SCENERY_ROCK						13
+#define M_SCENERY_FORBIDDEN					14 // It's just a portal.
 //#define M_SCENERY_PORTAL					14
 //#define M_SCENERY_ISLAND					15
 //#define M_SCENERY_BRIDGE					16
@@ -402,6 +404,7 @@ http://alacn.dnsalias.org:8080/
 #define SZ_SCENERY_RS_PILLAR				"RS Pillar"
 #define SZ_SCENERY_ROCK						"Rock"
 #define SZ_SCENERY_FIRE						"Fire"
+#define SZ_SCENERY_FORBIDDEN				"Forbidden"
 
 // - special -
 #define M_SPECIAL_A							39

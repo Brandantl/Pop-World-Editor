@@ -1439,6 +1439,7 @@ void GetThingName(THING *t, char *str)
 		case M_SCENERY_RS_PILLAR:  strcpy(str, SZ_SCENERY_RS_PILLAR);  break;
 		case M_SCENERY_ROCK:       strcpy(str, SZ_SCENERY_ROCK);       break;
 		case M_SCENERY_FIRE:       strcpy(str, SZ_SCENERY_FIRE);       break;
+		case M_SCENERY_FORBIDDEN:  strcpy(str, SZ_SCENERY_FORBIDDEN);  break;
 		default: sprintf(str, "%s: %s", SZ_SCENERY, SZ_UNKNOW);
 		}
 		break;
@@ -2903,6 +2904,7 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					case IDX_M_SCENERY_RS_PILLAR:  ThingSelected->Thing.Model = M_SCENERY_RS_PILLAR;  break;
 					case IDX_M_SCENERY_ROCK:       ThingSelected->Thing.Model = M_SCENERY_ROCK;       break;
 					case IDX_M_SCENERY_FIRE:       ThingSelected->Thing.Model = M_SCENERY_FIRE;       break;
+					case IDX_M_SCENERY_FORBIDDEN:  ThingSelected->Thing.Model = M_SCENERY_FORBIDDEN;  break;
 					}
 					break;
 					
@@ -3351,6 +3353,7 @@ void DlgObjectUpdateInfo(HWND hWnd, bool lock)
 			case M_SCENERY_RS_PILLAR:  SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_RS_PILLAR, 0);  break;
 			case M_SCENERY_ROCK:       SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_ROCK, 0);       goto _scenery_skip_rotate;
 			case M_SCENERY_FIRE:       SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_FIRE, 0);       goto _scenery_skip_rotate;
+			case M_SCENERY_FORBIDDEN:  SendMessage(hItem, CB_SETCURSEL, IDX_M_SCENERY_FORBIDDEN, 0);  goto _scenery_skip_rotate;
 			default: SendMessage(hItem, CB_SETCURSEL, -1, 0); goto _scenery_skip_rotate;
 			}
 		_scenery_skip:
@@ -3694,6 +3697,7 @@ void DlgObjectSetSceneryList(HWND hWnd)
 	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SCENERY_RS_PILLAR);
 	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SCENERY_ROCK);
 	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SCENERY_FIRE);
+	SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_SCENERY_FORBIDDEN);
 }
 
 

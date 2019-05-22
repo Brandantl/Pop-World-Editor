@@ -307,7 +307,8 @@ TEXTURE					*txUnknow = 0,
 						*txFire = 0,
 						*txLight = 0,
 						*txLandBridge = 0,
-						*txMarker;
+						*txMarker = 0,
+						*txForbidden = 0;
 
 
 // landscape
@@ -2420,6 +2421,9 @@ long EngineDrawObjects()
 					case M_SCENERY_WOOD_PILE:
 						lpD3DDevice->SetTexture(0, txWoodPile->lpDDSTexture);
 						goto draw_2d_small;
+					case M_SCENERY_FORBIDDEN:
+						lpD3DDevice->SetTexture(0, txForbidden->lpDDSTexture);
+						goto draw_2d_small;
 					case M_SCENERY_RS_PILLAR:
 						switch(thing->Thing.Owner)
 						{
@@ -4061,6 +4065,7 @@ bool EngineLoadObjects()
 	txLight			= EngineCreateTexture(TEXTURE_SIZE, TEXTURE_SIZE, SZ_TX_LIGHT, 0);
 	txLandBridge	= EngineCreateTexture(TEXTURE_SIZE, TEXTURE_SIZE, SZ_TX_LANDBRIDGE, 0);
 	txMarker		= EngineCreateTexture(TEXTURE_SIZE, TEXTURE_SIZE, SZ_TX_MARKER, 0);
+	txForbidden		= EngineCreateTexture(TEXTURE_SIZE, TEXTURE_SIZE, SZ_TX_FORBIDDEN, 0);
 
 	objAodBlue				= _3dsLoadObj(SZ_OBJ_AOD_BLUE);
 	objAodRed				= _3dsLoadObj(SZ_OBJ_AOD_RED);
@@ -5148,6 +5153,7 @@ void EngineMouseLDown()
 					case M_SCENERY_WOOD_PILE:
 					case M_SCENERY_ROCK:
 					case M_SCENERY_FIRE:
+					case M_SCENERY_FORBIDDEN:
 						goto _2d_hit_small;
 					case M_SCENERY_TREE_1:
 					case M_SCENERY_TREE_4:

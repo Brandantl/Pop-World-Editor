@@ -162,6 +162,7 @@ http://alacn.dnsalias.org:8080/
 #define IDX_M_SCENERY_RS_PILLAR						10
 #define IDX_M_SCENERY_ROCK							11
 #define IDX_M_SCENERY_FIRE							12
+#define IDX_M_SCENERY_FORBIDDEN						13
 
 #define IDX_M_SPECIAL_A								0
 #define IDX_M_SPECIAL_B								1
