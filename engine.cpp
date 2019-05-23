@@ -15,6 +15,7 @@ http://alacn.dnsalias.org:8080/
 #include "3ds.h"
 #include "dialogs.h"
 #include "user_storage.h"
+#include <thread>
 
 std::vector<THINGSAVE> Objects;
 
@@ -62,7 +63,8 @@ char					szLevel[MAX_PATH]		= "";
 DWORD					dwEngineFlags			= 0,
 						dwEngineLastTick		= 0,
 						dwEngineTick			= 0;
-bool					fEngineEditLand			= false,
+bool					bEngineSleep			= false,
+						fEngineEditLand			= false,
 						fEngineEditObjs			= false,
 						fEngineEditMarkers		= false,
 						fCaptured				= false,
@@ -105,8 +107,6 @@ int						GroundEditBrushSize		= 3,
 						GroundEditBrushSpeed	= 4,
 						ObjectsCount			= 0,
 						LevelFormatMode			= LEVEL_FORMAT_MODE_V3;
-
-unsigned short			usiUpdateEngine			= 0;
 
 const int GroundEditBrushSizeList[BRUSH_SIZE_MAX-BRUSH_SIZE_MIN+1] = {
 	30000, 25000, 20000, 15000, 10000, 7000, 5000, 2500, 1000
@@ -1199,11 +1199,6 @@ long EngineUpdateFrame()
 		return rs;
 	}
 
-	if (usiUpdateEngine == 0)
-		Sleep(10);
-	else 
-		usiUpdateEngine--;
-
 	return S_OK;
 }
 
@@ -1283,7 +1278,7 @@ long EngineDrawFrameRate()
 long EngineDrawLandscape()
 {
 	if (dwEngineFlags & EF_WIREFRAME_LAND) lpD3DDevice->SetRenderState(D3DRENDERSTATE_FILLMODE, D3DFILL_WIREFRAME);
-
+	
 	lpD3DDevice->SetTransform(D3DTRANSFORMSTATE_VIEW, &matEngineView);
 	lpD3DDevice->SetTransform(D3DTRANSFORMSTATE_WORLD, &matIdentify);
 	lpD3DDevice->SetLight(0, &lightLandscape);
@@ -1828,6 +1823,7 @@ _skip:
 					}
 				}
 
+				bEngineSleep = false;
 				EngineUpdateView();
 			}
 
@@ -1846,6 +1842,7 @@ _skip:
 
 	lpD3DDevice->SetRenderState(D3DRENDERSTATE_DIFFUSEMATERIALSOURCE, D3DMCS_MATERIAL);
 
+	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	return S_OK;
 }
 
@@ -3597,9 +3594,6 @@ long EngineUpdateView()
 	vMiniMap[3].tu = 0.5f - fx;
 	vMiniMap[3].tv = 1.5f - fz;
 
-	//
-
-	usiUpdateEngine = ENGINE_UPDATE_TIMER;
 	return S_OK;
 }
 
@@ -3724,12 +3718,15 @@ down_skip:
 
 	if(UpdateView)
 	{
-		usiUpdateEngine = ENGINE_UPDATE_TIMER;
+		bEngineSleep = false;
 		fLandEditUpdate = true;
 		return EngineUpdateView();
 	}
 	else
+	{
+		bEngineSleep = true;
 		return S_OK;
+	}
 }
 
 void DlgPaintDecorations()

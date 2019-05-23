@@ -283,7 +283,8 @@ extern THING					*Things,
 								*ThingLink;
 extern SCREEN_INFO				*ScreenInfo;
 extern DEVICE_INFO				*DeviceInfo;
-extern bool						fEngineEditLand,
+extern bool						bEngineSleep,
+								fEngineEditLand,
 								fEngineEditObjs,
 								fEngineEditMarkers,
 								fCaptured,

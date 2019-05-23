@@ -15,6 +15,7 @@ http://alacn.dnsalias.org:8080/
 #include "engine.h"
 #include "dialogs.h"
 #include "user_storage.h"
+#include <thread>
 
 
 
@@ -121,6 +122,12 @@ _retry:
 		{
 			if(fActive && fEngineActive)
 			{
+				if (bEngineSleep)
+				{
+					std::this_thread::sleep_for(std::chrono::milliseconds(10));
+					bEngineSleep = false;
+				}
+
 				if FAILED(rs = EngineUpdateFrame())
 				{
 					EngineDestroy();
