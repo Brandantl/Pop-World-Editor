@@ -6956,6 +6956,15 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					leveldat->Header.v2.LevelFlags |= LEVEL_FLAGS_NO_GUEST;
 				else
 					leveldat->Header.v2.LevelFlags &= ~LEVEL_FLAGS_NO_GUEST;
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_NO_GUEST;
+					p->wData[0] = IsDlgButtonChecked(hWnd, IDC_HEADER_NO_GUEST);
+					net.SendPacket(p);
+					p->del();
+				}
 			}
 			break;
 
