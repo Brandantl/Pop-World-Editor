@@ -613,6 +613,7 @@ void DlgScript2Update(HWND hWnd);
 
 // spells not charging dialog
 void DlgSpellsNotChargingToggle();
+void DlgSpellsNotChargingProcModify(WPARAM wParam, bool bNetwork = false);
 int __stdcall DlgSpellsNotChargingProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void DlgSpellsNotChargingUpdate(HWND hWnd);
 

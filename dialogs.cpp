@@ -6492,6 +6492,113 @@ void DlgSpellsNotChargingToggle()
 }
 
 
+void DlgSpellsNotChargingProcModify(WPARAM wParam, bool bNetwork)
+{
+	switch(wParam)
+	{
+	case IDC_SPELL_BLAST:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_BLAST - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_BLAST - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_BLAST - 1));
+		break;
+	case IDC_SPELL_LIGHTNING:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_LIGHTNING - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_LIGHTNING - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_LIGHTNING - 1));
+		break;
+	case IDC_SPELL_TORNADO:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_TORNADO - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_TORNADO - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_TORNADO - 1));
+		break;
+	case IDC_SPELL_SWARM:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_SWARM - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_SWARM - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_SWARM - 1));
+		break;
+	case IDC_SPELL_INVISIBILITY:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_INVISIBILITY - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_INVISIBILITY - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_INVISIBILITY - 1));
+		break;
+	case IDC_SPELL_HYPNOTISM:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_HYPNOTISM - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_HYPNOTISM - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_HYPNOTISM - 1));
+		break;
+	case IDC_SPELL_FIRESTORM:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_FIRESTORM - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_FIRESTORM - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_FIRESTORM - 1));
+		break;
+	case IDC_SPELL_ERODE:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_ERODE - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_ERODE - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_ERODE - 1));
+		break;
+	case IDC_SPELL_SWAMP:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_SWAMP - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_SWAMP - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_SWAMP - 1));
+		break;
+	case IDC_SPELL_LANDBRIDGE:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_LAND_BRIDGE - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_LAND_BRIDGE - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_LAND_BRIDGE - 1));
+		break;
+	case IDC_SPELL_AOD:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_ANGEL_OF_DEATH - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_ANGEL_OF_DEATH - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_ANGEL_OF_DEATH - 1));
+		break;
+	case IDC_SPELL_EARTHQUAKE:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_EARTHQUAKE - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_EARTHQUAKE - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_EARTHQUAKE - 1));
+		break;
+	case IDC_SPELL_FLATTEN:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_FLATTEN - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_FLATTEN - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_FLATTEN - 1));
+		break;
+	case IDC_SPELL_VOLCANO:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_VOLCANO - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_VOLCANO - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_VOLCANO - 1));
+		break;
+	case IDC_SPELL_CONVERT:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_CONVERT - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_CONVERT - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_CONVERT - 1));
+		break;
+	case IDC_SPELL_MAGICALSHIELD:
+		if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_MAGICAL_SHIELD - 1)))
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_MAGICAL_SHIELD - 1));
+		else
+			leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_MAGICAL_SHIELD - 1));
+		break;
+	}
+
+	if (bNetwork)
+		DlgSpellsNotChargingUpdate(hDlgSpellsNotCharging);
+}
+
+
 int __stdcall DlgSpellsNotChargingProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch(uMsg)
@@ -6505,104 +6612,14 @@ int __stdcall DlgSpellsNotChargingProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPAR
 		return 0;
 
 	case WM_COMMAND:
-		switch(wParam)
+		DlgSpellsNotChargingProcModify(wParam);
+		if (net.IsInitialized())
 		{
-		case IDC_SPELL_BLAST:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_BLAST - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_BLAST - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_BLAST - 1));
-			break;
-		case IDC_SPELL_LIGHTNING:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_LIGHTNING - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_LIGHTNING - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_LIGHTNING - 1));
-			break;
-		case IDC_SPELL_TORNADO:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_TORNADO - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_TORNADO - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_TORNADO - 1));
-			break;
-		case IDC_SPELL_SWARM:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_SWARM - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_SWARM - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_SWARM - 1));
-			break;
-		case IDC_SPELL_INVISIBILITY:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_INVISIBILITY - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_INVISIBILITY - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_INVISIBILITY - 1));
-			break;
-		case IDC_SPELL_HYPNOTISM:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_HYPNOTISM - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_HYPNOTISM - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_HYPNOTISM - 1));
-			break;
-		case IDC_SPELL_FIRESTORM:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_FIRESTORM - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_FIRESTORM - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_FIRESTORM - 1));
-			break;
-		case IDC_SPELL_ERODE:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_ERODE - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_ERODE - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_ERODE - 1));
-			break;
-		case IDC_SPELL_SWAMP:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_SWAMP - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_SWAMP - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_SWAMP - 1));
-			break;
-		case IDC_SPELL_LANDBRIDGE:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_LAND_BRIDGE - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_LAND_BRIDGE - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_LAND_BRIDGE - 1));
-			break;
-		case IDC_SPELL_AOD:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_ANGEL_OF_DEATH - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_ANGEL_OF_DEATH - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_ANGEL_OF_DEATH - 1));
-			break;
-		case IDC_SPELL_EARTHQUAKE:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_EARTHQUAKE - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_EARTHQUAKE - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_EARTHQUAKE - 1));
-			break;
-		case IDC_SPELL_FLATTEN:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_FLATTEN - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_FLATTEN - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_FLATTEN - 1));
-			break;
-		case IDC_SPELL_VOLCANO:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_VOLCANO - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_VOLCANO - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_VOLCANO - 1));
-			break;
-		case IDC_SPELL_CONVERT:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_CONVERT - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_CONVERT - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_CONVERT - 1));
-			break;
-		case IDC_SPELL_MAGICALSHIELD:
-			if(leveldat->Header.v2.DefaultThings.SpellsNotCharging & (1 << (M_SPELL_MAGICAL_SHIELD - 1)))
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging &= ~(1 << (M_SPELL_MAGICAL_SHIELD - 1));
-			else
-				leveldat->Header.v2.DefaultThings.SpellsNotCharging |= (1 << (M_SPELL_MAGICAL_SHIELD - 1));
-			break;
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_SPELL_RESTRICTIONS;
+			p->wData[0] = wParam;
+			net.SendPacket(p);
+			p->del();
 		}
 		return 0;
 	}
