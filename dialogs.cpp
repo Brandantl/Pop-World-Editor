@@ -6898,6 +6898,15 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", leveldat->Header.v2.NumPlayers);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_NUM_PLAYERS;
+					p->wData[0] = leveldat->Header.v2.NumPlayers;
+					net.SendPacket(p);
+					p->del();
+				}
 				break;
 			}
 			break;
