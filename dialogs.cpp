@@ -7448,6 +7448,15 @@ int __stdcall DlgMapTypeProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		else
 			leveldat->Header.v2.LevelType = 0;
 
+		if (net.IsInitialized())
+		{
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_MAP_TYPE;
+			p->wData[0] = leveldat->Header.v2.LevelType;
+			net.SendPacket(p);
+			p->del();
+		}
+
 		{
 			HDC hdc = GetDC(hWnd);
 			DlgMapTypePaint(hdc);
