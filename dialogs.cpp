@@ -9049,6 +9049,7 @@ void PurgeObjects()
 		delete pThing;
 	}
 
+	EngineUpdateMiniMap();
 	sprintf(str, "%d", nDeletedObjs);
 	MessageBox(NULL, str, _T("Objects Deleted"), MB_ICONINFORMATION | MB_OK);
 } 
