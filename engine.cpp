@@ -17,6 +17,7 @@ http://alacn.dnsalias.org:8080/
 #include "user_storage.h"
 #include "network.h"
 
+struct LandPacket *pLandPacket = new LandPacket;
 std::vector<THINGSAVE> Objects;
 
 
@@ -3638,6 +3639,34 @@ void EngineSetGroundHeight(int x, int z, WORD h)
 	while(x >= GROUND_X_SIZE) x -= GROUND_X_SIZE;
 	while(z >= GROUND_Z_SIZE) z -= GROUND_Z_SIZE;
 	wEngineGround[z * GROUND_Z_SIZE + x] = h;
+
+	if (net.IsInitialized())
+	{
+		if (net.m_LandPackets < ((LAND_PACKETS_BUFFER)/2))
+		{
+				
+#ifdef _DEBUG
+	#if _NET_DEBUG
+			printf("[Send] nLand(%i, %i): %i, nHeight(%i, %i): %i\n", net.m_LandPackets, 
+				net.m_LandPackets+net.m_LandPackets, z * GROUND_Z_SIZE + x, net.m_LandPackets+1, net.m_LandPackets+net.m_LandPackets+1, h);
+	#endif
+#endif
+			pLandPacket->wData[net.m_LandPackets+net.m_LandPackets] = z * GROUND_Z_SIZE + x;
+			pLandPacket->wData[net.m_LandPackets+net.m_LandPackets+1] = h;
+		}
+
+		if (net.m_LandPackets >= (LAND_PACKETS_BUFFER/2))
+		{
+			pLandPacket->wType = PACKETTYPE_LAND_MODIFY;
+			net.SendPacket(pLandPacket);
+			net.m_LandPackets = 0;
+			pLandPacket->clear();
+		}
+		else
+		{
+			net.m_LandPackets++;
+		}
+	}
 }
 
 
@@ -5513,6 +5542,17 @@ void EngineMouseLUp()
 		EngineMouseReleaseCapture();
 		if(fEngineEditMarkers) fNewMarkerAdded = false;
 		if(fEngineEditLand || fEngineEditObjs) EngineUpdateMiniMap();
+
+		if (fEngineEditLand)
+		{
+			if (net.m_LandPackets > 0)
+			{
+				pLandPacket->wType = PACKETTYPE_LAND_MODIFY;
+				net.SendPacket(pLandPacket);
+				net.m_LandPackets = 0;
+				pLandPacket->clear();
+			}
+		}
 	}
 }
 
@@ -5533,6 +5573,17 @@ void EngineMouseRUp()
 	{
 		EngineMouseReleaseCapture();
 		if(fEngineEditLand || fEngineEditObjs) EngineUpdateMiniMap();
+
+		if (fEngineEditLand)
+		{
+			if (net.m_LandPackets > 0)
+			{
+				pLandPacket->wType = PACKETTYPE_LAND_MODIFY;
+				net.SendPacket(pLandPacket);
+				net.m_LandPackets = 0;
+				pLandPacket->clear();
+			}
+		}
 	}
 }
 
