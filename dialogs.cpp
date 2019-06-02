@@ -6975,6 +6975,15 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					leveldat->Header.v2.LevelFlags |= LEVEL_NO_REINCARNATE_TIME;
 				else
 					leveldat->Header.v2.LevelFlags &= ~LEVEL_NO_REINCARNATE_TIME;
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_NO_REINCARNATE_TIME;
+					p->wData[0] = IsDlgButtonChecked(hWnd, IDC_HEADER_NO_REINCARNATE_TIME);
+					net.SendPacket(p);
+					p->del();
+				}
 			}
 			break;
 
