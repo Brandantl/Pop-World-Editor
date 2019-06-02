@@ -7930,6 +7930,19 @@ void DlgSwapTribeSwap(HWND hWnd)
 			f = false;
 	}
 
+	if (net.IsInitialized())
+	{
+		struct Packet *p = new Packet;
+		p->wType = PACKETTYPE_SWAP_TRIBE;
+		p->wData[0] = t1;
+		p->wData[1] = t2;
+		p->wData[2] = t3;
+		p->wData[3] = t4;
+		p->wData[4] = f;
+		net.SendPacket(p);
+		p->del();
+	}
+
 	THING *t = Things;
 	do
 	{
