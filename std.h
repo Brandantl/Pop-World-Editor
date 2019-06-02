@@ -8,6 +8,11 @@ http://alacn.dnsalias.org:8080/
 
 */
 
+#include "enet/enet.h"
+#pragma comment(lib, __FILE__"\\..\\enet\\enet.lib")
+#pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "winmm.lib")
+
 #define STR_SIZE  256
 
 #define _WIN32_WINDOWS 0x0500
