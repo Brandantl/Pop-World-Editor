@@ -975,6 +975,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Export Height Map",           ID_FILE_EXPORTHEIGHTMAP
         MENUITEM SEPARATOR
+		MENUITEM "Host",						ID_FILE_HOST
+		MENUITEM "Join",						ID_FILE_CLIENT
+		MENUITEM "Sync Map",					ID_FILE_SYNC_MAP
+        MENUITEM SEPARATOR
         MENUITEM "Exit\tEsc",                   ID_FILE_EXIT
     END
 END

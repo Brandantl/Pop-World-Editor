@@ -2088,6 +2088,18 @@ long __stdcall MenuBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			ExportHeightMap();
 			break;
 
+		case ID_FILE_HOST:
+			net.InitNetwork(true);
+			break;
+
+		case ID_FILE_CLIENT:
+			net.InitNetwork(false);
+			break;
+
+		case ID_FILE_SYNC_MAP:
+			net.OnSyncMapAsk();
+			break;
+
 		case ID_FILE_EXIT:
 			PostMessage(hMainWnd, WM_CLOSE, 0, 0);
 			break;
