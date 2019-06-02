@@ -4683,6 +4683,7 @@ void DlgDiscoveryToggle()
 
 int __stdcall DlgDiscoveryProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	bool bNetwork = false;
 	switch(uMsg)
 	{
 	case WM_INITDIALOG:
@@ -4718,6 +4719,7 @@ int __stdcall DlgDiscoveryProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 				case IDX_DISCOVERY_AVAILABILITY_LEVEL:     ThingSelected->Thing.General.AvailabilityType = AVAILABILITY_LEVEL;     break;
 				case IDX_DISCOVERY_AVAILABILITY_ONCE:      ThingSelected->Thing.General.AvailabilityType = AVAILABILITY_ONCE;      break;
 				}
+				bNetwork = true;
 			}
 			break;
 		case IDC_DISCOVERY_TYPE:
@@ -4739,6 +4741,7 @@ int __stdcall DlgDiscoveryProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 					ThingSelected->Thing.General.ManaAmt = 0;
 					break;
 				}
+				bNetwork = true;
 				DlgDiscoveryUpdateInfo(hDlgDiscovery);
 			}
 			break;
@@ -4786,6 +4789,7 @@ int __stdcall DlgDiscoveryProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 					}
 					break;
 				}
+				bNetwork = true;
 				DlgDiscoveryUpdateInfo(hDlgDiscovery);
 			}
 		case IDC_DISCOVERY_MANA:
@@ -4809,6 +4813,18 @@ int __stdcall DlgDiscoveryProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 				break;
 			}
 			break;
+		}
+
+		if (net.IsInitialized() && bNetwork)
+		{
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_DISCOVERY_OPTIONS;
+			p->wData[0] = ThingSelected->Idx;
+			p->wData[1] = ThingSelected->Thing.General.AvailabilityType;
+			p->wData[2] = ThingSelected->Thing.General.DiscoveryType;
+			p->wData[3] = ThingSelected->Thing.General.DiscoveryModel;
+			net.SendPacket(p);
+			p->del();
 		}
 		return 0;
 
