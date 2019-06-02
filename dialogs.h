@@ -596,6 +596,7 @@ void UpdateHeaderDialogs();
 
 // allies dialog
 void DlgAlliesToggle();
+void DlgAlliesProcModify(WPARAM wParam, bool bNetwork = false);
 int __stdcall DlgAlliesProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void DlgAlliesUpdate(HWND hWnd);
 

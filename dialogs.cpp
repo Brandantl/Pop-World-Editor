@@ -5794,6 +5794,92 @@ void DlgAlliesToggle()
 	}
 }
 
+void DlgAlliesProcModify(WPARAM wParam, bool bNetwork)
+{
+	switch(wParam)
+	{
+	// blue
+	case IDC_ALLIES_BLUE_RED:
+		if (leveldat->Header.v2.DefaultAllies[0] & TRIBE_RED)
+			leveldat->Header.v2.DefaultAllies[0] &= ~TRIBE_RED;
+		else
+			leveldat->Header.v2.DefaultAllies[0] |= TRIBE_RED;
+		break;
+	case IDC_ALLIES_BLUE_YELLOW:
+		if (leveldat->Header.v2.DefaultAllies[0] & TRIBE_YELLOW)
+			leveldat->Header.v2.DefaultAllies[0] &= ~TRIBE_YELLOW;
+		else
+			leveldat->Header.v2.DefaultAllies[0] |= TRIBE_YELLOW;
+		break;
+	case IDC_ALLIES_BLUE_GREEN:
+		if (leveldat->Header.v2.DefaultAllies[0] & TRIBE_GREEN)
+			leveldat->Header.v2.DefaultAllies[0] &= ~TRIBE_GREEN;
+		else
+			leveldat->Header.v2.DefaultAllies[0] |= TRIBE_GREEN;
+		break;
+		// red
+	case IDC_ALLIES_RED_BLUE:
+		if (leveldat->Header.v2.DefaultAllies[1] & TRIBE_BLUE)
+			leveldat->Header.v2.DefaultAllies[1] &= ~TRIBE_BLUE;
+		else
+			leveldat->Header.v2.DefaultAllies[1] |= TRIBE_BLUE;
+		break;
+	case IDC_ALLIES_RED_YELLOW:
+		if (leveldat->Header.v2.DefaultAllies[1] & TRIBE_YELLOW)
+			leveldat->Header.v2.DefaultAllies[1] &= ~TRIBE_YELLOW;
+		else
+			leveldat->Header.v2.DefaultAllies[1] |= TRIBE_YELLOW;
+		break;
+	case IDC_ALLIES_RED_GREEN:
+		if (leveldat->Header.v2.DefaultAllies[1] & TRIBE_GREEN)
+			leveldat->Header.v2.DefaultAllies[1] &= ~TRIBE_GREEN;
+		else
+			leveldat->Header.v2.DefaultAllies[1] |= TRIBE_GREEN;
+		break;
+		// yellow
+	case IDC_ALLIES_YELLOW_BLUE:
+		if (leveldat->Header.v2.DefaultAllies[2] & TRIBE_BLUE)
+			leveldat->Header.v2.DefaultAllies[2] &= ~TRIBE_BLUE;
+		else
+			leveldat->Header.v2.DefaultAllies[2] |= TRIBE_BLUE;
+		break;
+	case IDC_ALLIES_YELLOW_RED:
+		if (leveldat->Header.v2.DefaultAllies[2] & TRIBE_RED)
+			leveldat->Header.v2.DefaultAllies[2] &= ~TRIBE_RED;
+		else
+			leveldat->Header.v2.DefaultAllies[2] |= TRIBE_RED;
+		break;
+	case IDC_ALLIES_YELLOW_GREEN:
+		if (leveldat->Header.v2.DefaultAllies[2] & TRIBE_GREEN)
+			leveldat->Header.v2.DefaultAllies[2] &= ~TRIBE_GREEN;
+		else
+			leveldat->Header.v2.DefaultAllies[2] |= TRIBE_GREEN;
+		break;
+		// green
+	case IDC_ALLIES_GREEN_BLUE:
+		if (leveldat->Header.v2.DefaultAllies[3] & TRIBE_BLUE)
+			leveldat->Header.v2.DefaultAllies[3] &= ~TRIBE_BLUE;
+		else
+			leveldat->Header.v2.DefaultAllies[3] |= TRIBE_BLUE;
+		break;
+	case IDC_ALLIES_GREEN_RED:
+		if (leveldat->Header.v2.DefaultAllies[3] & TRIBE_RED)
+			leveldat->Header.v2.DefaultAllies[3] &= ~TRIBE_RED;
+		else
+			leveldat->Header.v2.DefaultAllies[3] |= TRIBE_RED;
+		break;
+	case IDC_ALLIES_GREEN_YELLOW:
+		if (leveldat->Header.v2.DefaultAllies[3] & TRIBE_YELLOW)
+			leveldat->Header.v2.DefaultAllies[3] &= ~TRIBE_YELLOW;
+		else
+			leveldat->Header.v2.DefaultAllies[3] |= TRIBE_YELLOW;
+		break;
+	}
+
+	if (bNetwork)
+		DlgAlliesUpdate(hDlgAllies);
+}
+
 
 int __stdcall DlgAlliesProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -5812,84 +5898,14 @@ int __stdcall DlgAlliesProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		return 0;
 
 	case WM_COMMAND:
-		switch(wParam)
+		DlgAlliesProcModify(wParam);
+		if (net.IsInitialized())
 		{
-		// blue
-		case IDC_ALLIES_BLUE_RED:
-			if(leveldat->Header.v2.DefaultAllies[0] & TRIBE_RED)
-				leveldat->Header.v2.DefaultAllies[0] &= ~TRIBE_RED;
-			else
-				leveldat->Header.v2.DefaultAllies[0] |= TRIBE_RED;
-			break;
-		case IDC_ALLIES_BLUE_YELLOW:
-			if(leveldat->Header.v2.DefaultAllies[0] & TRIBE_YELLOW)
-				leveldat->Header.v2.DefaultAllies[0] &= ~TRIBE_YELLOW;
-			else
-				leveldat->Header.v2.DefaultAllies[0] |= TRIBE_YELLOW;
-			break;
-		case IDC_ALLIES_BLUE_GREEN:
-			if(leveldat->Header.v2.DefaultAllies[0] & TRIBE_GREEN)
-				leveldat->Header.v2.DefaultAllies[0] &= ~TRIBE_GREEN;
-			else
-				leveldat->Header.v2.DefaultAllies[0] |= TRIBE_GREEN;
-			break;
-		// red
-		case IDC_ALLIES_RED_BLUE:
-			if(leveldat->Header.v2.DefaultAllies[1] & TRIBE_BLUE)
-				leveldat->Header.v2.DefaultAllies[1] &= ~TRIBE_BLUE;
-			else
-				leveldat->Header.v2.DefaultAllies[1] |= TRIBE_BLUE;
-			break;
-		case IDC_ALLIES_RED_YELLOW:
-			if(leveldat->Header.v2.DefaultAllies[1] & TRIBE_YELLOW)
-				leveldat->Header.v2.DefaultAllies[1] &= ~TRIBE_YELLOW;
-			else
-				leveldat->Header.v2.DefaultAllies[1] |= TRIBE_YELLOW;
-			break;
-		case IDC_ALLIES_RED_GREEN:
-			if(leveldat->Header.v2.DefaultAllies[1] & TRIBE_GREEN)
-				leveldat->Header.v2.DefaultAllies[1] &= ~TRIBE_GREEN;
-			else
-				leveldat->Header.v2.DefaultAllies[1] |= TRIBE_GREEN;
-			break;
-		// yellow
-		case IDC_ALLIES_YELLOW_BLUE:
-			if(leveldat->Header.v2.DefaultAllies[2] & TRIBE_BLUE)
-				leveldat->Header.v2.DefaultAllies[2] &= ~TRIBE_BLUE;
-			else
-				leveldat->Header.v2.DefaultAllies[2] |= TRIBE_BLUE;
-			break;
-		case IDC_ALLIES_YELLOW_RED:
-			if(leveldat->Header.v2.DefaultAllies[2] & TRIBE_RED)
-				leveldat->Header.v2.DefaultAllies[2] &= ~TRIBE_RED;
-			else
-				leveldat->Header.v2.DefaultAllies[2] |= TRIBE_RED;
-			break;
-		case IDC_ALLIES_YELLOW_GREEN:
-			if(leveldat->Header.v2.DefaultAllies[2] & TRIBE_GREEN)
-				leveldat->Header.v2.DefaultAllies[2] &= ~TRIBE_GREEN;
-			else
-				leveldat->Header.v2.DefaultAllies[2] |= TRIBE_GREEN;
-			break;
-		// green
-		case IDC_ALLIES_GREEN_BLUE:
-			if(leveldat->Header.v2.DefaultAllies[3] & TRIBE_BLUE)
-				leveldat->Header.v2.DefaultAllies[3] &= ~TRIBE_BLUE;
-			else
-				leveldat->Header.v2.DefaultAllies[3] |= TRIBE_BLUE;
-			break;
-		case IDC_ALLIES_GREEN_RED:
-			if(leveldat->Header.v2.DefaultAllies[3] & TRIBE_RED)
-				leveldat->Header.v2.DefaultAllies[3] &= ~TRIBE_RED;
-			else
-				leveldat->Header.v2.DefaultAllies[3] |= TRIBE_RED;
-			break;
-		case IDC_ALLIES_GREEN_YELLOW:
-			if(leveldat->Header.v2.DefaultAllies[3] & TRIBE_YELLOW)
-				leveldat->Header.v2.DefaultAllies[3] &= ~TRIBE_YELLOW;
-			else
-				leveldat->Header.v2.DefaultAllies[3] |= TRIBE_YELLOW;
-			break;
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_ALLIES;
+			p->wData[0] = wParam;
+			net.SendPacket(p);
+			p->del();
 		}
 		return 0;
 	}
