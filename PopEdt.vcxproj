@@ -153,6 +153,7 @@
     <ClInclude Include="dialogs.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="log.h" />
+    <ClInclude Include="network.h" />
     <ClInclude Include="pop.h" />
     <ClInclude Include="popedt.h" />
     <ClInclude Include="resource.h" />
