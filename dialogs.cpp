@@ -146,8 +146,26 @@ void LevelOpen()
 
 void LevelNew()
 {
-	if(ModalMsg(SZ_CONFIRM_NEW_LEVEL, APPNAME, MB_ICONWARNING | MB_YESNO | MB_DEFBUTTON2) == IDYES)
-		EngineNewMap();
+	if (net.IsInitialized() && net.IsConnected())
+	{
+		if (!net.GetNewMap())
+		{
+			net.SetNewMap(true);
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_NEW_MAP_ASK;
+			net.SendPacket(p);
+			p->del();
+		}
+		else
+		{
+			ModalMsg(SZ_CONFIRM_NEW_LEVEL_CD, APPNAME, MB_ICONWARNING | MB_OK | MB_DEFBUTTON2);
+		}
+	}
+	else
+	{
+		if (ModalMsg(SZ_CONFIRM_NEW_LEVEL, APPNAME, MB_ICONWARNING | MB_YESNO | MB_DEFBUTTON2) == IDYES)
+			EngineNewMap();
+	}
 }
 
 
