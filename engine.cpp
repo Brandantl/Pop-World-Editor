@@ -2733,6 +2733,16 @@ skip:;
 				Markers[MarkerSelected].ez = cz;
 				Markers[MarkerSelected].ey = cy;
 				
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_CREATE_MARKER;
+					p->wData[0] = MarkerSelected;
+					p->wData[1] = (WORD)(Markers[MarkerSelected].x - 0.5f);
+					p->wData[2] = (WORD)(Markers[MarkerSelected].z - 0.5f);
+					net.SendPacket(p);
+					p->del();
+				}
 			}
 
 			DlgMarkersUpdate(hDlgMarkers);
