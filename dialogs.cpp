@@ -2701,6 +2701,17 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				case IDX_OWNER_GREEN:   ThingSelected->Thing.Owner = OWNER_GREEN;   break;
                 case IDX_OWNER_HOSTBOT: ThingSelected->Thing.Owner = OWNER_HOSTBOT;   break;
 				}
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_OWNER_OBJECT;
+					p->wData[0] = ThingSelected->Idx;
+					p->wData[1] = ThingSelected->Thing.Owner;
+					net.SendPacket(p);
+					p->del();
+				}
+
 				DlgObjectUpdateInfo(hWnd);
 				DlgInfoUpdate(hDlgInfo);
 			}
