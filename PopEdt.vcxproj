@@ -139,6 +139,7 @@
     <ClCompile Include="dialogs.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="log.cpp" />
+    <ClCompile Include="network.cpp" />
     <ClCompile Include="popedt.cpp" />
     <ClCompile Include="script.cpp" />
     <ClCompile Include="script_compile.cpp" />
