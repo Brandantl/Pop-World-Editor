@@ -2681,6 +2681,25 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 					EnableWindow(hItem, true);
 				}
+
+				if (net.IsInitialized())
+				{
+					if (ThingSelected->Thing.Type == T_BUILDING || ThingSelected->Thing.Type == T_SCENERY)
+					{
+						struct Packet *p = new Packet;
+						p->wType = PACKETTYPE_ROTATE_OBJECT;
+						p->wData[0] = ThingSelected->Idx;
+						p->wData[1] = ThingSelected->Thing.Type;
+
+						if (ThingSelected->Thing.Type == T_BUILDING)
+							p->wData[2] = ThingSelected->Thing.Building.Angle;
+						else
+							p->wData[2] = ThingSelected->Thing.Scenery.Angle;
+
+						net.SendPacket(p);
+						p->del();
+					}
+				}
 			}
 			return 0;
 
