@@ -6918,6 +6918,15 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					leveldat->Header.v2.LevelFlags |= LEVEL_FLAGS_USE_FOG;
 				else
 					leveldat->Header.v2.LevelFlags &= ~LEVEL_FLAGS_USE_FOG;
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_FOG_OF_WAR;
+					p->wData[0] = IsDlgButtonChecked(hWnd, IDC_HEADER_FOG);
+					net.SendPacket(p);
+					p->del();
+				}
 			}
 			break;
 
