@@ -21,6 +21,13 @@ http://alacn.dnsalias.org:8080/
 
 #define SZ_DEVICECONFIRM_TIME						"Auto Restoring in %d seconds..."
 
+// Network
+#define SZ_CONFIRM_NEW_LEVEL_NET					"Request received to start a new map. Do you accept?"
+#define SZ_CONFIRM_NEW_LEVEL_CD						"You've already sent a request!"
+#define SZ_CONFIRM_SYNC_LEVEL_ASK					"You are about to send a request to sync maps.\nYour map will be erased if the other user accepts. Continue?"
+#define SZ_CONFIRM_SYNC_LEVEL						"Peer sent you a request for a map update.\nDo you accept?"
+#define SZ_SYNC_LEVEL_WARNING						"Once the process begins please wait until the maps are synced!\nClose this dialog to begin."
+//================================================================================================
 #define SZ_CONFIRM_NEW_LEVEL						"Current Map will be lost!\ndo you want continue?"
 #define SZ_CONFIRM_MAX_L2_OBJECTS					"Warning, this map has more objects than supported by Level2\nwould you like to switch to Level3 format instead?\n\nPressing No will result in some objects being lost."
 
