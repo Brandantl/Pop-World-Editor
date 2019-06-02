@@ -4155,6 +4155,19 @@ void DlgObjectNewObj()
 		t->Thing.PosZ = ((int)fEnginePosZ * 2) << 8;
 	}
 
+	if (net.IsInitialized())
+	{
+		struct Packet *p = new Packet;
+		p->wType = PACKETTYPE_CREATE_OBJECT;
+		p->wData[0] = t->Thing.Type;
+		p->wData[1] = t->Thing.Model;
+		p->wData[2] = t->Thing.Owner;
+		p->wData[3] = (WORD)(t->x - 0.5f);
+		p->wData[4] = (WORD)(t->z - 0.5f);
+		net.SendPacket(p);
+		p->del();
+	}
+
 	LINK(Things, t);
 	ObjectsCount++;
 	DlgObjectSelect(t, false);
