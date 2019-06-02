@@ -602,6 +602,7 @@ void DlgAlliesUpdate(HWND hWnd);
 // spells/buildings dialog
 void DlgSpellsBuildingsToggle();
 int __stdcall DlgSpellsBuildingsProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+void DlgSpellsBuildingsProcModify(WPARAM wParam, bool bNetwork = false);
 void DlgSpellsBuildingsUpdate(HWND hWnd);
 
 // Script2 dialog

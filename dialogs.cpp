@@ -16,6 +16,7 @@ http://alacn.dnsalias.org:8080/
 #include "log.h"
 #include "script.h"
 #include "user_storage.h"
+#include "network.h"
 
 
 
@@ -6144,6 +6145,169 @@ void DlgSpellsBuildingsToggle()
 	}
 }
 
+void DlgSpellsBuildingsProcModify(WPARAM wParam, bool bNetwork)
+{
+	switch(wParam)
+	{
+	// spells
+	case IDC_SPELL_BLAST:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_BLAST))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_BLAST);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_BLAST);
+		break;
+	case IDC_SPELL_LIGHTNING:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_LIGHTNING))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_LIGHTNING);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_LIGHTNING);
+		break;
+	case IDC_SPELL_TORNADO:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_TORNADO))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_TORNADO);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_TORNADO);
+		break;
+	case IDC_SPELL_SWARM:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_SWARM))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_SWARM);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_SWARM);
+		break;
+	case IDC_SPELL_INVISIBILITY:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_INVISIBILITY))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_INVISIBILITY);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_INVISIBILITY);
+		break;
+	case IDC_SPELL_HYPNOTISM:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_HYPNOTISM))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_HYPNOTISM);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_HYPNOTISM);
+		break;
+	case IDC_SPELL_FIRESTORM:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_FIRESTORM))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_FIRESTORM);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_FIRESTORM);
+		break;
+	case IDC_SPELL_GHOST:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_GHOST_ARMY))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_GHOST_ARMY);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_GHOST_ARMY);
+		break;
+	case IDC_SPELL_ERODE:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_ERODE))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_ERODE);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_ERODE);
+		break;
+	case IDC_SPELL_SWAMP:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_SWAMP))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_SWAMP);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_SWAMP);
+		break;
+	case IDC_SPELL_LANDBRIDGE:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_LAND_BRIDGE))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_LAND_BRIDGE);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_LAND_BRIDGE);
+		break;
+	case IDC_SPELL_AOD:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_ANGEL_OF_DEATH))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_ANGEL_OF_DEATH);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_ANGEL_OF_DEATH);
+		break;
+	case IDC_SPELL_EARTHQUAKE:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_EARTHQUAKE))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_EARTHQUAKE);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_EARTHQUAKE);
+		break;
+	case IDC_SPELL_FLATTEN:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_FLATTEN))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_FLATTEN);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_FLATTEN);
+		break;
+	case IDC_SPELL_VOLCANO:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_VOLCANO))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_VOLCANO);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_VOLCANO);
+		break;
+	case IDC_SPELL_CONVERT:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_CONVERT))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_CONVERT);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_CONVERT);
+		break;
+	case IDC_SPELL_MAGICALSHIELD:
+		if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_MAGICAL_SHIELD))
+			leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_MAGICAL_SHIELD);
+		else
+			leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_MAGICAL_SHIELD);
+		break;
+
+	// buildings
+
+	case IDC_BUILDING_HUT:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_HUT1))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_HUT1);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_HUT1);
+		break;
+	case IDC_BUILDING_TOWER:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_TOWER))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_TOWER);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_TOWER);
+		break;
+	case IDC_BUILDING_TEMPLE:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_TEMPLE))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_TEMPLE);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_TEMPLE);
+		break;
+	case IDC_BUILDING_SPY:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_SPY_TRAIN))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_SPY_TRAIN);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_SPY_TRAIN);
+		break;
+	case IDC_BUILDING_WARRIOR:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_WARRIOR_TRAIN))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_WARRIOR_TRAIN);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_WARRIOR_TRAIN);
+		break;
+	case IDC_BUILDING_FIREWARRIOR:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_FIREWARRIOR_TRAIN))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_FIREWARRIOR_TRAIN);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_FIREWARRIOR_TRAIN);
+		break;
+	case IDC_BUILDING_BOAT:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_BOAT_HUT_1))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_BOAT_HUT_1);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_BOAT_HUT_1);
+		break;
+	case IDC_BUILDING_BALLON:
+		if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_AIRSHIP_HUT_1))
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_AIRSHIP_HUT_1);
+		else
+			leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_AIRSHIP_HUT_1);
+		break;
+	}
+
+	if (bNetwork)
+		DlgSpellsBuildingsUpdate(hDlgSpellsBuildings);
+}
 
 int __stdcall DlgSpellsBuildingsProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -6158,164 +6322,17 @@ int __stdcall DlgSpellsBuildingsProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM
 		return 0;
 
 	case WM_COMMAND:
-		switch(wParam)
+	{
+		DlgSpellsBuildingsProcModify(wParam);
+		if (net.IsInitialized())
 		{
-		// spells
-
-		case IDC_SPELL_BLAST:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_BLAST))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_BLAST);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_BLAST);
-			break;
-		case IDC_SPELL_LIGHTNING:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_LIGHTNING))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_LIGHTNING);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_LIGHTNING);
-			break;
-		case IDC_SPELL_TORNADO:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_TORNADO))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_TORNADO);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_TORNADO);
-			break;
-		case IDC_SPELL_SWARM:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_SWARM))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_SWARM);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_SWARM);
-			break;
-		case IDC_SPELL_INVISIBILITY:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_INVISIBILITY))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_INVISIBILITY);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_INVISIBILITY);
-			break;
-		case IDC_SPELL_HYPNOTISM:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_HYPNOTISM))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_HYPNOTISM);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_HYPNOTISM);
-			break;
-		case IDC_SPELL_FIRESTORM:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_FIRESTORM))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_FIRESTORM);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_FIRESTORM);
-			break;
-		case IDC_SPELL_GHOST:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_GHOST_ARMY))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_GHOST_ARMY);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_GHOST_ARMY);
-			break;
-		case IDC_SPELL_ERODE:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_ERODE))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_ERODE);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_ERODE);
-			break;
-		case IDC_SPELL_SWAMP:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_SWAMP))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_SWAMP);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_SWAMP);
-			break;
-		case IDC_SPELL_LANDBRIDGE:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_LAND_BRIDGE))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_LAND_BRIDGE);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_LAND_BRIDGE);
-			break;
-		case IDC_SPELL_AOD:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_ANGEL_OF_DEATH))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_ANGEL_OF_DEATH);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_ANGEL_OF_DEATH);
-			break;
-		case IDC_SPELL_EARTHQUAKE:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_EARTHQUAKE))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_EARTHQUAKE);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_EARTHQUAKE);
-			break;
-		case IDC_SPELL_FLATTEN:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_FLATTEN))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_FLATTEN);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_FLATTEN);
-			break;
-		case IDC_SPELL_VOLCANO:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_VOLCANO))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_VOLCANO);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_VOLCANO);
-			break;
-		case IDC_SPELL_CONVERT:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_CONVERT))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_CONVERT);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_CONVERT);
-			break;
-		case IDC_SPELL_MAGICALSHIELD:
-			if(leveldat->Header.v2.DefaultThings.SpellsAvailable & (1 << M_SPELL_MAGICAL_SHIELD))
-				leveldat->Header.v2.DefaultThings.SpellsAvailable &= ~(1 << M_SPELL_MAGICAL_SHIELD);
-			else
-				leveldat->Header.v2.DefaultThings.SpellsAvailable |= (1 << M_SPELL_MAGICAL_SHIELD);
-			break;
-
-		// buildings
-
-		case IDC_BUILDING_HUT:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_HUT1))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_HUT1);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_HUT1);
-			break;
-		case IDC_BUILDING_TOWER:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_TOWER))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_TOWER);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_TOWER);
-			break;
-		case IDC_BUILDING_TEMPLE:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_TEMPLE))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_TEMPLE);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_TEMPLE);
-			break;
-		case IDC_BUILDING_SPY:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_SPY_TRAIN))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_SPY_TRAIN);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_SPY_TRAIN);
-			break;
-		case IDC_BUILDING_WARRIOR:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_WARRIOR_TRAIN))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_WARRIOR_TRAIN);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_WARRIOR_TRAIN);
-			break;
-		case IDC_BUILDING_FIREWARRIOR:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_FIREWARRIOR_TRAIN))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_FIREWARRIOR_TRAIN);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_FIREWARRIOR_TRAIN);
-			break;
-		case IDC_BUILDING_BOAT:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_BOAT_HUT_1))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_BOAT_HUT_1);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_BOAT_HUT_1);
-			break;
-		case IDC_BUILDING_BALLON:
-			if(leveldat->Header.v2.DefaultThings.BuildingsAvailable & (1 << M_BUILDING_AIRSHIP_HUT_1))
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable &= ~(1 << M_BUILDING_AIRSHIP_HUT_1);
-			else
-				leveldat->Header.v2.DefaultThings.BuildingsAvailable |= (1 << M_BUILDING_AIRSHIP_HUT_1);
-			break;
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_AVAILABLE_DISC;
+			p->wData[0] = wParam;
+			net.SendPacket(p);
+			p->del();
 		}
+	}
 		return 0;
 	}
 
