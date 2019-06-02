@@ -3131,6 +3131,18 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 _effect_lb:
 					break;
 				}
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_MODEL_OBJECT;
+					p->wData[0] = ThingSelected->Idx;
+					p->wData[1] = ThingSelected->Thing.Model;
+					p->wData[2] = ThingSelected->Thing.Scenery.IslandNum;
+					net.SendPacket(p);
+					p->del();
+				}
+
 				DlgObjectUpdateInfo(hWnd);
 				DlgInfoUpdate(hDlgInfo);
 			}
