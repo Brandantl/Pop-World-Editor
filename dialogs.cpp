@@ -7006,6 +7006,16 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", leveldat->Header.v2.ComputerPlayerIndex[0]);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_COMPUTER_PLAYER_AI;
+					p->wData[0] = OWNER_RED;
+					p->wData[1] = leveldat->Header.v2.ComputerPlayerIndex[0];
+					net.SendPacket(p);
+					p->del();
+				}
 				break;
 			}
 			break;
@@ -7029,6 +7039,16 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", leveldat->Header.v2.ComputerPlayerIndex[1]);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_COMPUTER_PLAYER_AI;
+					p->wData[0] = OWNER_YELLOW;
+					p->wData[1] = leveldat->Header.v2.ComputerPlayerIndex[1];
+					net.SendPacket(p);
+					p->del();
+				}
 				break;
 			}
 			break;
@@ -7052,6 +7072,16 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", leveldat->Header.v2.ComputerPlayerIndex[2]);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_COMPUTER_PLAYER_AI;
+					p->wData[0] = OWNER_GREEN;
+					p->wData[1] = leveldat->Header.v2.ComputerPlayerIndex[2];
+					net.SendPacket(p);
+					p->del();
+				}
 				break;
 			}
 			break;
