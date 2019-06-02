@@ -7257,6 +7257,15 @@ int __stdcall DlgObjBankProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		default: leveldat->Header.v2.ObjectsBankNum = 0;
 		}
 
+		if (net.IsInitialized())
+		{
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_OBJECT_BANK;
+			p->wData[0] = leveldat->Header.v2.ObjectsBankNum;
+			net.SendPacket(p);
+			p->del();
+		}
+
 		EngineSetTreeType();
 
 		{
