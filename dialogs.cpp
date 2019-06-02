@@ -6937,6 +6937,15 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					leveldat->Header.v2.LevelFlags |= LEVEL_FLAGS_SHAMAN_OMNI;
 				else
 					leveldat->Header.v2.LevelFlags &= ~LEVEL_FLAGS_SHAMAN_OMNI;
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_OMNIPRESENCE;
+					p->wData[0] = IsDlgButtonChecked(hWnd, IDC_HEADER_GOD);
+					net.SendPacket(p);
+					p->del();
+				}
 			}
 			break;
 
