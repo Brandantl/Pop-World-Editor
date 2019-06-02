@@ -4810,6 +4810,12 @@ int __stdcall DlgDiscoveryProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", ThingSelected->Thing.General.ManaAmt);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+				if (net.IsInitialized())
+				{
+					char szPacket[100];
+					sprintf(szPacket, "msg %d %d %d", PACKETTYPEMSG_DISCOVERY_MANA, ThingSelected->Idx, ThingSelected->Thing.General.ManaAmt);
+					net.SendPacket(szPacket);
+				}
 				break;
 			}
 			break;
