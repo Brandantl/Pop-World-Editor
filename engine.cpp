@@ -2667,6 +2667,9 @@ skip:;
 				while(bx >= GROUND_X_SIZE) bx -= GROUND_X_SIZE;
 				while(bz >= GROUND_Z_SIZE) bz -= GROUND_Z_SIZE;
 
+				if (Markers[MarkerSelected].ex != cx || Markers[MarkerSelected].ez != cz)
+					bNetworkUpdate = true;
+
 				Markers[MarkerSelected].x = (float)bx + 0.5f;
 				Markers[MarkerSelected].z = (float)bz + 0.5f;
 				leveldat->Header.v2.Markers[MarkerSelected] = ((bz * 2) << 8) | (bx * 2);
@@ -2674,10 +2677,10 @@ skip:;
 				Markers[MarkerSelected].ez = cz;
 				Markers[MarkerSelected].ey = cy;
 
-				if (net.IsInitialized())
+				if (net.IsInitialized() && bNetworkUpdate)
 				{
 					struct Packet *p = new Packet;
-					p->wType = PACKETTYPE_CREATE_MARKER;
+					p->wType = PACKETTYPE_MOVE_MARKER;
 					p->wData[0] = MarkerSelected;
 					p->wData[1] = (WORD)(Markers[MarkerSelected].x - 0.5f);
 					p->wData[2] = (WORD)(Markers[MarkerSelected].z - 0.5f);
