@@ -4182,6 +4182,16 @@ void DlgObjectDeleteObj()
 	if(!ThingSelected) return;
 	THING *t = ThingSelected;
 	ThingsIndices[ThingSelected->Idx] = 0;
+
+	if (net.IsInitialized())
+	{
+		struct Packet *p = new Packet;
+		p->wType = PACKETTYPE_DELETE_OBJECT;
+		p->wData[0] = ThingSelected->Idx;
+		net.SendPacket(p);
+		p->del();
+	}
+
 	DlgObjectSelect(0);
 	UNLINK(Things, t);
 	DlgObjectUnlinkObj(t);
