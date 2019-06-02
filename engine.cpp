@@ -15,6 +15,7 @@ http://alacn.dnsalias.org:8080/
 #include "3ds.h"
 #include "dialogs.h"
 #include "user_storage.h"
+#include "network.h"
 
 std::vector<THINGSAVE> Objects;
 
@@ -1854,6 +1855,7 @@ long EngineDrawObjects()
 	lpD3DDevice->SetRenderState(D3DRENDERSTATE_COLORKEYENABLE, true);
 	lpD3DDevice->SetMaterial(&mtrlNormal);
 	lpD3DDevice->SetLight(0, &lightObjects);
+	bool bNetworkUpdate = false;
 
 	if(Things)
 	{
@@ -1885,6 +1887,9 @@ long EngineDrawObjects()
 
 				if((ThingSelected->Thing.Type == T_EFFECT) && (ThingSelected->Thing.Model == M_EFFECT_LAND_BRIDGE) && (ThingSelected->flags & TF_EDIT_LANDBRIDGE))
 				{
+					if (ThingSelected->LandBridge.ex != cx || ThingSelected->LandBridge.ez != cz)
+						bNetworkUpdate = true;
+
 					ThingSelected->LandBridge.x = (float)bx + 0.5f;
 					ThingSelected->LandBridge.z = (float)bz + 0.5f;
 					ThingSelected->Thing.Bluff[0] = (bx * 2) << 8;
@@ -1895,6 +1900,9 @@ long EngineDrawObjects()
 				}
 				else
 				{
+					if (ThingSelected->ex != cx || ThingSelected->ez != cz)
+						bNetworkUpdate = true;
+
 					ThingSelected->x = (float)bx + 0.5f;
 					ThingSelected->z = (float)bz + 0.5f;
 					ThingSelected->Thing.PosX = (bx * 2) << 8;
@@ -1902,6 +1910,17 @@ long EngineDrawObjects()
 					ThingSelected->ex = cx;
 					ThingSelected->ez = cz;
 					ThingSelected->ey = cy;
+				}
+
+				if (net.IsInitialized() && bNetworkUpdate)
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_MOVE_OBJECT;
+					p->wData[0] = ThingSelected->Idx;
+					p->wData[1] = (WORD)(ThingSelected->x - 0.5f);
+					p->wData[2] = (WORD)(ThingSelected->z - 0.5f);
+					net.SendPacket(p);
+					p->del();
 				}
 			}
 
