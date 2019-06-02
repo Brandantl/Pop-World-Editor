@@ -4969,6 +4969,7 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					ThingSelected->Thing.Trigger.PrayTime = 0;
 					ThingSelected->Thing.Trigger.InactiveTime = 0;
 					ThingSelected->Thing.Trigger.NumOccurences = 1;
+					DlgTriggerUpdateInfo(hDlgTrigger);
 					break;
 				case IDX_TRIGGER_TYPE_SHAMAN_PROXIMITY:
 					ThingSelected->Thing.Trigger.TriggerType = TRIGGER_TYPE_SHAMAN_PROXIMITY;
