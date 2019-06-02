@@ -15,7 +15,6 @@ http://alacn.dnsalias.org:8080/
 #include "3ds.h"
 #include "dialogs.h"
 #include "user_storage.h"
-#include <thread>
 
 std::vector<THINGSAVE> Objects;
 

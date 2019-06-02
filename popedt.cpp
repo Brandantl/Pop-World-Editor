@@ -15,7 +15,6 @@ http://alacn.dnsalias.org:8080/
 #include "engine.h"
 #include "dialogs.h"
 #include "user_storage.h"
-#include <thread>
 
 
 

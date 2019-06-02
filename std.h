@@ -16,6 +16,7 @@ http://alacn.dnsalias.org:8080/
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <thread>
 #ifdef _DEBUG
 #include <assert.h>
 #endif
