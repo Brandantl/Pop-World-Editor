@@ -5029,6 +5029,9 @@ void DlgTriggerToggle()
 
 int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+
+	bool bNetwork = false;
+
 	switch(uMsg)
 	{
 	case WM_INITDIALOG:
@@ -5097,6 +5100,7 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					ThingSelected->Thing.Trigger.TriggerType = TRIGGER_TYPE_SHAMAN_AOD;
 					break;
 				}
+				bNetwork = true;
 			}
 			break;
 
@@ -5118,6 +5122,7 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", ThingSelected->Thing.Trigger.CellRadius);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+				bNetwork = true;
 				break;
 			}
 			break;
@@ -5140,6 +5145,7 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", ThingSelected->Thing.Trigger.NumOccurences);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+				bNetwork = true;
 				break;
 			}
 			break;
@@ -5162,6 +5168,7 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", ThingSelected->Thing.Trigger.TriggerCount);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+				bNetwork = true;
 				break;
 			}
 			break;
@@ -5184,6 +5191,7 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", ThingSelected->Thing.Trigger.PrayTime);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+				bNetwork = true;
 				break;
 			}
 			break;
@@ -5206,18 +5214,39 @@ int __stdcall DlgTriggerProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case EN_KILLFOCUS:
 				sprintf(str, "%d", ThingSelected->Thing.Trigger.InactiveTime);
 				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)str);
+				bNetwork = true;
 				break;
 			}
 			break;
 
 		case IDC_TRIGGER_STARTINACTIVE:
 			if(HIWORD(wParam) == BN_CLICKED) ThingSelected->Thing.Trigger.StartInactive = (IsDlgButtonChecked(hWnd, IDC_TRIGGER_STARTINACTIVE) == BST_CHECKED) ? 1 : 0;
+			bNetwork = true;
 			break;
 
 		case IDC_TRIGGER_CREATEOWNED:
 			if(HIWORD(wParam) == BN_CLICKED) ThingSelected->Thing.Trigger.CreatePlayerOwned = (IsDlgButtonChecked(hWnd, IDC_TRIGGER_CREATEOWNED) == BST_CHECKED) ? 1 : 0;
+			bNetwork = true;
 			break;
 		}
+
+		if (net.IsInitialized() && bNetwork)
+		{
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_TRIGGER_OPTIONS;
+			p->wData[0] = ThingSelected->Idx;
+			p->wData[1] = ThingSelected->Thing.Trigger.TriggerType;
+			p->wData[2] = ThingSelected->Thing.Trigger.CellRadius;
+			p->wData[3] = ThingSelected->Thing.Trigger.NumOccurences;
+			p->wData[4] = ThingSelected->Thing.Trigger.TriggerCount;
+			p->wData[5] = ThingSelected->Thing.Trigger.PrayTime;
+			p->wData[6] = ThingSelected->Thing.Trigger.InactiveTime;
+			p->wData[7] = ThingSelected->Thing.Trigger.StartInactive;
+			p->wData[8] = ThingSelected->Thing.Trigger.CreatePlayerOwned;
+			net.SendPacket(p);
+			p->del();
+		}
+
 		return 0;
 	}
 
