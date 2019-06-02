@@ -2759,6 +2759,18 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					ThingSelected->Thing.Model = M_SCENERY_SUB_LEVEL_SCENERY;
                     break;
 				}
+
+				if (net.IsInitialized())
+				{
+					struct Packet *p = new Packet;
+					p->wType = PACKETTYPE_TYPE_OBJECT;
+					p->wData[0] = ThingSelected->Idx;
+					p->wData[1] = ThingSelected->Thing.Type;
+					p->wData[2] = ThingSelected->Thing.Model;
+					net.SendPacket(p);
+					p->del();
+				}
+
 				memset(&ThingSelected->Thing.Bluff, 0, sizeof(ThingSelected->Thing.Bluff));
 				DlgObjectUpdateInfo(hWnd);
 				DlgInfoUpdate(hDlgInfo);
