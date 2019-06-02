@@ -9037,30 +9037,17 @@ void PurgeObjects()
 	const int nResult = MessageBox(NULL, _T("Are you sure you want to delete ALL objects?"), _T("Delete Objects"), MB_YESNO);
 	if (nResult == IDNO) return;
 
+	THING *pThing;
 	int nDeletedObjs = 0;
-	const int nObjsCounts = ObjectsCount;
-	THING *t = Things;
 
-	for (int i = 0; i <= nObjsCounts; i++)
+	while(Things)
 	{
-		t = Things;
-
-		if (t)
-		{
-			DlgObjectSelect(t, 0);
-
-			if (ThingSelected)
-			{
-				DlgObjectDeleteObj();
-				nDeletedObjs++;
-				if (ObjectsCount != 0)
-				{
-					t = Things->Next;
-				}
-			}
-		}
+		nDeletedObjs++;
+		pThing = Things;
+		UNLINK(Things, pThing);
+		delete pThing;
 	}
-	
+
 	sprintf(str, "%d", nDeletedObjs);
 	MessageBox(NULL, str, _T("Objects Deleted"), MB_ICONINFORMATION | MB_OK);
 } 
