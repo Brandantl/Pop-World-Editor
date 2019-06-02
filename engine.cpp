@@ -2631,6 +2631,9 @@ skip:;
 	{
 		if (bKeys[VK_DELETE] && MarkerSelected != -1)
 		{
+			if (Markers[MarkerSelected].x == 0.5f && Markers[MarkerSelected].z == 0.5f)
+				return S_OK;
+
 			leveldat->Header.v2.Markers[MarkerSelected] = ((0) << 8) | (0);
 
 			Markers[MarkerSelected].x = 0.5f;
@@ -2638,6 +2641,15 @@ skip:;
 			Markers[MarkerSelected].ex = 0.5f;
 			Markers[MarkerSelected].ez = 0.5f;
 			Markers[MarkerSelected].ey = 0.0f;
+
+			if (net.IsInitialized())
+			{
+				struct Packet *p = new Packet;
+				p->wType = PACKETTYPE_DELETE_MARKER;
+				p->wData[0] = MarkerSelected;
+				net.SendPacket(p);
+				p->del();
+			}
 
 			DlgMarkersUpdate(hDlgMarkers);
 		}
