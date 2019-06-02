@@ -674,3 +674,4 @@ void DlgAIScriptDst();
 
 extern bool fQuickDuplicate;
 void PurgeObjects();
+void DlgSetThingIndex(THING* pThing);

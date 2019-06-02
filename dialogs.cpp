@@ -4159,6 +4159,7 @@ void DlgObjectNewObj()
 	DlgObjectSelect(t, false);
 	EngineUpdateMiniMap();
 	DlgInfoUpdate(hDlgInfo);
+	DlgSetThingIndex(t);
 }
 
 
@@ -4166,6 +4167,7 @@ void DlgObjectDeleteObj()
 {
 	if(!ThingSelected) return;
 	THING *t = ThingSelected;
+	ThingsIndices[ThingSelected->Idx] = 0;
 	DlgObjectSelect(0);
 	UNLINK(Things, t);
 	DlgObjectUnlinkObj(t);
@@ -4174,6 +4176,24 @@ void DlgObjectDeleteObj()
 	DlgObjectUpdateInfo(hDlgObject);
 	EngineUpdateMiniMap();
 	DlgInfoUpdate(hDlgInfo);
+}
+
+
+void DlgSetThingIndex(THING* pThing)
+{
+	for (int i = 1; i <= ObjectsCount; i++)
+	{
+		if (pThing->Idx == 0)
+		{
+			if (ThingsIndices[i] == 0)
+			{
+				pThing->Idx = i;
+				ThingsIndices[i] = i;
+			}
+		}
+		else
+			break;
+	}
 }
 
 

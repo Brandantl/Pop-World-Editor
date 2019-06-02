@@ -80,7 +80,8 @@ bool					bEngineSleep			= false,
 POINT					ptCursor,
 						ptCaptured;
 MOUSEBUTTON				MouseButton				= MouseButtonLeft;
-WORD					wEngineGround[GROUND_X_SIZE * GROUND_Z_SIZE];
+WORD					wEngineGround[GROUND_X_SIZE * GROUND_Z_SIZE],
+						ThingsIndices[MAX_V2_THINGS];
 LEVELDATv3				*leveldat;
 MARKER					Markers[256];
 int						MarkerSelected = -1;
@@ -527,6 +528,8 @@ long EnginePrepare()
 
 	leveldat = (LEVELDATv3*)malloc(sizeof(LEVELDATv3));
 	memset(leveldat, 0, sizeof(LEVELDATv3));
+
+	memset(ThingsIndices, 0, sizeof(ThingsIndices));
 
 	memset(&mtrlNormal, 0, sizeof(mtrlNormal));
 	mtrlNormal.diffuse.r  =
@@ -2903,6 +2906,7 @@ long EngineLoadLevelV3(char *filename)
 			thing->x = (float)((thing->Thing.PosX >> 8) / 2) + 0.5f;
 			thing->z = (float)((thing->Thing.PosZ >> 8) / 2) + 0.5f;
 			thing->Idx = idx;
+			ThingsIndices[thing->Idx] = idx;
 
 			if(thing->Thing.Type == T_EFFECT && thing->Thing.Model == M_EFFECT_LAND_BRIDGE)
 			{
@@ -2998,6 +3002,7 @@ long EngineLoadLevel(char *filename)
 			thing->x = (float)((thing->Thing.PosX >> 8) / 2) + 0.5f;
 			thing->z = (float)((thing->Thing.PosZ >> 8) / 2) + 0.5f;
 			thing->Idx = idx;
+			ThingsIndices[thing->Idx] = idx;
 
 			if(thing->Thing.Type == T_EFFECT && thing->Thing.Model == M_EFFECT_LAND_BRIDGE)
 			{
@@ -4367,6 +4372,7 @@ void EngineNewMap()
 {
 	memset(&Markers, 0, sizeof(Markers));
 	memset(leveldat, 0, sizeof(LEVELDATv3));
+	memset(ThingsIndices, 0, sizeof(ThingsIndices));
 
 	THING *thing;
 

@@ -261,7 +261,8 @@ extern LPDIRECTDRAWSURFACE7		lpDDSPrimary,
 								lpDDSBackBuffer;
 extern LEVELDATv3				*leveldat;
 extern LPDIRECT3DDEVICE7		lpD3DDevice;
-extern WORD						wEngineGround[GROUND_X_SIZE * GROUND_Z_SIZE];
+extern WORD						wEngineGround[GROUND_X_SIZE * GROUND_Z_SIZE],
+								ThingsIndices[MAX_V2_THINGS];
 extern MARKER					Markers[256];
 extern int						MarkerSelected;
 extern LEVELVERSION				LevelVersion;
