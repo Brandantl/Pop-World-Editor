@@ -3802,8 +3802,6 @@ down_skip:
 
 	if (bKeys[0x4E] && ThingSelected && !fQuickDuplicate) fQuickDuplicate = !fQuickDuplicate, DlgObjectNewObj();
 
-	if (!bKeys[0x4E] && fQuickDuplicate) fQuickDuplicate = !fQuickDuplicate;
-
 	if(UpdateView)
 	{
 		bEngineSleep = false;
