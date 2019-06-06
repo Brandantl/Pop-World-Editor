@@ -52,9 +52,8 @@ void Network::InitConsole()
 		SetConsoleTitle("[Client]");
 
 	std::cout << "Known issues"<< std::endl;
-	std::cout << "1. Landbridge effect not fully implemented/working" << std::endl;
-	std::cout << "2. When peers sync maps the receiving end might disconnect if the map is too large." << std::endl;
-	std::cout << "3. ???\n" << std::endl;
+	std::cout << "1. Timeout during synchronization requests of large maps." << std::endl;
+	std::cout << "2. ???\n" << std::endl;
 	
 
 #if _NET_DEBUG_CONNECTION
@@ -392,7 +391,7 @@ void Network::OnPacket(ENetEvent & event, bool bMsg, SBYTE nPacketType)
 		Network::OnObjectDelete(event.packet->data[1]);
 		break;
 	case PACKETTYPE_MOVE_OBJECT:
-		Network::OnObjectMove(event.packet->data[1], event.packet->data[2], event.packet->data[3]);
+		Network::OnObjectMove(event.packet->data[1], event.packet->data[2], event.packet->data[3], event.packet->data[4]);
 		break;
 	case PACKETTYPE_OWNER_OBJECT:
 		Network::OnObjectOwner(event.packet->data[1], event.packet->data[2]);
@@ -546,17 +545,14 @@ void Network::OnObjectDelete(WORD wThingIdx)
 	DlgInfoUpdate(hDlgInfo);
 }
 
-/*
-	// TODO: Landbridge support
-*/
-void Network::OnObjectMove(WORD wThingIdx, WORD x, WORD z)
+void Network::OnObjectMove(WORD wThingIdx, WORD x, WORD z, bool bIsLandbridge)
 {
 	Log(NET_DEBUG, "Network::OnMoveObject");
 
 	THING *pThing = DlgObjectFindIdx(wThingIdx);
 	if (!pThing) return;
 
-	if((pThing->Thing.Type == T_EFFECT) && (pThing->Thing.Model == M_EFFECT_LAND_BRIDGE) && (pThing->flags & TF_EDIT_LANDBRIDGE))
+	if (bIsLandbridge)
 	{
 		pThing->LandBridge.x = (float)x + 0.5f;
 		pThing->LandBridge.z = (float)z + 0.5f;

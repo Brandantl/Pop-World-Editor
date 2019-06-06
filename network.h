@@ -147,7 +147,7 @@ private:
 	void OnPacket(ENetEvent &event, bool bMsg = false, SBYTE nPacketType = -1);
 	THING* OnCreateObject(BYTE nType, BYTE nModel, BYTE nOwner, WORD x, WORD z);
 	void OnObjectDelete(WORD wThingIdx);
-	void OnObjectMove(WORD wThingIdx, WORD x, WORD z);
+	void OnObjectMove(WORD wThingIdx, WORD x, WORD z, bool bIsLandbridge);
 	void OnObjectOwner(WORD wThingIdx, BYTE nOwner);
 	void OnObjectType(WORD wThingIdx, BYTE nType, BYTE nModel);
 	void OnObjectModel(WORD wThingIdx, BYTE nModel, BYTE nIslandNum);

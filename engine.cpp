@@ -1866,7 +1866,8 @@ long EngineDrawObjects()
 			EngineGetPick(&r0, &r1);
 
 			int sx, sz;
-			float ex, ez;
+			float ex, ez, 
+				  nx, nz;
 
 			if(EngineGetIntersectMapSquare(r0, r1, &sx, &sz, &ex, &ez))
 			{
@@ -1898,6 +1899,8 @@ long EngineDrawObjects()
 					ThingSelected->LandBridge.ex = cx;
 					ThingSelected->LandBridge.ez = cz;
 					ThingSelected->LandBridge.ey = cy;
+					nx = ThingSelected->LandBridge.x;
+					nz = ThingSelected->LandBridge.z;
 				}
 				else
 				{
@@ -1911,6 +1914,8 @@ long EngineDrawObjects()
 					ThingSelected->ex = cx;
 					ThingSelected->ez = cz;
 					ThingSelected->ey = cy;
+					nx = ThingSelected->x;
+					nz = ThingSelected->z;
 				}
 
 				if (net.IsInitialized() && bNetworkUpdate)
@@ -1918,8 +1923,9 @@ long EngineDrawObjects()
 					struct Packet *p = new Packet;
 					p->wType = PACKETTYPE_MOVE_OBJECT;
 					p->wData[0] = ThingSelected->Idx;
-					p->wData[1] = (WORD)(ThingSelected->x - 0.5f);
-					p->wData[2] = (WORD)(ThingSelected->z - 0.5f);
+					p->wData[1] = (WORD)(nx- 0.5f);
+					p->wData[2] = (WORD)(nz - 0.5f);
+					p->wData[3] = ThingSelected->flags & TF_EDIT_LANDBRIDGE;
 					net.SendPacket(p);
 					p->del();
 				}
