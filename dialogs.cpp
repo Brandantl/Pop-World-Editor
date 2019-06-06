@@ -9639,6 +9639,22 @@ int __stdcall DlgObjectMoreProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		case IDC_OBJMORE_PRI_NONE:
 				nSelectPriority = 0;
 			break;
+
+
+		case IDC_OBJMORE_CREATE:
+		{
+			if (ThingSelected)
+			{
+				GetWindowText(GetDlgItem(hWnd, IDC_OBJMORE_CREATE_TXT_BOX), str, sizeof(str));
+				for (int i = 0; i < std::stoi(str); i++)
+				{
+					fQuickDuplicate = true;
+					DlgObjectNewObj();
+				}
+			}
+		}
+		
+			break;
 		}
 		return 0;
 
