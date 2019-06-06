@@ -3,8 +3,6 @@
 #include "pop.h"
 #include "engine.h"
 #include "dialogs.h"
-#include <iostream>
-#include <string>
 
 Network             net;
 ENetAddress		address;

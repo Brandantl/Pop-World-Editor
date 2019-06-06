@@ -22,6 +22,9 @@ http://alacn.dnsalias.org:8080/
 #include <stdio.h>
 #include <stdlib.h>
 #include <thread>
+#include <sstream>
+#include <iostream>
+#include <string>
 #ifdef _DEBUG
 #include <assert.h>
 #endif

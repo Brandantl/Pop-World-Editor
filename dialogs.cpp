@@ -19,6 +19,7 @@ http://alacn.dnsalias.org:8080/
 #include "network.h"
 
 
+std::string strMacro;
 
 HWND hDlgDevice = 0,
 	 hDlgDeviceConfirm = 0,
@@ -42,7 +43,8 @@ HWND hDlgDevice = 0,
 	 hDlgSwapTribe = 0,
 	 hDlgMarkers = 0,
 	 hDlgAIAttrib = 0,
-	 hDlgAIScript = 0;
+	 hDlgAIScript = 0,
+	 hDlgMacro = 0;
 
 GUID	guidDeviceOld;
 bool	fHwDeviceOld,
@@ -2309,6 +2311,10 @@ long __stdcall MenuBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case ID_OPTIONS_ABOUT:
 			DlgAboutToggle();
 			break;
+
+		case ID_MACRO:
+			DlgMacroToggle();
+			break;
 		}
 		break;
 	}
@@ -4212,14 +4218,25 @@ void DlgObjectPrevObj()
 }
 
 
-void DlgObjectNewObj()
+THING* DlgObjectNewObj(float x, float z, UBYTE nType, UBYTE nModel, SBYTE nOwner)
 {
-	if(ObjectsCount >= MAX_THINGS) return;
+	if(ObjectsCount >= MAX_THINGS) return nullptr;
 
 	THING *t;
 	t = new THING;
 
-	if (fQuickDuplicate && ThingSelected)
+	if (nModel != 255)
+	{
+		memset(t, 0, sizeof(THING));
+		t->Thing.Type = nType;
+		t->Thing.Model = nModel;
+		t->Thing.Owner = nOwner;
+		t->x = (float)(int)x + 0.5f;
+		t->z = (float)(int)z + 0.5f;
+		t->Thing.PosX = ((int)x * 2) << 8;
+		t->Thing.PosZ = ((int)z * 2) << 8;
+	}
+	else if (fQuickDuplicate && ThingSelected)
 	{
 		memcpy(t, ThingSelected, sizeof(THING));
 	}
@@ -4258,6 +4275,7 @@ void DlgObjectNewObj()
 	EngineUpdateMiniMap();
 	DlgInfoUpdate(hDlgInfo);
 	DlgSetThingIndex(t);
+	return t;
 }
 
 
@@ -9367,6 +9385,8 @@ void DlgAIScriptDst()
 	LockDialogs(false);
 }
 
+
+
 void PurgeObjects()
 {
 	const int nResult = MessageBox(NULL, _T("Are you sure you want to delete ALL objects?"), _T("Delete Objects"), MB_YESNO);
@@ -9387,3 +9407,141 @@ void PurgeObjects()
 	sprintf(str, "%d", nDeletedObjs);
 	MessageBox(NULL, str, _T("Objects Deleted"), MB_ICONINFORMATION | MB_OK);
 } 
+
+
+void DlgMacroToggle()
+{
+	if(hDlgMacro)
+	{
+		DestroyWindow(hDlgMacro);
+		hDlgMacro = 0;
+	}
+	else
+	{
+		hDlgMacro = CreateDialogParam(hInst, MAKEINTRESOURCE(IDD_MACRO), hMainWnd, DlgMacroProc, 0);
+		ShowWindow(hDlgMacro, SW_SHOW);
+	}
+}
+
+int __stdcall DlgMacroProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_CLOSE:
+		DlgMacroToggle();
+		return 0;
+
+	case WM_COMMAND:
+		switch(LOWORD(wParam))
+		{
+		case IDC_MACRO_TXT_BOX:
+		{
+			if(EN_KILLFOCUS == HIWORD(wParam))
+			{
+				char strBuffer[10240];
+				GetWindowText((HWND)lParam, strBuffer, sizeof(strBuffer));
+				strMacro = strBuffer;
+			}
+			break;
+		}
+		case IDC_MACRO_CREATE: 
+			DlgMacroCreate(strMacro);
+			break;
+		}
+	
+		return 0;
+	}
+	return 0;
+}
+
+void DlgMacroCreate(std::string strMacro)
+{
+	if (net.IsInitialized() && net.IsConnected())
+		return;
+
+#if _DEBUG
+	std::cout << strMacro << std::endl;
+#endif
+
+	std::string strBuffer;
+    std::stringstream ss(strMacro);
+    std::vector<std::string> Token;
+
+	while (ss >> strBuffer)
+		Token.push_back(strBuffer);
+
+	THING *pThing;
+	WORD x = 0,
+		 z = 0;
+	int nThingIndex = 0,
+		nLinkSource = 0,
+		nLinkTarget = 0,
+		nThingsIndices[64] = { 0 };
+
+	for (int i = 0; i < Token.size(); i++)
+	{
+		if (Token[i] == "coords")
+		{
+			i++; x = std::stoi(Token[i]) / 2;
+			i++; z = std::stoi(Token[i]) / 2;
+		}
+		else if (Token[i] == "create")
+		{
+			i++; nThingIndex = std::stoi(Token[i]);
+
+			pThing = DlgObjectNewObj(x, z, std::stoi(Token[i+1]), std::stoi(Token[i+2]), std::stoi(Token[i+3]));
+			i += 3;
+
+			if (!pThing) return;
+			nThingsIndices[nThingIndex] = pThing->Idx;
+			
+			if (pThing->Thing.Type == T_GENERAL && pThing->Thing.Model == M_GENERAL_TRIGGER)
+			{
+				i++; pThing->Thing.Trigger.TriggerType = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.CellRadius = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.PrayTime = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.InactiveTime = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.NumOccurences = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.TriggerCount = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.StartInactive = std::stoi(Token[i]);
+				i++; pThing->Thing.Trigger.CreatePlayerOwned = std::stoi(Token[i]);
+			}
+			else if (pThing->Thing.Type == T_GENERAL && pThing->Thing.Model == M_GENERAL_DISCOVERY)
+			{
+				i++; pThing->Thing.General.AvailabilityType = std::stoi(Token[i]);
+				i++; pThing->Thing.General.DiscoveryType = std::stoi(Token[i]);
+
+				if (pThing->Thing.General.DiscoveryType == T_BUILDING || pThing->Thing.General.DiscoveryType == T_SPELL)
+				{
+					pThing->Thing.General.DiscoveryModel = 1;
+				}
+				else
+				{
+					pThing->Thing.General.DiscoveryModel = M_GENERAL_DEBUG_FLAG;
+					i++; pThing->Thing.General.ManaAmt = std::stoi(Token[i]);
+				}
+
+			}
+		}
+		else if (Token[i] == "link")
+		{
+			i++; nLinkSource = std::stoi(Token[i]);
+			i++; nLinkTarget = std::stoi(Token[i]);
+
+			ThingLink = DlgObjectFindIdx(nThingsIndices[nLinkSource]);
+			for (int j = 0; j < 10; j++)
+			{
+				if(!ThingLink->Links[j])
+				{
+					ThingLink->Links[j] = DlgObjectFindIdx(nThingsIndices[nLinkTarget]);
+					break;
+				}
+			}
+		}
+		else if (Token[i] == "end")
+		{
+			DlgObjectCenterSelected();
+			break;
+		}
+	}
+}

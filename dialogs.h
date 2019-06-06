@@ -467,6 +467,7 @@ http://alacn.dnsalias.org:8080/
 #define OFF_ALL										0xFFFFFFFF
 
 
+extern std::string strMacro;
 
 extern HWND		hDlgDevice,
 				hDlgDeviceConfirm,
@@ -489,7 +490,8 @@ extern HWND		hDlgDevice,
 				hDlgSwapTribe,
 				hDlgMarkers,
 				hDlgAIAttrib,
-				hDlgAIScript;
+				hDlgAIScript,
+				hDlgMacro;
 
 
 void LevelNew();
@@ -549,7 +551,7 @@ void DlgObjectSetShotList(HWND hWnd);
 void DlgObjectSetDecorationList(HWND hWnd);
 void DlgObjectNextObj();
 void DlgObjectPrevObj();
-void DlgObjectNewObj();
+THING* DlgObjectNewObj(float x = 0, float z = 0, UBYTE nType = 255, UBYTE nModel = 255, SBYTE nOwner = 127);
 void DlgObjectDeleteObj();
 THING* DlgObjectFindIdx(UWORD Idx);
 void DlgObjectIdxToLink();
@@ -678,3 +680,7 @@ void DlgAIScriptDst();
 extern bool fQuickDuplicate;
 void PurgeObjects();
 void DlgSetThingIndex(THING* pThing);
+
+void DlgMacroToggle();
+void DlgMacroCreate(std::string strMacro);
+int __stdcall DlgMacroProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

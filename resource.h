@@ -28,6 +28,7 @@
 #define IDD_AI_ATTRIB                   170
 #define IDD_AI_SCRIPT                   171
 #define IDD_SCRIPT2			            182
+#define IDD_MACRO						183
 #define ID_FILE                         300
 #define ID_FILE_LEVEL_OPEN              301
 #define ID_FILE_LEVEL_SAVE_AS           302
@@ -74,6 +75,7 @@
 #define ID_FILE_HOST					343
 #define ID_FILE_CLIENT					344
 #define	ID_FILE_SYNC_MAP				345
+#define ID_MACRO						346
 #define IDC_MENUBAR_FILE                1001
 #define IDC_MENUBAR_EDIT                1002
 #define IDC_MENUBAR_OPTIONS             1003
@@ -293,6 +295,8 @@
 #define IDC_INFO_DECORATIONS_COUNT      1221
 #define IDC_PAINT_DECORATIONS			1222
 #define IDC_BRUSH_MAX_SIZE				1223
+#define	IDC_MACRO_TXT_BOX				1224
+#define IDC_MACRO_CREATE				1225
 
 #define ID_ACCEL_DLGDEVICE              40001
 #define ID_ACCEL_MENUBAR                40002
