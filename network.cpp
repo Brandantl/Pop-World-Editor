@@ -476,6 +476,9 @@ void Network::OnPacket(ENetEvent & event, bool bMsg, SBYTE nPacketType)
 			event.packet->data[8], event.packet->data[9], event.packet->data[10], event.packet->data[11], 
 			event.packet->data[12], event.packet->data[13]);
 		break;
+	case PACKETTYPE_TRIGGER_LINK:
+		Network::OnTriggerLink(event.packet->data[1], event.packet->data[2], event.packet->data[3], event.packet->data[4]);
+		break;
 	default:
 		Log(ERROR, "Received unknown packet! [", event.packet->data[0], "]");
 		break;
@@ -1045,6 +1048,22 @@ void Network::OnSyncMisc(ULONG dwAvailableSpells, ULONG dwBuildingsAvailable, UB
 	leveldat->Header.v2.ObjectsBankNum = nObjBank;
 	leveldat->Header.v2.LevelType = nMapBank;
 	leveldat->Header.v2.DefaultThings.SpellsNotCharging = dwSpellsRestrictions;
+}
+
+void Network::OnTriggerLink(bool link, WORD wSourceIdx, WORD wTargetIdx, BYTE nSlot)
+{
+	ThingLink = DlgObjectFindIdx(wSourceIdx);
+	if (!ThingLink) return;
+	THING *pThingTarget = DlgObjectFindIdx(wTargetIdx);
+	if (!pThingTarget) return;
+
+	if (!link)
+	{
+		ThingLink->Links[nSlot] = 0;
+		DlgLinkFixLinks();
+	}
+	else
+		ThingLink->Links[nSlot] = pThingTarget;
 }
 
 template<class... Args>

@@ -5564,6 +5564,15 @@ int __stdcall DlgLinkProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				DlgLinkFixLinks();
 
 				DlgLinkUpdateInfo(hWnd);
+
+				struct Packet *p = new Packet;
+				p->wType = PACKETTYPE_TRIGGER_LINK;
+				p->wData[0] = false;
+				p->wData[1] = ThingLink->Idx;
+				p->wData[2] = ThingSelected->Idx;
+				p->wData[3] = n;
+				net.SendPacket(p);
+				p->del();
 			}
 			break;
 		case IDC_LINK_LINK:
@@ -5579,6 +5588,15 @@ int __stdcall DlgLinkProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 						HWND hList = GetDlgItem(hWnd, IDC_LINK_LIST);
 						SendMessage(hList, LB_SETCURSEL, n, 0);
 						DlgLinkProc(hWnd, WM_COMMAND, MAKELONG(IDC_LINK_LIST, LBN_SELCHANGE), (LPARAM)hList);
+
+						struct Packet *p = new Packet;
+						p->wType = PACKETTYPE_TRIGGER_LINK;
+						p->wData[0] = true;
+						p->wData[1] = ThingLink->Idx;
+						p->wData[2] = ThingSelected->Idx;
+						p->wData[3] = n;
+						net.SendPacket(p);
+						p->del();
 						break;
 					}
 					n++;

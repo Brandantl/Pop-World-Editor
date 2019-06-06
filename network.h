@@ -70,6 +70,7 @@ extern ENetPeer			*peer;
 #define PACKETTYPE_SYNC_MAP_UPDATE_USER	(32)
 #define PACKETTYPE_SYNC_OBJECTS			(33)
 #define PACKETTYPEMSG_SYNC_MISC			(34)
+#define PACKETTYPE_TRIGGER_LINK			(35)
 
 struct Packet
 {
@@ -178,6 +179,7 @@ private:
 	void OnSyncUpdateUser(void);
 	void OnSyncObjects(BYTE nType, BYTE nModel, BYTE nOwner, WORD x, WORD z, WORD wData5, WORD wData6, WORD wData7, WORD wData8, WORD wData9, WORD wData10, WORD wData11, SBYTE wData12);
 	void OnSyncMisc(ULONG dwAvailableSpells, ULONG dwBuildingsAvailable, UBYTE nAllies0, UBYTE nAllies1, UBYTE nAllies2, UBYTE nAllies3, UBYTE nNumPlayers, UBYTE nLevelFlags, UBYTE nCP0, UBYTE nCP1, UBYTE nCP2, UBYTE nObjBank, UBYTE nMapBank, DWORD dwSpellsRestrictions);
+	void OnTriggerLink(bool link, WORD wSourceIdx, WORD wTargetIdx, BYTE nSlot);
 }; 
 
 extern Network net;
