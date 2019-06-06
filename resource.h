@@ -29,6 +29,7 @@
 #define IDD_AI_SCRIPT                   171
 #define IDD_SCRIPT2			            182
 #define IDD_MACRO						183
+#define IDD_OBJMORE						184
 #define ID_FILE                         300
 #define ID_FILE_LEVEL_OPEN              301
 #define ID_FILE_LEVEL_SAVE_AS           302
@@ -297,6 +298,18 @@
 #define IDC_BRUSH_MAX_SIZE				1223
 #define	IDC_MACRO_TXT_BOX				1224
 #define IDC_MACRO_CREATE				1225
+#define IDC_OBJECT_MORE					1226
+#define IDC_OBJMORE_PRI_GRP				1227
+#define IDC_OBJMORE_PRI_PERSONS			1228
+#define IDC_OBJMORE_PRI_BUILDINGS		1229
+#define IDC_OBJMORE_PRI_CREATURES		1230
+#define IDC_OBJMORE_PRI_VEHICLES		1231
+#define IDC_OBJMORE_PRI_SCENERY			1232
+#define IDC_OBJMORE_PRI_GENERAL			1233
+#define IDC_OBJMORE_PRI_EFFECTS			1234
+#define IDC_OBJMORE_PRI_SHOTS			1235
+#define IDC_OBJMORE_PRI_SPELLS			1236
+#define IDC_OBJMORE_PRI_NONE			1237
 
 #define ID_ACCEL_DLGDEVICE              40001
 #define ID_ACCEL_MENUBAR                40002

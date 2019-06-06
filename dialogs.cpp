@@ -20,6 +20,7 @@ http://alacn.dnsalias.org:8080/
 
 
 std::string strMacro;
+BYTE nSelectPriority = 0;
 
 HWND hDlgDevice = 0,
 	 hDlgDeviceConfirm = 0,
@@ -44,7 +45,8 @@ HWND hDlgDevice = 0,
 	 hDlgMarkers = 0,
 	 hDlgAIAttrib = 0,
 	 hDlgAIScript = 0,
-	 hDlgMacro = 0;
+	 hDlgMacro = 0,
+	 hDlgObjectMore = 0;
 
 GUID	guidDeviceOld;
 bool	fHwDeviceOld,
@@ -2653,6 +2655,10 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		case IDC_PAINT_DECORATIONS:
 			DlgPaintDecorations();
+			return 0;
+
+		case IDC_OBJECT_MORE:
+			DlgObjectMoreToggle();
 			return 0;
 		}
 
@@ -9545,4 +9551,110 @@ void DlgMacroCreate(std::string strMacro)
 			break;
 		}
 	}
+}
+
+
+void DlgObjectMoreToggle()
+{
+	if(hDlgObjectMore)
+	{
+		DestroyWindow(hDlgObjectMore);
+		hDlgObjectMore = 0;
+		//DlgListUpdateInfo(hDlgList);
+	}
+	else
+	{
+		hDlgObjectMore = CreateDialogParam(hInst, MAKEINTRESOURCE(IDD_OBJMORE), hMainWnd, DlgObjectMoreProc, 0);
+		ShowWindow(hDlgObjectMore, SW_SHOW);
+	}
+}
+
+
+int __stdcall DlgObjectMoreProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_INITDIALOG:
+		DlgObjectMoreUpdate(hWnd);
+		return 0;
+
+	case WM_COMMAND:
+		switch(wParam)
+		{
+
+		case IDC_OBJMORE_PRI_PERSONS:
+				nSelectPriority = T_PERSON;
+			break;
+
+		case IDC_OBJMORE_PRI_BUILDINGS:
+				nSelectPriority = T_BUILDING;
+			break;
+
+		case IDC_OBJMORE_PRI_CREATURES:
+				nSelectPriority = T_CREATURE;
+			break;
+		
+		case IDC_OBJMORE_PRI_VEHICLES:
+				nSelectPriority = T_VEHICLE;
+			break;
+
+		case IDC_OBJMORE_PRI_SCENERY:
+				nSelectPriority = T_SCENERY;
+			break;
+
+		case IDC_OBJMORE_PRI_GENERAL:
+				nSelectPriority = T_GENERAL;
+			break;
+
+		case IDC_OBJMORE_PRI_EFFECTS:
+				nSelectPriority = T_EFFECT;
+			break;
+
+		case IDC_OBJMORE_PRI_SHOTS:
+				nSelectPriority = T_SHOT;
+			break;
+
+		case IDC_OBJMORE_PRI_SPELLS:
+				nSelectPriority = T_SPELL;
+			break;
+
+		case IDC_OBJMORE_PRI_NONE:
+				nSelectPriority = 0;
+			break;
+		}
+		return 0;
+
+	case WM_CLOSE:
+		DlgObjectMoreToggle();
+		return 0;
+	}
+
+	return 0;
+}
+
+
+void DlgObjectMoreUpdate(HWND hWnd)
+{
+	if(!hWnd) return;
+
+	if (nSelectPriority == 0)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_NONE, BST_CHECKED);
+	else if (nSelectPriority == T_PERSON)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_PERSONS, BST_CHECKED);
+	else if (nSelectPriority == T_BUILDING)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_BUILDINGS, BST_CHECKED);
+	else if (nSelectPriority == T_CREATURE)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_CREATURES, BST_CHECKED);
+	else if (nSelectPriority == T_VEHICLE)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_VEHICLES, BST_CHECKED);
+	else if (nSelectPriority == T_SCENERY)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_SCENERY, BST_CHECKED);
+	else if (nSelectPriority == T_GENERAL)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_GENERAL, BST_CHECKED);
+	else if (nSelectPriority == T_EFFECT)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_EFFECTS, BST_CHECKED);
+	else if (nSelectPriority == T_SHOT)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_SHOTS, BST_CHECKED);
+	else if (nSelectPriority == T_SPELL)
+		CheckDlgButton(hWnd, IDC_OBJMORE_PRI_SPELLS, BST_CHECKED);
 }

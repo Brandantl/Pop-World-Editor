@@ -468,6 +468,7 @@ http://alacn.dnsalias.org:8080/
 
 
 extern std::string strMacro;
+extern BYTE nSelectPriority;
 
 extern HWND		hDlgDevice,
 				hDlgDeviceConfirm,
@@ -491,7 +492,8 @@ extern HWND		hDlgDevice,
 				hDlgMarkers,
 				hDlgAIAttrib,
 				hDlgAIScript,
-				hDlgMacro;
+				hDlgMacro,
+				hDlgObjectMore;
 
 
 void LevelNew();
@@ -684,3 +686,7 @@ void DlgSetThingIndex(THING* pThing);
 void DlgMacroToggle();
 void DlgMacroCreate(std::string strMacro);
 int __stdcall DlgMacroProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+void DlgObjectMoreToggle();
+int __stdcall DlgObjectMoreProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+void DlgObjectMoreUpdate(HWND hWnd);

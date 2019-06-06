@@ -4948,8 +4948,10 @@ void EngineMouseLDown()
 		float sdist, dist;
 
 		ThingSelected = 0;
-
+		THING* pFirstThing = 0;
+		bool bFound = false;
 		THING *t = Things;
+			  
 		do
 		{
 			if((t->flags & TF_DRAW_LANDBRIDGE) && (t->Thing.Type == T_EFFECT) && (t->Thing.Model == M_EFFECT_LAND_BRIDGE))
@@ -5493,9 +5495,22 @@ _select:
 
 				if(!ThingSelected || (dist < sdist))
 				{
-					ThingSelected = t;
-					sdist = dist;
-					t->flags &= ~TF_EDIT_LANDBRIDGE;
+					if (!bFound)
+					{
+						pFirstThing = t;
+						bFound = true;
+					}
+
+					if (nSelectPriority != 0 && t->Thing.Type != nSelectPriority)
+					{
+						goto _continue;
+					}
+					else
+					{
+						ThingSelected = t;
+						sdist = dist;
+						t->flags &= ~TF_EDIT_LANDBRIDGE;
+					}
 				}
 			}
 			
@@ -5503,6 +5518,12 @@ _continue:
 			t = t->Prev;
 		}
 		while(t != Things);
+
+		if (ThingSelected == 0 && pFirstThing != 0)
+		{
+			ThingSelected = pFirstThing;
+			ThingSelected->flags &= ~TF_EDIT_LANDBRIDGE;
+		}
 
 		DlgObjectUpdateInfo(hDlgObject);
 
