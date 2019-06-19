@@ -504,7 +504,6 @@ THING* Network::OnCreateObject(BYTE nType, BYTE nModel, BYTE nOwner, WORD x, WOR
 
 	LINK(Things, pThing);
 	ObjectsCount++;
-	DlgObjectSelect(pThing, false);
 	EngineUpdateMiniMap();
 	DlgInfoUpdate(hDlgInfo);
 	DlgSetThingIndex(pThing);
