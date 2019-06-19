@@ -507,7 +507,8 @@ THING* Network::OnCreateObject(BYTE nType, BYTE nModel, BYTE nOwner, WORD x, WOR
 	EngineUpdateMiniMap();
 	DlgInfoUpdate(hDlgInfo);
 	DlgSetThingIndex(pThing);
-	
+	EngineUpdateView();
+
 	return pThing;
 }
 
