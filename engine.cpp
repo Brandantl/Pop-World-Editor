@@ -2078,7 +2078,7 @@ long EngineDrawObjects()
 
 			if(thing->flags & TF_DRAW)
 			{
-				if (fEngineEditObjs && (ThingSelected != thing) && (thing->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY) && fPaintDecorations)
+				if ((fEngineEditObjs && fPaintDecorations) && (ThingSelected != thing) && (thing->Thing.Model == M_SCENERY_SUB_LEVEL_SCENERY))
 				{
 					lightObjects.dcvDiffuse.r = lightObjects.dcvAmbient.r = 0.0f;
 					lightObjects.dcvDiffuse.g = lightObjects.dcvAmbient.g = 0.0f;
