@@ -377,6 +377,7 @@ void Network::OnPacket(ENetEvent & event, bool bMsg, SBYTE nPacketType)
 			if ((event.packet->data[i + i + 1] == 0 && event.packet->data[i + i + 2] == 0))
 			{
 				EngineUpdateView();
+				EngineUpdateMiniMap();
 				break;
 			}
 
