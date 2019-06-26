@@ -4246,7 +4246,6 @@ THING* DlgObjectNewObj(float x, float z, UBYTE nType, UBYTE nModel, SBYTE nOwner
 	{
 		memcpy(t, ThingSelected, sizeof(THING));
 		t->Idx = 0;
-		fQuickDuplicate = false;
 	}
 	else if(ThingSelected && ((GetKeyState(VK_LSHIFT) & 0x80000000) || (GetKeyState(VK_RSHIFT) & 0x80000000)))
 	{
