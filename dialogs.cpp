@@ -2126,6 +2126,9 @@ long __stdcall MenuBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		case ID_PURGE_OBJECTS:
 			PurgeObjects();
+
+		case ID_RESET_MARKERS:
+			ResetMarkers();
 			break;
 
 		case ID_HEADER_ALLIES:
@@ -9432,6 +9435,18 @@ void PurgeObjects()
 	EngineUpdateMiniMap();
 	sprintf(str, "%d", nDeletedObjs);
 	MessageBox(NULL, str, _T("Objects Deleted"), MB_ICONINFORMATION | MB_OK);
+} 
+
+void ResetMarkers()
+{
+	const int nResult = MessageBox(NULL, _T("Are you sure you want to reset ALL markers?"), _T("Reset Markers"), MB_YESNO);
+	if (nResult == IDNO) return;
+
+	memset(&Markers, 0, sizeof(Markers));
+	memset(leveldat->Header.v2.Markers, 0, sizeof(leveldat->Header.v2.Markers));
+	DlgMarkersUpdate(hDlgMarkers);
+
+	MessageBox(NULL, "Done!" , _T("Markers Reset"), MB_ICONINFORMATION | MB_OK);
 } 
 
 

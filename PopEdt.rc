@@ -1063,6 +1063,7 @@ BEGIN
         MENUITEM "Swap Tribe",                  ID_EDIT_SWAPTRIBE
 		MENUITEM SEPARATOR
 		MENUITEM "Delete Objects",				ID_PURGE_OBJECTS
+		MENUITEM "Reset Markers",				ID_RESET_MARKERS
 		MENUITEM "Macro",						ID_MACRO
     END
 END

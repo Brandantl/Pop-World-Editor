@@ -681,6 +681,7 @@ void DlgAIScriptDst();
 
 extern bool fQuickDuplicate;
 void PurgeObjects();
+void ResetMarkers();
 void DlgSetThingIndex(THING* pThing);
 
 void DlgMacroToggle();
