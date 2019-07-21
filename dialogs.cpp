@@ -2616,7 +2616,15 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_OWNER_RED);
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_OWNER_YELLOW);
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_OWNER_GREEN);
+            // Add 4 more players.
+            char buffer[50];
+            for (int i = 0; i < 4; i++)
+            {
+                sprintf(buffer, SZ_OWNER_NUM, i);
+                SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)buffer);
+            }
             SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_OWNER_HOSTBOT);
+
 			hItem = GetDlgItem(hWnd, IDC_OBJECT_TYPE);
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_PERSON);
 			SendMessage(hItem, CB_ADDSTRING, 0, (LPARAM)SZ_BUILDING);
@@ -2763,7 +2771,9 @@ int __stdcall DlgObjectProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				case IDX_OWNER_RED:     ThingSelected->Thing.Owner = OWNER_RED;     break;
 				case IDX_OWNER_YELLOW:  ThingSelected->Thing.Owner = OWNER_YELLOW;  break;
 				case IDX_OWNER_GREEN:   ThingSelected->Thing.Owner = OWNER_GREEN;   break;
-                case IDX_OWNER_HOSTBOT: ThingSelected->Thing.Owner = OWNER_HOSTBOT;   break;
+                case IDX_OWNER_HOSTBOT: ThingSelected->Thing.Owner = OWNER_HOSTBOT; break;
+                default:
+                    ThingSelected->Thing.Owner = SendMessage((HWND)lParam, CB_GETCURSEL, 0, 0);
 				}
 
 				if (net.IsInitialized())
@@ -3265,14 +3275,16 @@ void DlgObjectUpdateInfo(HWND hWnd, bool lock)
 		EnableWindow(hItem, true);
 		switch(ThingSelected->Thing.Owner)
 		{
+        case OWNER_NEUTRAL: SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_NEUTRAL, 0); break;
 		case OWNER_BLUE:   SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_BLUE, 0);   break;
 		case OWNER_RED:    SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_RED, 0);    break;
 		case OWNER_YELLOW: SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_YELLOW, 0); break;
 		case OWNER_GREEN:  SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_GREEN, 0);  break;
         case OWNER_HOSTBOT:  SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_HOSTBOT, 0);  break;
-		default: SendMessage(hItem, CB_SETCURSEL, IDX_OWNER_NEUTRAL, 0);
-		}
+		default:
+            SendMessage(hItem, CB_SETCURSEL, ThingSelected->Thing.Owner, 0);
 
+		}
 		hItem = GetDlgItem(hWnd, IDC_OBJECT_TYPE);
 		EnableWindow(hItem, true);
 		switch(ThingSelected->Thing.Type)
@@ -7000,7 +7012,7 @@ int __stdcall DlgHeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					if(GetInt(str, &i))
 					{
 						if(i < 1) i = 1;
-						else if(i > 4) i = 4;
+						//else if(i > 4) i = 4;
 						leveldat->Header.v2.NumPlayers = i;
 					}
 				}

@@ -269,6 +269,7 @@ http://alacn.dnsalias.org:8080/
 #define SZ_OWNER_RED						"Red"
 #define SZ_OWNER_YELLOW						"Yellow"
 #define SZ_OWNER_GREEN						"Green"
+#define SZ_OWNER_NUM						"TRIBE_%d"
 #define SZ_OWNER_HOSTBOT					"Hostbot"
 
 // - types -

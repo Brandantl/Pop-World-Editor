@@ -120,7 +120,7 @@ http://alacn.dnsalias.org:8080/
 #define IDX_OWNER_RED								2
 #define IDX_OWNER_YELLOW							3
 #define IDX_OWNER_GREEN								4
-#define IDX_OWNER_HOSTBOT							5
+#define IDX_OWNER_HOSTBOT							8
 
 #define IDX_T_PERSON								0
 #define IDX_T_BUILDING								1
