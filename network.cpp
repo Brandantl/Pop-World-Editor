@@ -960,6 +960,30 @@ void Network::OnSyncUpdateUser()
 				leveldat->Header.v2.ComputerPlayerIndex[0], leveldat->Header.v2.ComputerPlayerIndex[1], leveldat->Header.v2.ComputerPlayerIndex[2],
 				leveldat->Header.v2.ObjectsBankNum, leveldat->Header.v2.LevelType, leveldat->Header.v2.DefaultThings.SpellsNotCharging);
 		net.SendPacket(szPacket);
+
+		THING *Trigger = Things;
+		do
+		{
+			if (Trigger->Thing.Type == T_GENERAL && Trigger->Thing.Model == M_GENERAL_TRIGGER)
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					if (Trigger->Thing.Trigger.ThingIdxs[i])
+					{
+						struct Packet *p = new Packet;
+						p->wType = PACKETTYPE_TRIGGER_LINK;
+						p->wData[0] = true;
+						p->wData[1] = Trigger->Idx;
+						p->wData[2] = Trigger->Thing.Trigger.ThingIdxs[i];
+						p->wData[3] = i;
+						net.SendPacket(p);
+						p->del();
+					}
+				}
+			}
+
+			Trigger = Trigger->Next;
+		} while (Trigger != Things);
 	}
 
 }
