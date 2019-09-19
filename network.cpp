@@ -941,6 +941,17 @@ void Network::OnSyncUpdateUser()
 			}
 		}
 
+		for (int i = 0; i < 256; i++)
+		{
+			struct Packet *p = new Packet;
+			p->wType = PACKETTYPE_CREATE_MARKER;
+			p->wData[0] = i;
+			p->wData[1] = (WORD)(Markers[i].x - 0.5f);
+			p->wData[2] = (WORD)(Markers[i].z - 0.5f);
+			net.SendPacket(p);
+			p->del();
+		}
+
 		char szPacket[1024];
 		sprintf(szPacket, "msg %hhd %lu %lu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %lu", PACKETTYPEMSG_SYNC_MISC, 
 				leveldat->Header.v2.DefaultThings.SpellsAvailable, leveldat->Header.v2.DefaultThings.BuildingsAvailable,
