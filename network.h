@@ -10,7 +10,7 @@ extern ENetPeer			*peer;
 
 #ifdef _DEBUG
 
-#define _NET_DEBUG_CONNECTION			0
+#define _NET_DEBUG_CONNECTION			1
 #define NET_CONNECT_IP					"localhost"
 #define	NET_PORT						(1234)
 
