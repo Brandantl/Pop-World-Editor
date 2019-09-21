@@ -964,25 +964,28 @@ void Network::OnSyncUpdateUser()
 		THING *Trigger = Things;
 		do
 		{
-			if (Trigger->Thing.Type == T_GENERAL && Trigger->Thing.Model == M_GENERAL_TRIGGER)
+			if (Trigger)
 			{
-				for (int i = 0; i < 10; i++)
+				if (Trigger->Thing.Type == T_GENERAL && Trigger->Thing.Model == M_GENERAL_TRIGGER)
 				{
-					if (Trigger->Thing.Trigger.ThingIdxs[i])
+					for (int i = 0; i < 10; i++)
 					{
-						struct Packet *p = new Packet;
-						p->wType = PACKETTYPE_TRIGGER_LINK;
-						p->wData[0] = true;
-						p->wData[1] = Trigger->Idx;
-						p->wData[2] = Trigger->Thing.Trigger.ThingIdxs[i];
-						p->wData[3] = i;
-						net.SendPacket(p);
-						p->del();
+						if (Trigger->Links[i])
+						{
+							struct Packet *p = new Packet;
+							p->wType = PACKETTYPE_TRIGGER_LINK;
+							p->wData[0] = true;
+							p->wData[1] = Trigger->Idx;
+							p->wData[2] = Trigger->Links[i]->Idx;
+							p->wData[3] = i;
+							net.SendPacket(p);
+							p->del();
+						}
 					}
 				}
-			}
 
-			Trigger = Trigger->Next;
+				Trigger = Trigger->Next;
+			}
 		} while (Trigger != Things);
 	}
 
