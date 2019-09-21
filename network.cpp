@@ -52,7 +52,7 @@ void Network::InitConsole()
 		SetConsoleTitle("[Client]");
 
 	std::cout << "Known issues"<< std::endl;
-	std::cout << "1. Timeout during synchronization requests of large maps." << std::endl;
+	std::cout << "1. Timeout during synchronization requests of large maps. However, rest assured that everything is sent & received." << std::endl;
 	std::cout << "2. ???\n" << std::endl;
 	
 
