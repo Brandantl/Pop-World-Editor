@@ -1083,6 +1083,8 @@ void Network::OnSyncMisc(ULONG dwAvailableSpells, ULONG dwBuildingsAvailable, UB
 	leveldat->Header.v2.ObjectsBankNum = nObjBank;
 	leveldat->Header.v2.LevelType = nMapBank;
 	leveldat->Header.v2.DefaultThings.SpellsNotCharging = dwSpellsRestrictions;
+
+	EngineSetTreeType();
 }
 
 void Network::OnTriggerLink(bool link, WORD wSourceIdx, WORD wTargetIdx, BYTE nSlot)
