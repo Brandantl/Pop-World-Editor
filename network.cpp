@@ -1039,7 +1039,7 @@ void Network::OnSyncObjects(BYTE nType, BYTE nModel, BYTE nOwner, WORD x, WORD z
 	case T_SCENERY:
 	{
 		pThing->Thing.Scenery.Angle = wData5;
-		pThing->Thing.Scenery.IslandNum = wData5;
+		pThing->Thing.Scenery.IslandNum = wData6;
 	}
 		break;
 	case T_GENERAL:
