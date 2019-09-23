@@ -2126,6 +2126,7 @@ long __stdcall MenuBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		case ID_PURGE_OBJECTS:
 			PurgeObjects();
+			break;
 
 		case ID_RESET_MARKERS:
 			ResetMarkers();
