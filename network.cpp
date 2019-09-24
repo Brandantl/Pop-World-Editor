@@ -1135,5 +1135,5 @@ void Network::Log(BYTE nLogType, Args... args)
 	}
 
 	std::cout << strType << " ";
-	(std::cout << ... << args) << std::endl;
+	//(std::cout << ... << args) << std::endl;
 }
